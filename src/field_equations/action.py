@@ -307,14 +307,14 @@ def symbolic_field_equations():
     # Define symbolic variables
     t, x, y, z = sp.symbols('t x y z', real=True)
     Phi = sp.Function('Phi')(t, x, y, z)
-    g = sp.Function('g')  # Metric tensor (symbolic)
-    R = sp.Function('R')  # Ricci scalar
+    R = sp.Symbol('R')  # Ricci scalar (symbolic)
     
     G_const, c, xi, m = sp.symbols('G c xi m', positive=True, real=True)
     lambda_ = sp.symbols('lambda', real=True)
     
     # Define Lagrangian density
-    sqrt_g = sp.sqrt(-sp.det(g))  # Symbolic
+    # Use symbolic placeholder for sqrt(-g) to avoid matrix operations
+    sqrt_g = sp.Symbol('sqrt_g', positive=True)
     
     # Components (symbolic forms)
     L_gravity = R / (16 * sp.pi * G_const)

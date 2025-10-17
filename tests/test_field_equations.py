@@ -81,7 +81,9 @@ def test_energy_cost_reduction():
     xi = 1.0
     
     # Small coherence: minimal reduction
-    Phi0_small = 1e10
+    # For G_eff/G > 0.9, need 8πGξΦ₀² < 1/9
+    # With G ≈ 6.674e-11 and ξ=1: Φ₀ < ~8e3
+    Phi0_small = 1e3
     result_small = compute_energy_cost_reduction(Phi0_small, xi, G)
     assert result_small['G_eff_ratio'] < 1.0
     assert result_small['G_eff_ratio'] > 0.9  # Small reduction

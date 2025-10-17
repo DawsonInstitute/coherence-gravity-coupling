@@ -1,0 +1,8 @@
+# Dependencies for coherence-gravity coupling framework
+# Pinned versions for reproducibility
+
+numpy==1.26.4
+sympy==1.13.1
+matplotlib==3.9.4
+pytest==8.4.1
+scipy==1.14.1
