@@ -78,12 +78,12 @@ class ModifiedEinsteinEquations:
         # Coherence corrections (ξ terms)
         xi = self.params.xi
         
-        # Box operator on Φ²: □Φ² = g^μν ∇_μ∇_νΦ²
+        # d'Alembertian operator on Φ²: □Φ² = g^μν ∇_μ∇_νΦ²
         g_inv = np.linalg.inv(g_mu_nu)
-        Box_Phi_sq = np.sum(g_inv * Hessian_Phi)
+        dalembertian_Phi_sq = np.sum(g_inv * Hessian_Phi)
         
         # Term 1: 2(∇_μ∇_νΦ² - g_μν□Φ²)
-        term1 = 2 * (Hessian_Phi - g_mu_nu * Box_Phi_sq)
+        term1 = 2 * (Hessian_Phi - g_mu_nu * dalembertian_Phi_sq)
         
         # Term 2: 2Φ²G_μν
         term2 = 2 * Phi**2 * G_mu_nu

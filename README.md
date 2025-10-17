@@ -61,10 +61,10 @@ The $\xi R \Phi^2$ term allows the coherence field to **directly couple to space
 Varying the action yields:
 
 **Modified Einstein equation**:
-$$G_{\mu\nu} + \xi \left[2(\nabla_\mu\nabla_\nu - g_{\mu\nu}\Box)\Phi^2 + 2\Phi^2 G_{\mu\nu} - 4\nabla_\mu\Phi\nabla_\nu\Phi + 2g_{\mu\nu}(\nabla\Phi)^2\right] = 8\pi G T_{\mu\nu}$$
+$$G_{\mu\nu} + \xi \left[2(\nabla_\mu\nabla_\nu - g_{\mu\nu}\square)\Phi^2 + 2\Phi^2 G_{\mu\nu} - 4\nabla_\mu\Phi\nabla_\nu\Phi + 2g_{\mu\nu}(\nabla\Phi)^2\right] = 8\pi G T_{\mu\nu}$$
 
 **Coherence field equation**:
-$$\Box\Phi - \frac{\partial V}{\partial \Phi} - 2\xi R \Phi = 0$$
+$$\square\Phi - \frac{\partial V}{\partial \Phi} - 2\xi R \Phi = 0$$
 
 **Key Insight**: Curvature $R$ sources the coherence field, and $\Phi$ back-reacts on curvature. This creates a **feedback loop** that can amplify or suppress gravitational coupling.
 
@@ -171,7 +171,7 @@ Coherence: $\Phi = \Phi_0 + \phi$ with $|\phi| \ll \Phi_0$
 
 Linearized Einstein equation becomes:
 
-$$\Box \bar{h}_{\mu\nu} = -16\pi G_{\text{eff}}(\Phi_0) T_{\mu\nu} + \text{(coherence source terms)}$$
+$$\square \bar{h}_{\mu\nu} = -16\pi G_{\text{eff}}(\Phi_0) T_{\mu\nu} + \text{(coherence source terms)}$$
 
 where $\bar{h}_{\mu\nu} = h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}h$ is the trace-reversed perturbation.
 

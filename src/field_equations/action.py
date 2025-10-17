@@ -328,7 +328,7 @@ def symbolic_field_equations():
     # Field equation for Phi (from δS/δΦ = 0)
     # □Φ - dV/dΦ - 2ξRΦ = 0
     dV_dPhi = m**2 * Phi + lambda_ * Phi**3
-    Phi_equation = sp.Symbol('Box_Phi') - dV_dPhi - 2*xi*R*Phi
+    Phi_equation = sp.Symbol('square_Phi') - dV_dPhi - 2*xi*R*Phi
     
     return {
         'lagrangian': L_total,
