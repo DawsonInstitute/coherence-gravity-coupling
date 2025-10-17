@@ -1,6 +1,10 @@
 # Python bytecode cache files
-/src/analysis/__pycache__/
-/__pycache__/
+# ignore any __pycache__ directory anywhere in the repo
+__pycache__/
+**/__pycache__/
+# Specific source subdir (kept for clarity)
+src/analysis/__pycache__/
+# Compiled Python files
 *.py[cod]
 *$py.class
 *.pyc
