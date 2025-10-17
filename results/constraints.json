@@ -1,0 +1,25 @@
+{
+  "ppn_solar_system": {
+    "constraint": "|\u03be\u03a6\u2080\u00b2| < 10\u207b\u2075 (if \u03a6\u2080 \u2260 0 in solar system)",
+    "applies_to": "Ambient coherence only; not constraining for localized experiments",
+    "reference": "Cassini tracking (2003)"
+  },
+  "binary_pulsars": {
+    "constraint": "|\u03be| < 10\u00b3 marginally consistent",
+    "applies_to": "Global coupling strength",
+    "reference": "Hulse-Taylor PSR B1913+16",
+    "status": "\u03be ~ 100 is viable; \u03be > 1000 in tension"
+  },
+  "cosmology": {
+    "constraint": "|\u0394G_eff/G| < 0.1 globally",
+    "applies_to": "Spatially averaged coherence",
+    "reference": "BBN, CMB, structure formation",
+    "status": "Localized coherence avoids this constraint"
+  },
+  "realistic_systems": {
+    "bec_rb87": "\u03a6\u2080 \u2248 3.65e+06 m\u207b\u00b9",
+    "bec_high_density": "\u03a6\u2080 \u2248 3.54e+07 m\u207b\u00b9",
+    "nb_cavity": "\u03a6\u2080 \u2248 2.63e+07 m\u207b\u00b9",
+    "ybco_cuprate": "\u03a6\u2080 \u2248 6.67e+08 m\u207b\u00b9 (optimistic)"
+  }
+}

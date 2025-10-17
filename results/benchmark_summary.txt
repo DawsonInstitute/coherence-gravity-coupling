@@ -2,69 +2,102 @@
 COHERENCE-GRAVITY COUPLING: BENCHMARK CONFIGURATIONS
 ======================================================================
 
-Configuration 1: Weak coupling, low coherence
+Configuration 1: ξ=1, ⁸⁷Rb BEC (Φ₀≈4×10⁶ m⁻¹)
   ξ = 1.00e+00
-  Φ₀ = 1.00e+10 m⁻¹
-  G_eff/G = 5.961752e-12
-  Energy reduction: 1.677e+11×
+  Φ₀ = 3.65e+06 m⁻¹
+  G_eff/G = 4.475471e-05
+  Energy reduction: 2.234e+04×
   Closest system: Superconductor
-  Gap factor: 1.000e-04×
+  Gap factor: 3.650e-08×
   Realizable: YES ✅
 
 ----------------------------------------------------------------------
 
-Configuration 2: Weak coupling, BEC-scale
-  ξ = 1.00e+00
-  Φ₀ = 1.00e+15 m⁻¹
-  G_eff/G = 5.961752e-22
-  Energy reduction: 1.677e+21×
-  Closest system: Superconductor
-  Gap factor: 1.000e+01×
-  Realizable: YES ✅
-
-----------------------------------------------------------------------
-
-Configuration 3: Weak coupling, superconductor-scale
-  ξ = 1.00e+00
-  Φ₀ = 1.00e+20 m⁻¹
-  G_eff/G = 5.961752e-32
-  Energy reduction: 1.677e+31×
-  Closest system: Superconductor
-  Gap factor: 1.000e+06×
-  Realizable: NO ❌
-
-----------------------------------------------------------------------
-
-Configuration 4: Strong coupling, BEC-scale
+Configuration 2: ξ=10, ⁸⁷Rb BEC
   ξ = 1.00e+01
-  Φ₀ = 1.00e+15 m⁻¹
-  G_eff/G = 5.961752e-23
-  Energy reduction: 1.677e+22×
+  Φ₀ = 3.65e+06 m⁻¹
+  G_eff/G = 4.475652e-06
+  Energy reduction: 2.234e+05×
   Closest system: Superconductor
-  Gap factor: 1.000e+01×
+  Gap factor: 3.650e-08×
   Realizable: YES ✅
 
 ----------------------------------------------------------------------
 
-Configuration 5: Very strong coupling, BEC-scale
+Configuration 3: ξ=100, ⁸⁷Rb BEC
   ξ = 1.00e+02
-  Φ₀ = 1.00e+15 m⁻¹
-  G_eff/G = 5.961752e-24
-  Energy reduction: 1.677e+23×
+  Φ₀ = 3.65e+06 m⁻¹
+  G_eff/G = 4.475670e-07
+  Energy reduction: 2.234e+06×
   Closest system: Superconductor
-  Gap factor: 1.000e+01×
+  Gap factor: 3.650e-08×
   Realizable: YES ✅
 
 ----------------------------------------------------------------------
 
-Configuration 6: Weak coupling, extreme coherence
+Configuration 4: ξ=1, High-density BEC (Φ₀≈4×10⁷ m⁻¹)
   ξ = 1.00e+00
-  Φ₀ = 1.00e+25 m⁻¹
-  G_eff/G = 5.961752e-42
-  Energy reduction: 1.677e+41×
+  Φ₀ = 3.54e+07 m⁻¹
+  G_eff/G = 4.744210e-07
+  Energy reduction: 2.108e+06×
   Closest system: Superconductor
-  Gap factor: 1.000e+11×
-  Realizable: NO ❌
+  Gap factor: 3.545e-07×
+  Realizable: YES ✅
+
+----------------------------------------------------------------------
+
+Configuration 5: ξ=100, High-density BEC
+  ξ = 1.00e+02
+  Φ₀ = 3.54e+07 m⁻¹
+  G_eff/G = 4.744212e-09
+  Energy reduction: 2.108e+08×
+  Closest system: Superconductor
+  Gap factor: 3.545e-07×
+  Realizable: YES ✅
+
+----------------------------------------------------------------------
+
+Configuration 6: ξ=1, Nb cavity (Φ₀≈3×10⁷ m⁻¹)
+  ξ = 1.00e+00
+  Φ₀ = 2.63e+07 m⁻¹
+  G_eff/G = 8.608763e-07
+  Energy reduction: 1.162e+06×
+  Closest system: Superconductor
+  Gap factor: 2.632e-07×
+  Realizable: YES ✅
+
+----------------------------------------------------------------------
+
+Configuration 7: ξ=100, Nb cavity
+  ξ = 1.00e+02
+  Φ₀ = 2.63e+07 m⁻¹
+  G_eff/G = 8.608770e-09
+  Energy reduction: 1.162e+08×
+  Closest system: Superconductor
+  Gap factor: 2.632e-07×
+  Realizable: YES ✅
+
+----------------------------------------------------------------------
+
+Configuration 8: ξ=1, YBCO cuprate (Φ₀≈7×10⁸ m⁻¹)
+  ξ = 1.00e+00
+  Φ₀ = 6.67e+08 m⁻¹
+  G_eff/G = 1.341394e-09
+  Energy reduction: 7.455e+08×
+  Closest system: Superconductor
+  Gap factor: 6.667e-06×
+  Realizable: YES ✅
+
+----------------------------------------------------------------------
+
+Configuration 9: ξ=100, YBCO cuprate (optimistic)
+  ξ = 1.00e+02
+  Φ₀ = 6.67e+08 m⁻¹
+  G_eff/G = 1.341394e-11
+  Energy reduction: 7.455e+10×
+  Closest system: Superconductor
+  Gap factor: 6.667e-06×
+  Realizable: YES ✅
 
 ----------------------------------------------------------------------
 
