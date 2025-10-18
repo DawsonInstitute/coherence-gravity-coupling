@@ -100,11 +100,19 @@ class GeometryOptimizer:
             obj_value = -abs(delta_tau)
             
             self.n_evals += 1
+            
+            # Track best so far
+            if len(self.history) == 0:
+                best_so_far = obj_value
+            else:
+                best_so_far = min(self.history[-1]['best_so_far'], obj_value)
+            
             self.history.append({
                 'iteration': self.n_evals,
                 'params': params.tolist(),
                 'delta_tau': delta_tau,
-                'objective': obj_value
+                'objective': obj_value,
+                'best_so_far': best_so_far
             })
             
             if self.n_evals % 5 == 0 or self.verbose:
@@ -116,6 +124,75 @@ class GeometryOptimizer:
         except Exception as e:
             print(f"  ⚠️  Evaluation failed: {e}")
             return 1e10  # Large penalty
+    
+    def save_trace(self, output_path: Path, method: str = "") -> None:
+        """
+        Save optimization trace to CSV and JSON.
+        
+        Args:
+            output_path: Base path (without extension)
+            method: Optimization method name for metadata
+        """
+        import csv
+        
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Save CSV
+        csv_path = output_path.with_suffix('.csv')
+        with open(csv_path, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=[
+                'iteration', 'x', 'y', 'z', 'delta_tau', 'objective', 'best_so_far'
+            ])
+            writer.writeheader()
+            for record in self.history:
+                writer.writerow({
+                    'iteration': record['iteration'],
+                    'x': record['params'][0],
+                    'y': record['params'][1],
+                    'z': record['params'][2],
+                    'delta_tau': record['delta_tau'],
+                    'objective': record['objective'],
+                    'best_so_far': record['best_so_far']
+                })
+        print(f"   Saved trace CSV: {csv_path}")
+        
+        # Save JSON
+        json_path = output_path.with_suffix('.json')
+        trace_data = {
+            'method': method,
+            'xi': self.xi,
+            'Phi0': self.Phi0,
+            'resolution': self.resolution,
+            'n_evaluations': self.n_evals,
+            'history': self.history
+        }
+        with open(json_path, 'w') as f:
+            json.dump(trace_data, f, indent=2)
+        print(f"   Saved trace JSON: {json_path}")
+    
+    def plot_trace(self, output_path: Optional[Path] = None, title: Optional[str] = None) -> None:
+        """
+        Plot optimization convergence trace.
+        
+        Args:
+            output_path: Path to save plot (optional)
+            title: Plot title (optional)
+        """
+        if len(self.history) == 0:
+            print("   No history to plot")
+            return
+        
+        try:
+            from src.visualization.plot_utils import plot_optimization_trace
+            
+            fig = plot_optimization_trace(self.history, output_path, title)
+            
+            if output_path is None:
+                import matplotlib.pyplot as plt
+                plt.show()
+        except ImportError as e:
+            print(f"   ⚠️  Plotting unavailable: {e}")
     
     def optimize_position(
         self,
@@ -368,6 +445,10 @@ def main():
                        help='Grid points per dimension for grid search')
     parser.add_argument('--no-cache', action='store_true',
                        help='Disable result caching')
+    parser.add_argument('--plot', action='store_true',
+                       help='Generate convergence plots')
+    parser.add_argument('--save-trace', action='store_true',
+                       help='Save convergence trace (CSV + JSON)')
     parser.add_argument('--verbose', action='store_true',
                        help='Verbose output')
     
@@ -388,7 +469,11 @@ def main():
             y_range=(-0.10, 0.10, args.grid_size),
             z_range=(-0.15, -0.05, args.grid_size)
         )
-        save_optimization_results(results, "grid_search")
+        filepath = save_optimization_results(results, "grid_search")
+        
+        # For grid search, can optionally save landscape data
+        if args.save_trace:
+            print("\n📊 Grid results saved in JSON (use plot_utils for landscape viz)")
     else:
         # Gradient-based or derivative-free optimization
         x0 = np.array(args.initial_pos)
@@ -396,7 +481,20 @@ def main():
             x0=x0,
             method=args.method
         )
-        save_optimization_results(results, f"optimize_{args.method.lower()}")
+        filepath = save_optimization_results(results, f"optimize_{args.method.lower()}")
+        
+        # Save convergence trace if requested
+        if args.save_trace:
+            print("\n📊 Saving convergence trace...")
+            trace_path = filepath.parent / f"{filepath.stem}_trace"
+            optimizer.save_trace(trace_path, method=args.method)
+        
+        # Generate plots if requested
+        if args.plot:
+            print("\n📊 Generating convergence plot...")
+            plot_path = filepath.parent / f"{filepath.stem}_convergence"
+            title = f"Optimization Convergence ({args.method}, ξ={args.xi})"
+            optimizer.plot_trace(plot_path, title)
     
     print("✅ Optimization complete!")
 
