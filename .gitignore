@@ -11,3 +11,5 @@ src/analysis/__pycache__/
 *.pyo
 
 results/cache/*
+results/analysis/*
+results/optimization/*

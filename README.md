@@ -602,6 +602,47 @@ result = run_geometric_cavendish(
 # make domain-sweep
 ```
 
+#### Geometry Optimization
+
+**New Feature** (October 2025): Automated geometry optimization to maximize experimental signal.
+
+```bash
+# Optimize coherent system position
+python optimize_geometry.py --xi 100 --Phi0 1e8 --method Nelder-Mead
+
+# Grid search for signal landscape mapping
+python optimize_geometry.py --grid-search --grid-size 5
+
+# Quick optimization via Makefile
+make optimize
+```
+
+**Optimization Methods**:
+- `Nelder-Mead`: Derivative-free simplex method (robust, local)
+- `Powell`: Conjugate direction method (faster convergence)
+- `L-BFGS-B`: Gradient-based with bounds (requires smooth objective)
+- `DE`: Differential evolution (global, slower but thorough)
+- `grid-search`: Exhaustive search (visualization, guaranteed global in grid)
+
+**Performance**: Leverages result caching for ~250× speedup on repeated geometries.
+
+**Output**: 
+- Optimization history saved to `results/optimization/`
+- JSON format with initial/optimal positions, improvement factor, convergence details
+
+**Example Results**:
+```
+Initial position: (0.000, 0.000, -0.080) m → Δτ = -4.99e-13 N·m
+Optimal position: (0.000, 0.000, -0.080) m → Δτ = -4.99e-13 N·m
+Improvement: 1.00× (already optimal)
+```
+
+**Next Steps**:
+- Run grid search to map full signal landscape
+- Test different initial positions for global optimization
+- Optimize for different materials (YBCO, Rb-87, Nb)
+- Multi-parameter optimization (position + mass dimensions)
+
 ---
 
 ## Lab Feasibility: Cavendish-BEC Experiment 🔬
