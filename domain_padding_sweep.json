@@ -1,0 +1,39 @@
+{
+  "test_config": {
+    "xi": 100.0,
+    "Phi0": 666666666.6666666,
+    "geom_params": {
+      "coherent_position": [
+        0.0,
+        0.0,
+        -0.08
+      ]
+    }
+  },
+  "resolution": 41,
+  "base_domain": 0.26,
+  "results": [
+    {
+      "padding": 1.5,
+      "domain_size": 0.39,
+      "tau_coherent": -2.91132960921668e-13,
+      "tau_newtonian": -2.6253290925755273e-27,
+      "delta_tau": -2.9113296092166536e-13,
+      "delta_G_over_G": 110893892024810.92,
+      "solve_time": 3.656921148300171
+    },
+    {
+      "padding": 2.0,
+      "domain_size": 0.52,
+      "tau_coherent": -2.2789918315276966e-13,
+      "tau_newtonian": 1.8175355256292112e-27,
+      "delta_tau": -2.278991831527715e-13,
+      "delta_G_over_G": -125389121664554.67,
+      "solve_time": 3.565463066101074
+    }
+  ],
+  "mean_delta_tau": -2.595160720372184e-13,
+  "std_delta_tau": 3.161688888444694e-14,
+  "max_variation": 0.12183017659080712,
+  "recommended_padding": null
+}
