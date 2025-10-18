@@ -32,7 +32,10 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent))
 
 from examples.geometric_cavendish import run_geometric_cavendish
-from examples.domain_bc_sweep import sweep_domain_padding
+from src.utils.result_cache import ResultCache
+from src.visualization.plot_utils import (
+    plot_parameter_sweep, plot_material_comparison, save_figure
+)
 
 
 # Output directory
@@ -178,6 +181,7 @@ def main():
     parser_xi.add_argument('--Phi0', type=float, default=1e8)
     parser_xi.add_argument('--resolution', type=int, default=41)
     parser_xi.add_argument('--cache', action='store_true')
+    parser_xi.add_argument('--plot', action='store_true', help='Generate plots')
     parser_xi.add_argument('--verbose', action='store_true')
     
     # Materials sweep
@@ -185,6 +189,7 @@ def main():
     parser_mat.add_argument('--xi', type=float, default=100.0)
     parser_mat.add_argument('--resolution', type=int, default=41)
     parser_mat.add_argument('--cache', action='store_true')
+    parser_mat.add_argument('--plot', action='store_true', help='Generate plots')
     parser_mat.add_argument('--verbose', action='store_true')
     
     args = parser.parse_args()
@@ -202,8 +207,23 @@ def main():
             cache=args.cache,
             verbose=args.verbose
         )
-        save_results(results, "xi_sweep", 
+        filepath = save_results(results, "xi_sweep", 
                     f"Xi sweep: res={args.resolution}")
+        
+        if args.plot:
+            print("\n📊 Generating plots...")
+            # Prepare data for plotting
+            plot_data = []
+            for key, val in results.items():
+                if key.startswith('xi_'):
+                    plot_data.append({
+                        'param_value': val['xi'],
+                        'delta_tau': val['delta_tau'],
+                        'compute_time': val['elapsed_time'],
+                        'cache_hit': val.get('cache_hit', False)
+                    })
+            output_path = filepath.parent / f"{filepath.stem}_plot"
+            plot_parameter_sweep(plot_data, 'xi', output_path, title='Coherence Coupling Sweep (ξ)')
     
     elif args.command == 'sweep-materials':
         results = sweep_materials(
@@ -213,8 +233,21 @@ def main():
             cache=args.cache,
             verbose=args.verbose
         )
-        save_results(results, "material_comparison",
+        filepath = save_results(results, "material_comparison",
                     f"Material comparison: xi={args.xi}, res={args.resolution}")
+        
+        if args.plot:
+            print("\n📊 Generating plots...")
+            # Prepare data for plotting
+            plot_data = []
+            for key, val in results.items():
+                plot_data.append({
+                    'material': val['material'],
+                    'delta_tau': val['delta_tau'],
+                    'config': val
+                })
+            output_path = filepath.parent / f"{filepath.stem}_plot"
+            plot_material_comparison(plot_data, output_path)
     
     print(f"\n✅ Analysis complete! Results: {RESULTS_DIR}")
 
