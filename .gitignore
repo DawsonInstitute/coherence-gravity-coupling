@@ -10,6 +10,6 @@ src/analysis/__pycache__/
 *.pyc
 *.pyo
 
-results/cache/*
-results/analysis/*
-results/optimization/*
+.pytest_cache/
+
+results/
