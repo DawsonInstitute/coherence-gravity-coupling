@@ -11,6 +11,7 @@ help:
 	@echo ""
 	@echo "Analysis:"
 	@echo "  make analysis      - Run interactive analysis menu"
+	@echo "  make optimize      - Run geometry optimization"
 	@echo ""
 	@echo "Code quality:"
 	@echo "  make lint          - Run flake8 linter"
@@ -66,7 +67,10 @@ cache-clean:
 analysis:
 	@python run_analysis.py
 
+optimize:
+	@python optimize_geometry.py --resolution 41 --method Nelder-Mead
+
 install-dev:
 	pip install -e .
-	pip install pytest pytest-asyncio black isort flake8 tox pre-commit
+	pip install pytest pytest-asyncio black isort flake8 tox pre-commit scipy
 	pre-commit install
