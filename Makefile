@@ -1,4 +1,4 @@
-.PHONY: help test quick-bench bench lint format format-check clean install-dev domain-sweep
+.PHONY: help test quick-bench bench lint format format-check clean install-dev domain-sweep cache-info cache-clean
 
 help:
 	@echo "coherence-gravity-coupling development targets"
@@ -13,6 +13,10 @@ help:
 	@echo "  make lint          - Run flake8 linter"
 	@echo "  make format        - Auto-format code (black + isort)"
 	@echo "  make format-check  - Check formatting without changes"
+	@echo ""
+	@echo "Cache management:"
+	@echo "  make cache-info    - Show cache statistics"
+	@echo "  make cache-clean   - Clear all cached results"
 	@echo ""
 	@echo "Setup:"
 	@echo "  make install-dev   - Install development dependencies"
@@ -49,6 +53,12 @@ clean:
 	find . -type d -name "*.egg-info" -exec rm -rf {} + 2>/dev/null || true
 	rm -f .coverage coverage.xml
 	rm -f benchmark_results.json domain_padding_sweep.json
+
+cache-info:
+	@python -c "from src.utils.result_cache import get_cache; get_cache().info()"
+
+cache-clean:
+	@python -c "from src.utils.result_cache import get_cache; get_cache().clear(); print('✅ Cache cleared')"
 
 install-dev:
 	pip install -e .

@@ -434,6 +434,7 @@ def run_geometric_cavendish(
     grid_nx: Optional[int] = None,
     solver_method: str = 'cg',
     preconditioner: str = 'diagonal',
+    cache: bool = False,
 ) -> Dict:
     """
     Run full geometric Cavendish simulation.
@@ -450,6 +451,7 @@ def run_geometric_cavendish(
         grid_nx: Alias for grid_resolution (for test compatibility)
         solver_method: Iterative solver ('cg' or 'bicgstab')
         preconditioner: Preconditioner type ('none', 'diagonal', 'amg', 'ilu')
+        cache: Enable result caching (default: False)
     
     Returns:
         Dictionary with torque, ΔG/G, timing, etc.
@@ -464,6 +466,27 @@ def run_geometric_cavendish(
     }
     if geom_params:
         base_geom_params.update(geom_params)
+    
+    # Check cache if enabled
+    if cache:
+        from src.utils.result_cache import get_cache
+        cache_inst = get_cache()
+        cache_key = cache_inst.compute_key(
+            xi=xi,
+            Phi0=Phi0,
+            geom_params=base_geom_params,
+            grid_resolution=grid_resolution,
+            domain_size=domain_size,
+            solver_method=solver_method,
+            preconditioner=preconditioner
+        )
+        cached = cache_inst.load(cache_key)
+        if cached is not None:
+            if verbose:
+                print(f"✅ Cache HIT: {cache_key}")
+            return cached['result']
+        elif verbose:
+            print(f"⚠️  Cache MISS: {cache_key}")
 
     if verbose:
         print(f"\n{'='*70}")
@@ -557,7 +580,7 @@ def run_geometric_cavendish(
         print(f"   ΔG_eff/G (estimated): {delta_G_over_G:.6e}")
         print(f"{'='*70}\n")
     
-    return {
+    result = {
         'xi': xi,
         'Phi0': Phi0,
         'geom_params': geom.to_dict(),
@@ -574,6 +597,19 @@ def run_geometric_cavendish(
         'torque_details_newtonian': {k: float(v) if np.isscalar(v) else v.tolist() 
                                       for k, v in torque_newton.items()}
     }
+    
+    # Save to cache if enabled
+    if cache:
+        cache_inst.save(
+            cache_key,
+            result,
+            phi_coherent=solution_coherent,
+            phi_newtonian=solution_newtonian
+        )
+        if verbose:
+            print(f"💾 Saved to cache: {cache_key}")
+    
+    return result
 
 
 # ============================================================================

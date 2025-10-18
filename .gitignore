@@ -9,3 +9,5 @@ src/analysis/__pycache__/
 *$py.class
 *.pyc
 *.pyo
+
+results/cache/*

@@ -24,6 +24,20 @@ make bench           # Full benchmark at 61³ (~2min)
 make domain-sweep    # Domain padding sensitivity study
 ```
 
+### Manage result cache
+```bash
+make cache-info      # Show cache statistics (hits, misses, size)
+make cache-clean     # Clear all cached results
+```
+
+**Caching Usage**: Enable with `cache=True` in `run_geometric_cavendish()`:
+```python
+result = run_geometric_cavendish(xi=100, Phi0=1e8, grid_resolution=61, cache=True)
+```
+- **Performance**: ~250× speedup on cache hit (5.3s → 0.02s for 41³)
+- **Storage**: `results/cache/` (compressed NPZ + JSON metadata)
+- **Cache key**: SHA256 hash of all simulation parameters
+
 ### Check code quality
 ```bash
 make lint            # Run flake8 linter
@@ -138,6 +152,9 @@ git commit --no-verify       # Skip hooks (not recommended)
 - **Format**: `make format` (or let pre-commit do it)
 - **Lint**: `make lint`
 - **Benchmark**: `make quick-bench` or `make bench`
+- **Cache**: `make cache-info` (view stats), `make cache-clean` (clear)
 - **All checks**: `tox`
 
 Pre-commit hooks ensure code quality on every commit without manual intervention.
+
+Result caching speeds up parameter sweeps by ~250× when re-running identical configurations.

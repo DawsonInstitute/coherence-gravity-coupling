@@ -549,6 +549,59 @@ print(f"Torque: {result['tau_coherent']:.6e} N·m")
 
 For details, see [`SOLVER_PERFORMANCE_IMPROVEMENTS.md`](SOLVER_PERFORMANCE_IMPROVEMENTS.md).
 
+#### Result Caching
+
+**New Feature** (January 2025): Optional result caching for parameter sweeps.
+
+```python
+# Enable caching to skip repeated expensive calculations
+result = run_geometric_cavendish(
+    xi=100.0,
+    Phi0=1e8,
+    grid_resolution=61,
+    cache=True  # Enable caching
+)
+```
+
+**Performance**: Cache hit provides ~250× speedup (5.3s → 0.02s for 41³ simulation).
+
+**Cache Management**:
+```bash
+make cache-info   # Show cache statistics
+make cache-clean  # Clear all cached results
+```
+
+**How It Works**:
+- Cache key: SHA256 hash of all simulation parameters (xi, Phi0, geometry, resolution, domain, solver)
+- Storage: Compressed NPZ files (φ fields) + JSON metadata
+- Location: `results/cache/`
+- Thread-safe: Single global cache instance
+
+#### Domain Size and Boundary Conditions
+
+**Recommendation** (January 2025): Use `domain_size ≥ 2.5× minimum_enclosing_size`.
+
+**Domain Study Results** (61³ resolution, xi=100, YBCO):
+- **Padding 2.0×**: 7.1% variation in Δτ
+- **Padding 2.5×**: Recommended for stability (< 10% variation)
+- **Padding 3.0×**: Conservative choice for critical applications
+
+**Important Note**: Newtonian baseline can be at numerical noise floor (~1e-27 N·m) for small systems, causing large fractional variations in Δτ/τ. The coherence signal (Δτ ~ 1e-13 N·m) is physically meaningful and robust across domain sizes.
+
+**Usage**:
+```python
+# Automatic domain sizing with padding
+result = run_geometric_cavendish(
+    xi=100.0,
+    Phi0=1e8,
+    geom_params={'coherent_position': [0, 0, -0.08]},
+    domain_size=0.65,  # 2.5× minimum for stability
+)
+
+# Or run domain sensitivity study
+# make domain-sweep
+```
+
 ---
 
 ## Lab Feasibility: Cavendish-BEC Experiment 🔬
