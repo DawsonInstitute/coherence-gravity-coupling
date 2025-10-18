@@ -405,21 +405,33 @@ class CavendishGeometry:
             'phi_mass2': phi2,
             'interpolation_used': use_interpolation
         }
+    
+    def to_dict(self):
+        """Return dictionary representation of geometry parameters."""
+        return {
+            'M_source': self.M_source,
+            'R_source': self.R_source,
+            'source_separation': self.source_separation,
+            'm_test': self.m_test,
+            'R_test': self.R_test,
+            'L_torsion': self.L_torsion,
+            'coherent_volume': self.coherent_volume,
+            'coherent_position': self.coherent_position,
+            'Phi_coherent': self.Phi_coherent,
+            'source_offset_y': self.source_offset_y,
+        }
 
 
 def run_geometric_cavendish(
     xi: float,
     Phi0: float,
-    coherent_volume: Tuple[float, float, float] = (0.05, 0.05, 0.05),
-    coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),
+    geom_params: Optional[Dict] = None,
     grid_resolution: int = 41,
     domain_size: float = 0.6,
     verbose: bool = True,
     use_interpolation: bool = True,
     use_volume_average: bool = False,
     grid_nx: Optional[int] = None,
-    R_test: Optional[float] = None,
-    L_torsion: Optional[float] = None
 ) -> Dict:
     """
     Run full geometric Cavendish simulation.
@@ -427,16 +439,13 @@ def run_geometric_cavendish(
     Args:
         xi: Non-minimal coupling strength
         Phi0: Coherence field amplitude [m⁻¹]
-        coherent_volume: Size of coherent body (x,y,z) [m]
-        coherent_position: Position of coherent body center [m]
+        geom_params: Dictionary of geometry parameters to override defaults
         grid_resolution: Number of grid points per dimension
         domain_size: Total domain size [m]
         verbose: Print progress
         use_interpolation: Use trilinear interpolation for force
         use_volume_average: Use volume-averaged force (reduces aliasing)
         grid_nx: Alias for grid_resolution (for test compatibility)
-        R_test: Test mass radius [m] (overrides default)
-        L_torsion: Torsion arm length [m] (overrides default)
     
     Returns:
         Dictionary with torque, ΔG/G, timing, etc.
@@ -444,31 +453,25 @@ def run_geometric_cavendish(
     # Handle optional parameter aliases
     if grid_nx is not None:
         grid_resolution = grid_nx
-    # Handle optional parameter aliases
-    if grid_nx is not None:
-        grid_resolution = grid_nx
     
+    # Initialize geometry parameters, allowing overrides
+    base_geom_params = {
+        'Phi_coherent': Phi0
+    }
+    if geom_params:
+        base_geom_params.update(geom_params)
+
     if verbose:
         print(f"\n{'='*70}")
         print(f"GEOMETRIC CAVENDISH SIMULATION")
         print(f"{'='*70}")
         print(f"   ξ = {xi}")
         print(f"   Φ₀ = {Phi0:.2e} m⁻¹")
-        print(f"   Coherent volume: {coherent_volume}")
-        print(f"   Coherent position: {coherent_position}")
-    
-    # Setup geometry with optional overrides
-    geom_params = {
-        'coherent_volume': coherent_volume,
-        'coherent_position': coherent_position,
-        'Phi_coherent': Phi0
-    }
-    if R_test is not None:
-        geom_params['R_test'] = R_test
-    if L_torsion is not None:
-        geom_params['L_torsion'] = L_torsion
-    
-    geom = CavendishGeometry(**geom_params)
+        for key, value in base_geom_params.items():
+            if key != 'Phi_coherent':
+                print(f"   {key}: {value}")
+
+    geom = CavendishGeometry(**base_geom_params)
     
     # Grid (needs to encompass all masses)
     grid = Grid3D(
@@ -551,8 +554,7 @@ def run_geometric_cavendish(
     return {
         'xi': xi,
         'Phi0': Phi0,
-        'coherent_volume': coherent_volume,
-        'coherent_position': coherent_position,
+        'geom_params': geom.to_dict(),
         'grid_resolution': grid_resolution,
         'tau_newtonian': float(tau_newtonian),
         'tau_coherent': float(tau_coherent),
@@ -574,23 +576,20 @@ def run_geometric_cavendish(
 
 def sweep_test_mass(
     m_test_range: np.ndarray,
+    base_geom_params: Dict,
     xi: float = 100.0,
     Phi0: float = 6.67e8,
-    coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),
-    fiber_stress_limit: float = 1e6,  # Pa (typical tungsten wire)
+    fiber_stress_limit: float = 1e9,  # Pa (typical tungsten wire, ~1 GPa)
     verbose: bool = True
 ) -> Dict:
     """
     Sweep test mass to find optimal value maximizing |Δτ| while respecting fiber limits.
     
-    Signal τ ∝ m_test, but fiber stress σ = F/A where F = m·g
-    For tungsten wire (radius r_fiber ≈ 25 μm): σ_max ≈ 1 GPa
-    
     Args:
         m_test_range: Array of test masses to sweep [kg]
+        base_geom_params: Dictionary of baseline geometry parameters
         xi: Coherence coupling strength
         Phi0: Coherence field amplitude [m⁻¹]
-        coherent_position: Position of coherent body
         fiber_stress_limit: Maximum fiber stress [Pa]
         verbose: Print progress
         
@@ -618,34 +617,27 @@ def sweep_test_mass(
             continue
         
         # Run simulation with this test mass
-        # Note: Cannot directly modify m_test in current architecture
-        # Would need to extend run_geometric_cavendish to accept geometry params
-        # For now, use default and note this limitation
+        current_geom = base_geom_params.copy()
+        current_geom['m_test'] = m_test
         
         result_sim = run_geometric_cavendish(
             xi=xi,
             Phi0=Phi0,
-            coherent_position=coherent_position,
+            geom_params=current_geom,
             grid_resolution=41,
             verbose=False
         )
         
-        # Scale torque by mass ratio (τ ∝ m_test)
-        m_default = 0.010  # Default test mass from CavendishGeometry
-        mass_ratio = m_test / m_default
-        
-        tau_newton = result_sim['tau_newtonian'] * mass_ratio
-        tau_coh = result_sim['tau_coherent'] * mass_ratio
-        delta_tau = abs(tau_coh - tau_newton)
+        delta_tau = abs(result_sim['delta_tau'])
         
         results.append({
             'm_test': m_test,
             'm_test_mg': m_test * 1e6,  # Convert to mg
             'fiber_stress_MPa': stress / 1e6,
-            'tau_newtonian': tau_newton,
-            'tau_coherent': tau_coh,
+            'tau_newtonian': result_sim['tau_newtonian'],
+            'tau_coherent': result_sim['tau_coherent'],
             'delta_tau': delta_tau,
-            'delta_tau_frac': delta_tau / abs(tau_newton) if tau_newton != 0 else 0
+            'delta_tau_frac': result_sim['delta_tau_frac']
         })
         
         if verbose:
@@ -670,7 +662,7 @@ def sweep_test_mass(
         'parameters': {
             'xi': xi,
             'Phi0': Phi0,
-            'coherent_position': coherent_position,
+            'base_geom_params': base_geom_params,
             'fiber_stress_limit_MPa': fiber_stress_limit / 1e6
         }
     }
@@ -678,22 +670,20 @@ def sweep_test_mass(
 
 def sweep_source_mass(
     M_source_range: np.ndarray,
+    base_geom_params: Dict,
     xi: float = 100.0,
     Phi0: float = 6.67e8,
-    coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),
     domain_size: float = 0.6,
     verbose: bool = True
 ) -> Dict:
     """
     Sweep source mass to maximize signal while keeping sources within domain.
     
-    Signal τ ∝ M_source, but larger masses require larger domain or closer spacing.
-    
     Args:
         M_source_range: Array of source masses to sweep [kg]
+        base_geom_params: Dictionary of baseline geometry parameters
         xi: Coherence coupling strength
         Phi0: Coherence field amplitude [m⁻¹]
-        coherent_position: Position of coherent body
         domain_size: Computational domain size [m]
         verbose: Print progress
         
@@ -707,51 +697,51 @@ def sweep_source_mass(
     
     results = []
     
+    # Get default values from a dummy instance
+    default_geom = CavendishGeometry()
+    M_default = default_geom.M_source
+    R_source_default = default_geom.R_source
+    
     for M_source in M_source_range:
-        # Check if sources fit in domain with margin
-        # Use default geometry parameters
-        R_source_default = 0.03  # Default from CavendishGeometry
-        sep_default = 0.20
-        
-        # Scale check (rough approximation)
-        # M ∝ ρ * R³, so R ∝ M^(1/3) for constant density
-        M_default = 1.0
+        # Scale radius assuming constant density: R ∝ M^(1/3)
         R_source = R_source_default * (M_source / M_default)**(1/3)
-        max_extent = sep_default/2 + R_source
         
-        if max_extent > domain_size/2 * 0.8:  # 80% of domain for safety
+        # Check if sources fit in domain with margin
+        sep = base_geom_params.get('source_separation', default_geom.source_separation)
+        max_extent = sep/2 + R_source
+        
+        if max_extent > domain_size/2 * 0.9:  # 90% of domain for safety
             if verbose:
-                print(f"  M_source = {M_source:.2f} kg: SKIPPED (too large for domain)")
+                print(f"  M_source = {M_source:.2f} kg: SKIPPED (R={R_source*100:.1f}cm, too large for domain)")
             continue
         
-        # Run simulation with default source mass, then scale
+        # Run simulation with this source mass and scaled radius
+        current_geom = base_geom_params.copy()
+        current_geom['M_source'] = M_source
+        current_geom['R_source'] = R_source
+        
         result_sim = run_geometric_cavendish(
             xi=xi,
             Phi0=Phi0,
-            coherent_position=coherent_position,
+            geom_params=current_geom,
             grid_resolution=41,
             domain_size=domain_size,
             verbose=False
         )
         
-        # Torque scales as M_source for point masses
-        # (More complex for extended sources, but approximate)
-        mass_ratio = M_source / M_default
-        
-        tau_newton = result_sim['tau_newtonian'] * mass_ratio
-        tau_coh = result_sim['tau_coherent'] * mass_ratio
-        delta_tau = abs(tau_coh - tau_newton)
+        delta_tau = abs(result_sim['delta_tau'])
         
         results.append({
             'M_source': M_source,
-            'tau_newtonian': tau_newton,
-            'tau_coherent': tau_coh,
+            'R_source': R_source,
+            'tau_newtonian': result_sim['tau_newtonian'],
+            'tau_coherent': result_sim['tau_coherent'],
             'delta_tau': delta_tau,
-            'delta_tau_frac': delta_tau / abs(tau_newton) if tau_newton != 0 else 0
+            'delta_tau_frac': result_sim['delta_tau_frac']
         })
         
         if verbose:
-            print(f"  M_source = {M_source:.2f} kg: Δτ = {delta_tau:.3e} N·m")
+            print(f"  M_source = {M_source:.2f} kg (R={R_source*100:.1f}cm): Δτ = {delta_tau:.3e} N·m")
     
     if len(results) == 0:
         raise ValueError("No valid source masses found within domain constraints")
@@ -769,7 +759,7 @@ def sweep_source_mass(
         'parameters': {
             'xi': xi,
             'Phi0': Phi0,
-            'coherent_position': coherent_position,
+            'base_geom_params': base_geom_params,
             'domain_size': domain_size
         }
     }
@@ -778,6 +768,7 @@ def sweep_source_mass(
 def sweep_coherent_position(
     y_range: np.ndarray,
     z_range: np.ndarray,
+    base_geom_params: Dict,
     xi: float = 100.0,
     Phi0: float = 6.67e8,
     verbose: bool = True
@@ -785,11 +776,10 @@ def sweep_coherent_position(
     """
     Sweep coherent body position to find maximum |Δτ|.
     
-    Coherent body affects G_eff locally, so position matters for gradient at test masses.
-    
     Args:
         y_range: Array of y positions to sweep [m]
         z_range: Array of z positions to sweep [m]
+        base_geom_params: Dictionary of baseline geometry parameters
         xi: Coherence coupling strength
         Phi0: Coherence field amplitude [m⁻¹]
         verbose: Print progress
@@ -807,19 +797,20 @@ def sweep_coherent_position(
     # Fixed x=0 (centered on torsion bar)
     for y_pos in y_range:
         for z_pos in z_range:
-            position = (0.0, y_pos, z_pos)
+            current_geom = base_geom_params.copy()
+            current_geom['coherent_position'] = (0.0, y_pos, z_pos)
             
             # Run simulation
             result = run_geometric_cavendish(
                 xi=xi,
                 Phi0=Phi0,
-                coherent_position=position,
+                geom_params=current_geom,
                 grid_resolution=41,
                 verbose=False
             )
             
             results.append({
-                'position': position,
+                'position': current_geom['coherent_position'],
                 'y': y_pos,
                 'z': z_pos,
                 'tau_newtonian': result['tau_newtonian'],
@@ -848,6 +839,7 @@ def sweep_coherent_position(
         'parameters': {
             'xi': xi,
             'Phi0': Phi0,
+            'base_geom_params': base_geom_params,
             'y_range': y_range.tolist(),
             'z_range': z_range.tolist()
         }
@@ -856,22 +848,20 @@ def sweep_coherent_position(
 
 def convergence_test(
     grid_resolutions: list = [41, 61, 81],
+    geom_params: Optional[Dict] = None,
     xi: float = 100.0,
     Phi0: float = 6.67e8,
-    coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),
     use_interpolation: bool = True,
     verbose: bool = True
 ) -> Dict:
     """
     Test grid convergence: compare torque results across different resolutions.
     
-    Convergence criterion: |Δτ_fine - Δτ_coarse| / |Δτ_fine| < threshold
-    
     Args:
         grid_resolutions: List of grid sizes to test (e.g., [41, 61, 81])
+        geom_params: Dictionary of geometry parameters
         xi: Coherence coupling strength
         Phi0: Coherence field amplitude [m⁻¹]
-        coherent_position: Position of coherent body
         use_interpolation: Use trilinear interpolation (recommended)
         verbose: Print progress
         
@@ -891,13 +881,12 @@ def convergence_test(
         if verbose:
             print(f"\n--- Testing {resolution}³ grid ---")
         
-        # Run with this resolution - use run_geometric_cavendish which handles everything
         result_full = run_geometric_cavendish(
             xi=xi,
             Phi0=Phi0,
-            coherent_position=coherent_position,
+            geom_params=geom_params,
             grid_resolution=resolution,
-            verbose=False  # Suppress detailed output
+            verbose=False
         )
         
         results.append({
@@ -921,15 +910,20 @@ def convergence_test(
         fine = results[i]
         
         # Relative difference in Δτ
-        rel_diff = abs(fine['delta_tau'] - coarse['delta_tau']) / abs(fine['delta_tau'])
+        rel_diff = abs(fine['delta_tau'] - coarse['delta_tau']) / abs(fine['delta_tau']) if fine['delta_tau'] != 0 else 0
         
         # Grid refinement ratio
         h_ratio = coarse['resolution'] / fine['resolution']
         
         # Estimate convergence order: log(error_ratio) / log(h_ratio)
         if i > 1:
-            prev_diff = abs(results[i-1]['delta_tau'] - results[i-2]['delta_tau']) / abs(results[i-1]['delta_tau'])
-            convergence_order = np.log(prev_diff / rel_diff) / np.log(h_ratio)
+            prev_fine = results[i-1]
+            prev_coarse = results[i-2]
+            prev_diff = abs(prev_fine['delta_tau'] - prev_coarse['delta_tau']) / abs(prev_fine['delta_tau']) if prev_fine['delta_tau'] != 0 else 0
+            if prev_diff > 0 and rel_diff > 0:
+                convergence_order = np.log(prev_diff / rel_diff) / np.log(h_ratio)
+            else:
+                convergence_order = None
         else:
             convergence_order = None
         
@@ -968,7 +962,7 @@ def convergence_test(
         'parameters': {
             'xi': xi,
             'Phi0': Phi0,
-            'coherent_position': coherent_position,
+            'geom_params': geom_params,
             'use_interpolation': use_interpolation
         }
     }
@@ -980,12 +974,12 @@ def optimize_geometry(
     verbose: bool = True
 ) -> Dict:
     """
-    Combined geometry optimization: sweep test mass, source mass, and coherent position.
+    Combined geometry optimization: sweep coherent position, test mass, and source mass.
     
     Performs sequential optimization:
-    1. Sweep coherent position (fast, most impact)
-    2. Sweep test mass (constrained by fiber)
-    3. Sweep source mass (constrained by domain)
+    1. Sweep coherent position (fastest, biggest impact)
+    2. Sweep test mass (constrained by fiber stress)
+    3. Sweep source mass (constrained by domain size)
     
     Args:
         xi: Coherence coupling strength
@@ -1001,43 +995,45 @@ def optimize_geometry(
         print(f"ξ = {xi}, Φ₀ = {Phi0:.2e} m⁻¹")
         print("="*70)
     
-    # Step 1: Optimize coherent position (coarse grid)
+    base_geom = {}
+
+    # Step 1: Optimize coherent position
     position_sweep = sweep_coherent_position(
         y_range=np.linspace(-0.05, 0.10, 4),
         z_range=np.linspace(-0.12, 0.0, 4),
+        base_geom_params=base_geom,
         xi=xi,
         Phi0=Phi0,
         verbose=verbose
     )
-    optimal_position = position_sweep['optimal']['position']
+    base_geom['coherent_position'] = position_sweep['optimal']['position']
     
     # Step 2: Optimize test mass
     mass_sweep = sweep_test_mass(
-        m_test_range=np.linspace(0.005, 0.020, 5),  # 5-20 mg
+        m_test_range=np.linspace(0.005, 0.020, 5),  # 5-20 g
+        base_geom_params=base_geom,
         xi=xi,
         Phi0=Phi0,
-        coherent_position=optimal_position,
         verbose=verbose
     )
-    optimal_m_test = mass_sweep['optimal']['m_test']
+    base_geom['m_test'] = mass_sweep['optimal']['m_test']
     
     # Step 3: Optimize source mass
     source_sweep = sweep_source_mass(
         M_source_range=np.linspace(0.5, 2.0, 4),  # 0.5-2 kg
+        base_geom_params=base_geom,
         xi=xi,
         Phi0=Phi0,
-        coherent_position=optimal_position,
         verbose=verbose
     )
-    optimal_M_source = source_sweep['optimal']['M_source']
-    
+    base_geom['M_source'] = source_sweep['optimal']['M_source']
+    base_geom['R_source'] = source_sweep['optimal']['R_source']
+
     # Final configuration
     final_config = {
         'xi': xi,
         'Phi0': Phi0,
-        'coherent_position': optimal_position,
-        'm_test': optimal_m_test,
-        'M_source': optimal_M_source,
+        'geom_params': base_geom,
         'delta_tau': source_sweep['optimal']['delta_tau']
     }
     
@@ -1045,10 +1041,9 @@ def optimize_geometry(
         print("\n" + "="*70)
         print("FINAL OPTIMIZED CONFIGURATION")
         print("="*70)
-        print(f"Coherent position: {optimal_position}")
-        print(f"Test mass: {optimal_m_test*1e3:.2f} g")
-        print(f"Source mass: {optimal_M_source:.2f} kg")
-        print(f"Δτ (optimized): {final_config['delta_tau']:.3e} N·m")
+        for key, value in base_geom.items():
+            print(f"  {key}: {value}")
+        print(f"  Δτ (optimized): {final_config['delta_tau']:.3e} N·m")
         print("="*70)
     
     return {
@@ -1099,10 +1094,12 @@ def parameter_sweep(
                 run_count += 1
                 print(f"\n[{run_count}/{total_runs}] ξ={xi}, {cal_name}, pos={coh_pos}")
                 
+                geom_p = {'coherent_position': coh_pos}
+                
                 result = run_geometric_cavendish(
                     xi=xi,
                     Phi0=Phi0,
-                    coherent_position=coh_pos,
+                    geom_params=geom_p,
                     grid_resolution=41,
                     verbose=False
                 )
@@ -1187,8 +1184,10 @@ if __name__ == '__main__':
     result = run_geometric_cavendish(
         xi=100.0,
         Phi0=3.65e6,  # Rb BEC
-        coherent_volume=(0.05, 0.05, 0.05),
-        coherent_position=(0.0, 0.0, -0.08),
+        geom_params={
+            'coherent_volume': (0.05, 0.05, 0.05),
+            'coherent_position': (0.0, 0.0, -0.08),
+        },
         grid_resolution=41,
         verbose=True
     )
