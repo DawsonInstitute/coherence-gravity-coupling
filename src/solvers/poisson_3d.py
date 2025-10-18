@@ -19,9 +19,23 @@ import numpy as np
 from typing import Callable, Dict, Tuple, Optional
 from dataclasses import dataclass
 from scipy.sparse import lil_matrix, csr_matrix
-from scipy.sparse.linalg import cg, bicgstab
+from scipy.sparse.linalg import cg, bicgstab, LinearOperator
 from pathlib import Path
 import json
+
+# Optional: PyAMG for algebraic multigrid preconditioning
+try:
+    import pyamg
+    HAS_PYAMG = True
+except ImportError:
+    HAS_PYAMG = False
+
+# scipy incomplete factorizations
+try:
+    from scipy.sparse.linalg import spilu
+    HAS_SPILU = True
+except ImportError:
+    HAS_SPILU = False
 
 # Physical constants
 G_SI = 6.674e-11  # m³/(kg·s²)
@@ -226,7 +240,8 @@ class Poisson3DSolver:
         Phi_func: Callable[[float, float, float], float],
         method: str = 'cg',
         tol: float = 1e-8,
-        maxiter: Optional[int] = None
+        maxiter: Optional[int] = None,
+        preconditioner: str = 'none'
     ) -> PoissonSolution:
         """
         Solve modified Poisson equation.
@@ -237,6 +252,7 @@ class Poisson3DSolver:
             method: Solver method ('cg' or 'bicgstab')
             tol: Solver tolerance
             maxiter: Maximum iterations (None = auto)
+            preconditioner: Preconditioner ('none', 'amg', 'ilu')
         
         Returns:
             PoissonSolution with φ, G_eff, ρ, Φ fields
@@ -270,22 +286,50 @@ class Poisson3DSolver:
         # Build linear system
         A, b = self.build_linear_system(rho, G_eff)
         
+        # Build preconditioner
+        M = None
+        precond_time = 0.0
+        
+        if preconditioner == 'amg' and HAS_PYAMG:
+            print(f"   Building AMG preconditioner...")
+            import time
+            t0 = time.time()
+            ml = pyamg.smoothed_aggregation_solver(A, max_levels=10, max_coarse=100)
+            M = ml.aspreconditioner()
+            precond_time = time.time() - t0
+            print(f"   AMG setup time: {precond_time:.2f} s")
+        elif preconditioner == 'ilu' and HAS_SPILU:
+            print(f"   Building ILU preconditioner...")
+            import time
+            t0 = time.time()
+            ilu = spilu(A.tocsc(), drop_tol=1e-4, fill_factor=10)
+            M_x = lambda x: ilu.solve(x)
+            M = LinearOperator(A.shape, M_x)
+            precond_time = time.time() - t0
+            print(f"   ILU setup time: {precond_time:.2f} s")
+        elif preconditioner != 'none':
+            print(f"   Warning: Preconditioner '{preconditioner}' not available, using none")
+        
         # Solve
-        print(f"   Solving with {method.upper()}...")
+        precond_str = f" with {preconditioner.upper()} preconditioner" if preconditioner != 'none' else ""
+        print(f"   Solving with {method.upper()}{precond_str}...")
         if maxiter is None:
             maxiter = 10 * self.grid.total_points
         
+        import time
+        t0 = time.time()
         if method == 'cg':
-            phi_flat, info = cg(A, b, rtol=tol, maxiter=maxiter)
+            phi_flat, info = cg(A, b, M=M, rtol=tol, maxiter=maxiter)
         elif method == 'bicgstab':
-            phi_flat, info = bicgstab(A, b, rtol=tol, maxiter=maxiter)
+            phi_flat, info = bicgstab(A, b, M=M, rtol=tol, maxiter=maxiter)
         else:
             raise ValueError(f"Unknown method: {method}")
+        solve_time = time.time() - t0
         
         if info == 0:
-            print(f"   ✅ Converged!")
+            print(f"   ✅ Converged in {solve_time:.2f} s!")
         elif info > 0:
-            print(f"   ⚠️ Did not converge in {info} iterations")
+            print(f"   ⚠️ Did not converge in {info} iterations ({solve_time:.2f} s)")
         else:
             print(f"   ❌ Solver error (code {info})")
         
@@ -302,10 +346,13 @@ class Poisson3DSolver:
         
         solver_info = {
             'method': method,
+            'preconditioner': preconditioner,
             'tolerance': tol,
             'maxiter': maxiter,
             'converged': (info == 0),
             'iterations': info if info > 0 else None,
+            'solve_time': solve_time,
+            'precond_time': precond_time,
             'residual': float(residual),
             'phi_min': float(phi_min),
             'phi_max': float(phi_max),

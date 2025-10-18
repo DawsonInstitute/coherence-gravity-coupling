@@ -1,0 +1,511 @@
+"""
+Geometric Cavendish Simulation with 3D Poisson Solver
+
+Models a realistic Cavendish torsion balance experiment with:
+- Two source masses (spheres)
+- Torsion bar with two test masses
+- Coherent body (BEC or superconductor) positioned near sources
+- Computes torque from spatial gradient of gravitational potential
+
+This replaces the path-average approximation with full 3D field solution.
+
+Author: GitHub Copilot (Claude Sonnet 4.5)
+License: MIT
+"""
+
+import numpy as np
+import json
+from pathlib import Path
+import sys
+from typing import Dict, Tuple, Optional
+import time
+
+# Add parent for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from src.solvers.poisson_3d import Poisson3DSolver, Grid3D, PoissonSolution
+from src.analysis.phi_calibration import get_all_calibrations
+
+# Physical constants
+G_SI = 6.674e-11  # m³/(kg·s²)
+
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as patches
+    from mpl_toolkits.mplot3d import Axes3D
+    HAS_MATPLOTLIB = True
+except ImportError:
+    HAS_MATPLOTLIB = False
+    print("Warning: matplotlib not available, plotting disabled")
+
+
+class CavendishGeometry:
+    """Defines the geometry of a Cavendish torsion balance experiment."""
+    
+    def __init__(
+        self,
+        # Source masses (large spheres)
+        M_source: float = 1.0,  # kg
+        R_source: float = 0.03,  # m (3 cm radius)
+        source_separation: float = 0.20,  # m (20 cm between centers)
+        
+        # Test masses (small spheres on torsion bar)
+        m_test: float = 0.010,  # kg (10 g)
+        R_test: float = 0.01,  # m (1 cm radius)
+        L_torsion: float = 0.10,  # m (10 cm arm length)
+        
+        # Coherent body (BEC or superconductor block)
+        coherent_volume: Tuple[float, float, float] = (0.05, 0.05, 0.05),  # m (5 cm cube)
+        coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),  # m
+        Phi_coherent: float = 1e7,  # m⁻¹
+        
+        # Overall positioning
+        source_offset_y: float = 0.10  # m (sources offset from torsion bar)
+    ):
+        """
+        Initialize Cavendish geometry.
+        
+        Coordinate system:
+        - Origin at center of torsion bar
+        - x-axis: along torsion bar (test masses at ±L/2)
+        - y-axis: toward source masses
+        - z-axis: vertical (perpendicular to torsion plane)
+        
+        Standard configuration:
+        - Test mass 1: (+L/2, 0, 0)
+        - Test mass 2: (-L/2, 0, 0)
+        - Source mass 1: (+sep/2, offset_y, 0)
+        - Source mass 2: (-sep/2, offset_y, 0)
+        - Coherent body: centered at coherent_position
+        """
+        self.M_source = M_source
+        self.R_source = R_source
+        self.source_separation = source_separation
+        
+        self.m_test = m_test
+        self.R_test = R_test
+        self.L_torsion = L_torsion
+        
+        self.coherent_volume = coherent_volume
+        self.coherent_position = coherent_position
+        self.Phi_coherent = Phi_coherent
+        
+        self.source_offset_y = source_offset_y
+        
+        # Derived positions
+        self.test1_pos = np.array([L_torsion/2, 0.0, 0.0])
+        self.test2_pos = np.array([-L_torsion/2, 0.0, 0.0])
+        
+        self.source1_pos = np.array([source_separation/2, source_offset_y, 0.0])
+        self.source2_pos = np.array([-source_separation/2, source_offset_y, 0.0])
+    
+    def density_function(self, x: float, y: float, z: float) -> float:
+        """
+        Mass density field ρ(x,y,z) for all masses.
+        
+        Returns density in kg/m³.
+        """
+        r = np.array([x, y, z])
+        rho = 0.0
+        
+        # Source mass 1 (uniform sphere)
+        r1 = np.linalg.norm(r - self.source1_pos)
+        if r1 < self.R_source:
+            V1 = (4.0/3.0) * np.pi * self.R_source**3
+            rho += self.M_source / V1
+        
+        # Source mass 2
+        r2 = np.linalg.norm(r - self.source2_pos)
+        if r2 < self.R_source:
+            V2 = (4.0/3.0) * np.pi * self.R_source**3
+            rho += self.M_source / V2
+        
+        # Test mass 1 (small)
+        rt1 = np.linalg.norm(r - self.test1_pos)
+        if rt1 < self.R_test:
+            Vt = (4.0/3.0) * np.pi * self.R_test**3
+            rho += self.m_test / Vt
+        
+        # Test mass 2
+        rt2 = np.linalg.norm(r - self.test2_pos)
+        if rt2 < self.R_test:
+            Vt = (4.0/3.0) * np.pi * self.R_test**3
+            rho += self.m_test / Vt
+        
+        return rho
+    
+    def coherence_function(self, x: float, y: float, z: float) -> float:
+        """
+        Coherence field Φ(x,y,z).
+        
+        Returns Φ in m⁻¹. Non-zero inside coherent body, zero elsewhere.
+        """
+        r = np.array([x, y, z])
+        rc = np.array(self.coherent_position)
+        
+        # Check if inside coherent volume (rectangular box)
+        dx, dy, dz = self.coherent_volume
+        
+        if (abs(r[0] - rc[0]) < dx/2 and 
+            abs(r[1] - rc[1]) < dy/2 and 
+            abs(r[2] - rc[2]) < dz/2):
+            return self.Phi_coherent
+        
+        return 0.0
+    
+    def compute_torque(self, solution: PoissonSolution) -> Dict:
+        """
+        Compute gravitational torque on torsion bar from 3D potential field.
+        
+        Torque τ = r × F where F = -m ∇φ
+        
+        For torsion bar rotating about z-axis:
+        τ_z = x * F_y - y * F_x
+        
+        where F = -m ∇φ evaluated at each test mass position.
+        """
+        grid = solution.grid
+        phi = solution.phi
+        
+        # Find grid indices closest to test mass positions
+        def nearest_index(pos):
+            i = int((pos[0] + grid.Lx/2) / grid.dx)
+            j = int((pos[1] + grid.Ly/2) / grid.dy)
+            k = int((pos[2] + grid.Lz/2) / grid.dz)
+            
+            # Clamp to valid range
+            i = max(1, min(grid.nx-2, i))
+            j = max(1, min(grid.ny-2, j))
+            k = max(1, min(grid.nz-2, k))
+            
+            return i, j, k
+        
+        i1, j1, k1 = nearest_index(self.test1_pos)
+        i2, j2, k2 = nearest_index(self.test2_pos)
+        
+        # Compute force at test mass 1: F1 = -m1 * ∇φ
+        grad_phi_x1 = (phi[i1+1,j1,k1] - phi[i1-1,j1,k1]) / (2*grid.dx)
+        grad_phi_y1 = (phi[i1,j1+1,k1] - phi[i1,j1-1,k1]) / (2*grid.dy)
+        grad_phi_z1 = (phi[i1,j1,k1+1] - phi[i1,j1,k1-1]) / (2*grid.dz)
+        
+        F1 = -self.m_test * np.array([grad_phi_x1, grad_phi_y1, grad_phi_z1])
+        
+        # Compute force at test mass 2
+        grad_phi_x2 = (phi[i2+1,j2,k2] - phi[i2-1,j2,k2]) / (2*grid.dx)
+        grad_phi_y2 = (phi[i2,j2+1,k2] - phi[i2,j2-1,k2]) / (2*grid.dy)
+        grad_phi_z2 = (phi[i2,j2,k2+1] - phi[i2,j2,k2-1]) / (2*grid.dz)
+        
+        F2 = -self.m_test * np.array([grad_phi_x2, grad_phi_y2, grad_phi_z2])
+        
+        # Torque about z-axis (rotation axis)
+        # τ = r × F, z-component only
+        r1 = self.test1_pos
+        r2 = self.test2_pos
+        
+        tau1_z = r1[0] * F1[1] - r1[1] * F1[0]
+        tau2_z = r2[0] * F2[1] - r2[1] * F2[0]
+        
+        tau_total = tau1_z + tau2_z
+        
+        return {
+            'torque_total': tau_total,
+            'torque_mass1': tau1_z,
+            'torque_mass2': tau2_z,
+            'force_mass1': F1,
+            'force_mass2': F2,
+            'phi_mass1': phi[i1,j1,k1],
+            'phi_mass2': phi[i2,j2,k2]
+        }
+
+
+def run_geometric_cavendish(
+    xi: float,
+    Phi0: float,
+    coherent_volume: Tuple[float, float, float] = (0.05, 0.05, 0.05),
+    coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),
+    grid_resolution: int = 41,
+    domain_size: float = 0.6,
+    verbose: bool = True
+) -> Dict:
+    """
+    Run full geometric Cavendish simulation.
+    
+    Args:
+        xi: Non-minimal coupling strength
+        Phi0: Coherence field amplitude [m⁻¹]
+        coherent_volume: Size of coherent body (x,y,z) [m]
+        coherent_position: Position of coherent body center [m]
+        grid_resolution: Number of grid points per dimension
+        domain_size: Total domain size [m]
+        verbose: Print progress
+    
+    Returns:
+        Dictionary with torque, ΔG/G, timing, etc.
+    """
+    if verbose:
+        print(f"\n{'='*70}")
+        print(f"GEOMETRIC CAVENDISH SIMULATION")
+        print(f"{'='*70}")
+        print(f"   ξ = {xi}")
+        print(f"   Φ₀ = {Phi0:.2e} m⁻¹")
+        print(f"   Coherent volume: {coherent_volume}")
+        print(f"   Coherent position: {coherent_position}")
+    
+    # Setup geometry
+    geom = CavendishGeometry(
+        coherent_volume=coherent_volume,
+        coherent_position=coherent_position,
+        Phi_coherent=Phi0
+    )
+    
+    # Grid (needs to encompass all masses)
+    grid = Grid3D(
+        nx=grid_resolution,
+        ny=grid_resolution,
+        nz=grid_resolution,
+        Lx=domain_size,
+        Ly=domain_size,
+        Lz=domain_size
+    )
+    
+    # Solve with coherence
+    if verbose:
+        print(f"\n--- Solving with coherence (Φ₀ = {Phi0:.2e}) ---")
+    
+    t0 = time.time()
+    solver = Poisson3DSolver(grid, xi=xi)
+    solution_coherent = solver.solve(
+        geom.density_function,
+        geom.coherence_function,
+        method='cg',
+        tol=1e-8
+    )
+    t_coherent = time.time() - t0
+    
+    if verbose:
+        print(f"   Solve time: {t_coherent:.2f} s")
+    
+    # Compute torque
+    torque_result = geom.compute_torque(solution_coherent)
+    tau_coherent = torque_result['torque_total']
+    
+    if verbose:
+        print(f"   Torque: {tau_coherent:.6e} N·m")
+    
+    # Solve without coherence (Newtonian baseline)
+    if verbose:
+        print(f"\n--- Solving without coherence (Φ = 0) ---")
+    
+    def zero_coherence(x, y, z):
+        return 0.0
+    
+    t0 = time.time()
+    solution_newtonian = solver.solve(
+        geom.density_function,
+        zero_coherence,
+        method='cg',
+        tol=1e-8
+    )
+    t_newtonian = time.time() - t0
+    
+    if verbose:
+        print(f"   Solve time: {t_newtonian:.2f} s")
+    
+    torque_newton = geom.compute_torque(solution_newtonian)
+    tau_newtonian = torque_newton['torque_total']
+    
+    if verbose:
+        print(f"   Torque: {tau_newtonian:.6e} N·m")
+    
+    # Compute fractional change
+    delta_tau = tau_coherent - tau_newtonian
+    delta_tau_frac = delta_tau / tau_newtonian if tau_newtonian != 0 else 0.0
+    
+    # Estimate effective ΔG/G from torque ratio
+    # For small perturbations: Δτ/τ ≈ ΔG/G
+    delta_G_over_G = delta_tau_frac
+    
+    if verbose:
+        print(f"\n{'='*70}")
+        print(f"RESULTS")
+        print(f"{'='*70}")
+        print(f"   Torque (Newtonian): {tau_newtonian:.6e} N·m")
+        print(f"   Torque (with coherence): {tau_coherent:.6e} N·m")
+        print(f"   Δτ: {delta_tau:.6e} N·m")
+        print(f"   Δτ/τ: {delta_tau_frac:.6e}")
+        print(f"   ΔG_eff/G (estimated): {delta_G_over_G:.6e}")
+        print(f"{'='*70}\n")
+    
+    return {
+        'xi': xi,
+        'Phi0': Phi0,
+        'coherent_volume': coherent_volume,
+        'coherent_position': coherent_position,
+        'grid_resolution': grid_resolution,
+        'tau_newtonian': float(tau_newtonian),
+        'tau_coherent': float(tau_coherent),
+        'delta_tau': float(delta_tau),
+        'delta_tau_frac': float(delta_tau_frac),
+        'delta_G_over_G': float(delta_G_over_G),
+        'solve_time_coherent': t_coherent,
+        'solve_time_newtonian': t_newtonian,
+        'torque_details_coherent': {k: float(v) if np.isscalar(v) else v.tolist() 
+                                     for k, v in torque_result.items()},
+        'torque_details_newtonian': {k: float(v) if np.isscalar(v) else v.tolist() 
+                                      for k, v in torque_newton.items()}
+    }
+
+
+def parameter_sweep(
+    xi_values: list = [1.0, 10.0, 100.0],
+    calibration_names: list = ['rb87_bec', 'nb_cavity', 'ybco_cuprate'],
+    coherent_positions: list = [(0.0, 0.0, -0.08), (0.0, 0.05, 0.0)],
+    output_dir: Path = Path('results')
+) -> Dict:
+    """
+    Sweep over (ξ, Φ₀, geometry) parameter space.
+    
+    Args:
+        xi_values: List of coupling values
+        calibration_names: List of calibration preset names
+        coherent_positions: List of coherent body positions
+        output_dir: Output directory
+    
+    Returns:
+        Dictionary with all results
+    """
+    print(f"\n{'='*70}")
+    print(f"GEOMETRIC CAVENDISH PARAMETER SWEEP")
+    print(f"{'='*70}")
+    
+    calibrations = get_all_calibrations()
+    results = []
+    
+    total_runs = len(xi_values) * len(calibration_names) * len(coherent_positions)
+    run_count = 0
+    
+    for xi in xi_values:
+        for cal_name in calibration_names:
+            if cal_name not in calibrations:
+                print(f"Warning: {cal_name} not in calibrations, skipping")
+                continue
+            
+            Phi0 = calibrations[cal_name].Phi0
+            
+            for coh_pos in coherent_positions:
+                run_count += 1
+                print(f"\n[{run_count}/{total_runs}] ξ={xi}, {cal_name}, pos={coh_pos}")
+                
+                result = run_geometric_cavendish(
+                    xi=xi,
+                    Phi0=Phi0,
+                    coherent_position=coh_pos,
+                    grid_resolution=41,
+                    verbose=False
+                )
+                
+                result['calibration_name'] = cal_name
+                result['run_id'] = run_count
+                
+                print(f"   → ΔG/G = {result['delta_G_over_G']:.4e}, "
+                      f"Δτ/τ = {result['delta_tau_frac']:.4e}")
+                
+                results.append(result)
+    
+    # Save results
+    output_dir.mkdir(exist_ok=True)
+    output_file = output_dir / 'geometric_cavendish_sweep.json'
+    
+    with open(output_file, 'w') as f:
+        json.dump(results, f, indent=2)
+    
+    print(f"\n✅ Sweep complete! Results saved to {output_file}")
+    
+    return {
+        'results': results,
+        'summary': {
+            'total_runs': total_runs,
+            'xi_values': xi_values,
+            'calibrations': calibration_names,
+            'positions': coherent_positions
+        }
+    }
+
+
+def plot_results(results: Dict, output_dir: Path = Path('results')):
+    """Generate plots from parameter sweep."""
+    if not HAS_MATPLOTLIB:
+        print("Matplotlib not available, skipping plots")
+        return
+    
+    sweep_results = results['results']
+    
+    # Extract data
+    xi_vals = [r['xi'] for r in sweep_results]
+    Phi_vals = [r['Phi0'] for r in sweep_results]
+    delta_G = [r['delta_G_over_G'] for r in sweep_results]
+    cal_names = [r['calibration_name'] for r in sweep_results]
+    
+    # Plot 1: ΔG/G vs ξ for each calibration
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    unique_cals = list(set(cal_names))
+    colors = plt.cm.viridis(np.linspace(0, 1, len(unique_cals)))
+    
+    for cal, color in zip(unique_cals, colors):
+        mask = [c == cal for c in cal_names]
+        xi_cal = [xi_vals[i] for i, m in enumerate(mask) if m]
+        dG_cal = [delta_G[i] for i, m in enumerate(mask) if m]
+        
+        ax.scatter(xi_cal, dG_cal, label=cal, s=100, alpha=0.7, color=color)
+    
+    ax.set_xlabel('Coupling ξ', fontsize=12)
+    ax.set_ylabel('ΔG_eff/G', fontsize=12)
+    ax.set_title('Geometric Cavendish: ΔG/G vs Coupling', fontsize=14, fontweight='bold')
+    ax.set_xscale('log')
+    ax.axhline(0, color='k', linestyle='--', alpha=0.3)
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / 'geometric_cavendish_delta_G.png', dpi=200)
+    print(f"   Saved: geometric_cavendish_delta_G.png")
+    plt.close()
+
+
+# ============================================================================
+# Main Script
+# ============================================================================
+
+if __name__ == '__main__':
+    # Single test run
+    print("Running single geometric Cavendish test...")
+    
+    result = run_geometric_cavendish(
+        xi=100.0,
+        Phi0=3.65e6,  # Rb BEC
+        coherent_volume=(0.05, 0.05, 0.05),
+        coherent_position=(0.0, 0.0, -0.08),
+        grid_resolution=41,
+        verbose=True
+    )
+    
+    # Parameter sweep
+    print("\n" + "="*70)
+    print("Running parameter sweep...")
+    print("="*70)
+    
+    sweep_results = parameter_sweep(
+        xi_values=[1.0, 10.0, 100.0],
+        calibration_names=['rb87_bec', 'nb_cavity', 'ybco_cuprate'],
+        coherent_positions=[
+            (0.0, 0.0, -0.08),  # Below torsion bar
+            (0.0, 0.05, 0.0)    # Between source and test masses
+        ],
+        output_dir=Path('results')
+    )
+    
+    # Plot
+    plot_results(sweep_results, output_dir=Path('results'))
+    
+    print("\n✅ Geometric Cavendish simulation complete!")

@@ -1,0 +1,47 @@
+[
+  {
+    "grid_size": 21,
+    "dof": 9261,
+    "preconditioner": "none",
+    "converged": true,
+    "solve_time": 0.05,
+    "precond_time": 0.0,
+    "total_time": 0.19,
+    "residual": 1.14e-08
+  },
+  {
+    "grid_size": 21,
+    "dof": 9261,
+    "preconditioner": "ilu",
+    "converged": false,
+    "solve_time": 99.51,
+    "precond_time": 0.11,
+    "total_time": 99.75,
+    "residual": 8.965,
+    "note": "Failed to converge - ILU not suitable for extreme G_eff contrast"
+  },
+  {
+    "grid_size": 21,
+    "dof": 9261,
+    "preconditioner": "amg",
+    "converged": true,
+    "solve_time": 0.02,
+    "precond_time": 0.03,
+    "total_time": 0.20,
+    "residual": 1.827e-09,
+    "speedup_vs_none": 0.95
+  },
+  {
+    "grid_size": 31,
+    "dof": 29791,
+    "preconditioner": "none",
+    "converged": true,
+    "solve_time": 1.06,
+    "precond_time": 0.0,
+    "total_time": 1.53,
+    "residual": 3.326e-08
+  },
+  {
+    "summary": "AMG provides similar performance to no preconditioner for small grids but with better residual. ILU fails for high-contrast G_eff. Expected 5-10x speedup on larger grids (64^3-128^3)."
+  }
+]

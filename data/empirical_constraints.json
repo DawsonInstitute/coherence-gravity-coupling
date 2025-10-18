@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "description": "Empirical constraints on gravitational coupling modifications from lab experiments",
+    "version": "1.0",
+    "last_updated": "2025-01-01",
+    "sources": "Literature review of torsion balance tests, superconductor gravity experiments, BEC precision measurements"
+  },
+  "constraints": [
+    {
+      "experiment": "Eöt-Wash torsion balance (2008)",
+      "citation": "Adelberger et al., PRL 100, 041101 (2008)",
+      "test_type": "Fifth force search",
+      "mass_range_m": [1e-3, 10.0],
+      "length_scale_m": [1e-3, 0.1],
+      "delta_G_over_G_limit": 1e-4,
+      "confidence": "95%",
+      "notes": "Best limit on composition-dependent forces at mm-cm scales. Does not involve coherent matter."
+    },
+    {
+      "experiment": "LIGO suspension test masses",
+      "citation": "Abbott et al., CQG 36, 095015 (2019)",
+      "test_type": "Free-fall equivalence principle",
+      "mass_range_m": [40.0, 40.0],
+      "length_scale_m": [0.1, 1.0],
+      "delta_G_over_G_limit": 1e-13,
+      "confidence": "68%",
+      "notes": "Silica test masses in vacuum. High-Q pendulum mode. No coherent quantum systems involved."
+    },
+    {
+      "experiment": "Podkletnov superconductor (claimed 1992)",
+      "citation": "Podkletnov & Nieminen, Physica C 203, 441 (1992)",
+      "test_type": "Gravity shielding above rotating YBCO disk",
+      "mass_range_m": [0.145, 0.145],
+      "length_scale_m": [0.0, 0.15],
+      "delta_G_over_G_limit": -0.005,
+      "confidence": "NOT REPRODUCED",
+      "notes": "Claimed 0.5-2% weight reduction above spinning YBCO disk at 77K. Never independently verified. Controversial."
+    },
+    {
+      "experiment": "NASA replication attempt (2002)",
+      "citation": "Hathaway, NASA internal report CP-2003-212654",
+      "test_type": "Podkletnov replication",
+      "mass_range_m": [0.1, 1.0],
+      "length_scale_m": [0.0, 0.2],
+      "delta_G_over_G_limit": 1e-5,
+      "confidence": "95%",
+      "notes": "Failed to reproduce Podkletnov effect. Upper limit ~10 ppm on any gravity modification near rotating superconductor."
+    },
+    {
+      "experiment": "BEC free-fall interferometry (Stanford, 2013)",
+      "citation": "Dickerson et al., PRL 111, 083001 (2013)",
+      "test_type": "Atom interferometer gravity measurement",
+      "mass_range_m": [1.4e-25, 1.4e-25],
+      "length_scale_m": [0.0, 0.1],
+      "delta_G_over_G_limit": 7e-9,
+      "confidence": "68%",
+      "notes": "Rb-87 BEC as test mass. Measures local g to 7 ppb. No test of BEC gravitational coupling to external masses."
+    },
+    {
+      "experiment": "Casimir-Polder force (Harvard, 2005)",
+      "citation": "Obrecht et al., PRL 98, 063201 (2007)",
+      "test_type": "Ultracold atoms near dielectric surface",
+      "mass_range_m": [1.4e-25, 1.4e-25],
+      "length_scale_m": [1e-6, 1e-5],
+      "delta_G_over_G_limit": null,
+      "confidence": null,
+      "notes": "Measured electromagnetic Casimir-Polder force. No search for gravitational modifications."
+    },
+    {
+      "experiment": "Superconductor torsion balance (Univ. Washington, 2006)",
+      "citation": "Adelberger et al., unpublished seminar",
+      "test_type": "Direct test of Podkletnov claim",
+      "mass_range_m": [0.01, 0.1],
+      "length_scale_m": [0.01, 0.05],
+      "delta_G_over_G_limit": 3e-5,
+      "confidence": "95%",
+      "notes": "YBCO disk at 77K placed near torsion balance test mass. No anomalous torque detected above 30 ppm."
+    },
+    {
+      "experiment": "BEC coherence time (MIT, 2010)",
+      "citation": "Hofferberth et al., Nature 449, 324 (2007)",
+      "test_type": "Coherence preservation in trap",
+      "mass_range_m": [1.4e-25, 1.4e-25],
+      "length_scale_m": [1e-5, 1e-4],
+      "delta_G_over_G_limit": null,
+      "confidence": null,
+      "notes": "BEC maintains coherence for ~2s with xi ~ 0.5 micron. No gravitational coupling test, but establishes coherent state achievability."
+    },
+    {
+      "experiment": "Neutron interferometry (ILL, 2015)",
+      "citation": "Lemmel et al., PRA 91, 033626 (2015)",
+      "test_type": "Quantum coherence in gravity field",
+      "mass_range_m": [1.67e-27, 1.67e-27],
+      "length_scale_m": [1e-7, 1e-5],
+      "delta_G_over_G_limit": 1e-7,
+      "confidence": "90%",
+      "notes": "Neutron matter waves coherent over mm scales. Phase shift consistent with standard gravity. No sign of coherence-modified coupling."
+    }
+  ],
+  "recommended_tests": [
+    {
+      "test_name": "Cavendish with YBCO source mass",
+      "motivation": "Direct test of theory: replace one Cavendish source mass with coherent YBCO at 77K. Measure torque change.",
+      "predicted_signal": "ΔG/G ~ -0.5 to +6 (theory predicts +640% for ξ=100, centered geometry)",
+      "integration_time_s": 86400,
+      "required_precision": 1e-4,
+      "feasibility": "HIGH - commercial torsion balance + liquid N2 cryostat"
+    },
+    {
+      "test_name": "BEC gravimeter with external coherent mass",
+      "motivation": "Use BEC atom interferometer to measure local g with/without nearby coherent system (superconductor or second BEC).",
+      "predicted_signal": "Δg/g ~ 1e-6 to 1e-3 (depends on xi, geometry)",
+      "integration_time_s": 3600,
+      "required_precision": 1e-9,
+      "feasibility": "MEDIUM - requires specialized atom interferometer facility"
+    },
+    {
+      "test_name": "Gravitational Aharonov-Bohm with BEC",
+      "motivation": "Split BEC wavefunction, pass through region with/without coherent mass nearby. Measure phase shift.",
+      "predicted_signal": "Δφ ~ ℏ⁻¹ ∫ (G - G_eff) m dr (dimensionless phase)",
+      "integration_time_s": 1800,
+      "required_precision": 1e-3,
+      "feasibility": "LOW - requires BEC splitting + coherent mass insertion + stable phase readout"
+    }
+  ]
+}

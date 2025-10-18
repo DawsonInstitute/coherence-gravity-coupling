@@ -6,3 +6,6 @@ sympy==1.13.1
 matplotlib==3.9.4
 pytest==8.4.1
 scipy==1.14.1
+
+# Optional: Algebraic multigrid for solver acceleration
+pyamg>=4.2.0
