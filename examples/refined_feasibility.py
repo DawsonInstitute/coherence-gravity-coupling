@@ -533,6 +533,212 @@ def compare_optimized_vs_baseline(profile_name: str = 'cryo_moderate'):
     print("\n" + "="*80)
 
 
+def run_convergence_study(
+    grid_resolutions: list = [41, 61, 81, 101],
+    test_configs: list = None
+):
+    """
+    Run convergence study across multiple grid resolutions.
+    
+    Tests multiple representative configurations and generates:
+    1. JSON file with convergence data
+    2. CSV file with tabular results
+    3. Matplotlib plot showing convergence trends
+    
+    Args:
+        grid_resolutions: List of grid sizes to test
+        test_configs: List of (xi, Phi0, name) tuples to test
+    """
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    from geometric_cavendish import run_geometric_cavendish
+    import csv
+    from datetime import datetime
+    
+    print("\n" + "="*80)
+    print("CONVERGENCE STUDY")
+    print("="*80)
+    print(f"Grid resolutions: {grid_resolutions}")
+    
+    if test_configs is None:
+        # Default test configurations
+        test_configs = [
+            (100.0, 6.67e8, 'YBCO_xi100'),
+            (10.0, 2.63e7, 'Nb_xi10'),
+            (100.0, 3.65e6, 'Rb87_xi100'),
+        ]
+    
+    all_results = []
+    
+    for xi, Phi0, name in test_configs:
+        print(f"\n--- Testing {name} (ξ={xi}, Φ₀={Phi0:.2e}) ---")
+        
+        config_results = []
+        
+        for resolution in grid_resolutions:
+            print(f"  Running {resolution}³ grid...", end=' ', flush=True)
+            
+            result = run_geometric_cavendish(
+                xi=xi,
+                Phi0=Phi0,
+                geom_params={'coherent_position': (0.0, 0.0, -0.08)},
+                grid_resolution=resolution,
+                use_volume_average=True,
+                verbose=False
+            )
+            
+            config_results.append({
+                'config_name': name,
+                'xi': xi,
+                'Phi0': Phi0,
+                'resolution': resolution,
+                'grid_points': resolution**3,
+                'tau_newtonian': result['tau_newtonian'],
+                'tau_coherent': result['tau_coherent'],
+                'delta_tau': result['delta_tau'],
+                'delta_tau_frac': result['delta_tau_frac'],
+                'solve_time': result['solve_time_coherent'] + result['solve_time_newtonian']
+            })
+            
+            print(f"Δτ = {result['delta_tau']:.4e} N·m, time = {config_results[-1]['solve_time']:.2f}s")
+        
+        # Compute convergence metrics
+        for i in range(1, len(config_results)):
+            coarse = config_results[i-1]
+            fine = config_results[i]
+            
+            delta_tau_diff = abs(fine['delta_tau'] - coarse['delta_tau'])
+            rel_error = delta_tau_diff / abs(fine['delta_tau']) if fine['delta_tau'] != 0 else 0
+            
+            config_results[i]['convergence_rel_error'] = rel_error
+            config_results[i]['convergence_delta_tau_diff'] = delta_tau_diff
+            
+            # Estimate convergence order
+            if i > 1:
+                prev_error = config_results[i-1].get('convergence_rel_error', 0)
+                if prev_error > 0 and rel_error > 0:
+                    h_ratio = coarse['resolution'] / fine['resolution']
+                    order = np.log(prev_error / rel_error) / np.log(h_ratio)
+                    config_results[i]['convergence_order'] = order
+        
+        all_results.extend(config_results)
+    
+    # Save JSON results
+    output_dir = Path(__file__).parent.parent / "results"
+    output_dir.mkdir(exist_ok=True)
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    json_file = output_dir / f"convergence_{timestamp}.json"
+    
+    with open(json_file, 'w') as f:
+        json.dump(all_results, f, indent=2)
+    
+    print(f"\n✅ JSON results saved to: {json_file}")
+    
+    # Save CSV results
+    csv_file = output_dir / f"convergence_{timestamp}.csv"
+    
+    # Collect all possible field names from all results
+    all_fieldnames = set()
+    for result in all_results:
+        all_fieldnames.update(result.keys())
+    all_fieldnames = sorted(all_fieldnames)
+    
+    with open(csv_file, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=all_fieldnames)
+        writer.writeheader()
+        writer.writerows(all_results)
+    
+    print(f"✅ CSV results saved to: {csv_file}")
+    
+    # Generate convergence plot
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+    
+    # Plot 1: Δτ vs resolution
+    ax1 = axes[0]
+    for config_name in set(r['config_name'] for r in all_results):
+        config_data = [r for r in all_results if r['config_name'] == config_name]
+        resolutions = [r['resolution'] for r in config_data]
+        delta_taus = [abs(r['delta_tau']) for r in config_data]
+        ax1.plot(resolutions, delta_taus, 'o-', label=config_name, markersize=8)
+    
+    ax1.set_xlabel('Grid Resolution (N)', fontsize=12)
+    ax1.set_ylabel('|Δτ| (N·m)', fontsize=12)
+    ax1.set_title('Torque Signal vs Grid Resolution', fontsize=13, fontweight='bold')
+    ax1.legend(fontsize=10)
+    ax1.grid(True, alpha=0.3)
+    ax1.set_yscale('log')
+    
+    # Plot 2: Relative convergence error
+    ax2 = axes[1]
+    for config_name in set(r['config_name'] for r in all_results):
+        config_data = [r for r in all_results if r['config_name'] == config_name and 'convergence_rel_error' in r]
+        if config_data:
+            resolutions = [r['resolution'] for r in config_data]
+            rel_errors = [r['convergence_rel_error'] for r in config_data]
+            ax2.plot(resolutions, rel_errors, 's-', label=config_name, markersize=8)
+    
+    ax2.axhline(0.01, color='red', linestyle='--', linewidth=2, label='1% threshold')
+    ax2.axhline(0.001, color='green', linestyle=':', linewidth=1.5, label='0.1% threshold')
+    ax2.set_xlabel('Grid Resolution (N)', fontsize=12)
+    ax2.set_ylabel('Relative Error: |Δτ_N - Δτ_{N-1}| / |Δτ_N|', fontsize=12)
+    ax2.set_title('Grid Convergence', fontsize=13, fontweight='bold')
+    ax2.legend(fontsize=9)
+    ax2.grid(True, alpha=0.3)
+    ax2.set_yscale('log')
+    
+    # Plot 3: Computational time vs resolution
+    ax3 = axes[2]
+    for config_name in set(r['config_name'] for r in all_results):
+        config_data = [r for r in all_results if r['config_name'] == config_name]
+        grid_points = [r['grid_points'] for r in config_data]
+        times = [r['solve_time'] for r in config_data]
+        ax3.plot(grid_points, times, '^-', label=config_name, markersize=8)
+    
+    ax3.set_xlabel('Grid Points (N³)', fontsize=12)
+    ax3.set_ylabel('Total Solve Time (s)', fontsize=12)
+    ax3.set_title('Computational Cost', fontsize=13, fontweight='bold')
+    ax3.legend(fontsize=10)
+    ax3.grid(True, alpha=0.3)
+    ax3.set_xscale('log')
+    ax3.set_yscale('log')
+    
+    plt.tight_layout()
+    
+    fig_dir = Path(__file__).parent / "figures"
+    fig_dir.mkdir(exist_ok=True)
+    fig_file = fig_dir / "convergence.png"
+    
+    plt.savefig(fig_file, dpi=300, bbox_inches='tight')
+    print(f"✅ Convergence plot saved to: {fig_file}")
+    
+    # Summary statistics
+    print("\n" + "="*80)
+    print("CONVERGENCE SUMMARY")
+    print("="*80)
+    
+    for config_name in set(r['config_name'] for r in all_results):
+        config_data = [r for r in all_results if r['config_name'] == config_name]
+        finest = config_data[-1]
+        
+        print(f"\n{config_name}:")
+        print(f"  Finest grid ({finest['resolution']}³): Δτ = {finest['delta_tau']:.4e} N·m")
+        
+        if 'convergence_rel_error' in finest:
+            print(f"  Relative convergence: {finest['convergence_rel_error']:.4e}")
+            if finest['convergence_rel_error'] < 0.01:
+                print(f"  ✅ Well converged (<1%)")
+            elif finest['convergence_rel_error'] < 0.05:
+                print(f"  ⚠️  Moderately converged (<5%)")
+            else:
+                print(f"  ❌ Poor convergence (>{finest['convergence_rel_error']*100:.1f}%)")
+        
+        if 'convergence_order' in finest:
+            print(f"  Estimated convergence order: {finest['convergence_order']:.2f}")
+    
+    print("\n" + "="*80)
+
+
 if __name__ == '__main__':
     import argparse
     
@@ -556,10 +762,17 @@ if __name__ == '__main__':
         action='store_true',
         help='Run geometry optimization and compare with baseline'
     )
+    parser.add_argument(
+        '--convergence',
+        action='store_true',
+        help='Run convergence study across multiple grid resolutions'
+    )
     
     args = parser.parse_args()
     
-    if args.optimize:
+    if args.convergence:
+        run_convergence_study()
+    elif args.optimize:
         compare_optimized_vs_baseline(profile_name=args.profile)
     elif args.sweep:
         # Load geometric results

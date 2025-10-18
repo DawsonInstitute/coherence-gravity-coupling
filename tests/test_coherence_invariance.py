@@ -101,7 +101,6 @@ def test_monotonicity_with_xi():
     """
     xi_values = [1.0, 10.0, 100.0]
     Phi0 = 6.67e8  # YBCO
-    position = (0.0, 0.0, -0.08)  # offset
     
     delta_G_values = []
     
@@ -109,7 +108,7 @@ def test_monotonicity_with_xi():
         result = run_geometric_cavendish(
             xi=xi,
             Phi0=Phi0,
-            coherent_position=position,
+            geom_params={'coherent_position': (0.0, 0.0, -0.08)},
             grid_resolution=41,
             verbose=False
         )

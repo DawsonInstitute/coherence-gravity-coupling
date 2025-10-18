@@ -25,9 +25,9 @@ def test_newtonian_torque_scale_reasonable():
     # Even though Phi0=0, the coherent body breaks geometric symmetry
     # and adds mass, creating torque
     res = run_geometric_cavendish(
-        xi=0.0, 
+        xi=0.0,
         Phi0=0.0,
-        coherent_position=(0.0, 0.05, -0.08),  # Offset position
+        geom_params={'coherent_position': (0.0, 0.05, -0.08)},  # Offset position
         verbose=False,
         use_interpolation=True,
         use_volume_average=False

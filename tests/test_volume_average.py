@@ -26,9 +26,8 @@ def test_volume_average_vanishing_radius():
     config = {
         'xi': 10.0,
         'Phi0': 3.65e6,
-        'coherent_position': (0.0, 0.0, -0.08),
+        'geom_params': {'coherent_position': (0.0, 0.0, -0.08), 'R_test': 1e-6},
         'grid_nx': 41,
-        'R_test': 1e-6  # Tiny radius (1 micron)
     }
     
     result_point = run_geometric_cavendish(
@@ -61,7 +60,7 @@ def test_volume_average_convergence():
     config = {
         'xi': 100.0,
         'Phi0': 6.67e8,
-        'coherent_position': (0.0, 0.0, -0.08)
+        'geom_params': {'coherent_position': (0.0, 0.0, -0.08)}
     }
     
     # Grids: 41³ and 61³
@@ -120,7 +119,7 @@ def test_volume_average_symmetry():
     config = {
         'xi': 10.0,
         'Phi0': 2.63e7,
-        'coherent_position': (0.0, 0.0, -0.08),
+        'geom_params': {'coherent_position': (0.0, 0.0, -0.08)},
         'grid_nx': 41
     }
     
@@ -129,11 +128,9 @@ def test_volume_average_symmetry():
     tau1 = result1['tau_coherent']
     
     # Flip coherent body to opposite side (should affect torque)
-    result2 = run_geometric_cavendish(
-        **{**config, 'coherent_position': (0.0, 0.0, 0.08)},
-        use_volume_average=True,
-        verbose=False
-    )
+    config2 = config.copy()
+    config2['geom_params'] = {'coherent_position': (0.0, 0.0, 0.08)}
+    result2 = run_geometric_cavendish(**config2, use_volume_average=True, verbose=False)
     tau2 = result2['tau_coherent']
     
     # Check that torques are similar in magnitude (symmetry)

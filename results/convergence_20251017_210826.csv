@@ -1,0 +1,2 @@
+config_name,xi,Phi0,resolution,grid_points,tau_newtonian,tau_coherent,delta_tau,delta_tau_frac,solve_time
+YBCO_xi100,100.0,667000000.0,41,68921,-2.8272774843121063e-27,4.064060846666609e-13,4.064060846666637e-13,-143744675548019.22,5.230651140213013
