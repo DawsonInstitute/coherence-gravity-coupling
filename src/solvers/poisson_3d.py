@@ -1,10 +1,15 @@
 """
 3D Poisson Solver for Spatially-Varying G_eff
 
-Solves the modified gravitational Poisson equation:
-    ∇·(G_eff(x)∇φ(x)) = 4πGρ(x)
+Solves the modified gravitational Poisson equation in divergence form:
+    ∇·( (G_eff(x)/G) ∇φ(x) ) = 4π G ρ(x)
 
-where G_eff(x) = G / (1 + 8πGξΦ²(x))
+This reduces to the standard Newtonian Poisson equation ∇²φ = 4π G ρ when
+G_eff(x) = G is constant. For spatially varying coupling, the dimensionless
+coefficient (G_eff/G) appears inside the divergence operator.
+
+We model G_eff(x) via
+    G_eff(x) = G / (1 + 8π G ξ Φ²(x))
 
 Uses:
 - 7-point finite difference Laplacian on cubic grid
@@ -164,8 +169,8 @@ class Poisson3DSolver:
         """
         Build sparse matrix A and RHS b for Ax = b.
         
-        Uses 7-point stencil with G_eff evaluated at cell faces:
-        - Face i+½: G_eff_{i+½,j,k} = 0.5*(G_eff_{i,j,k} + G_eff_{i+1,j,k})
+        Uses 7-point stencil with A = (G_eff/G) evaluated at cell faces:
+        - Face i+½: A_{i+½,j,k} = harmonic_mean(A_{i,j,k}, A_{i+1,j,k})
         - Similar for j±½, k±½ faces
         
         Args:
@@ -185,6 +190,9 @@ class Poisson3DSolver:
         
         print(f"   Building {N}×{N} sparse system...")
         
+        # Dimensionless coefficient field A = G_eff / G (ensures correct Newtonian limit)
+        A_field = G_eff / G_SI
+
         for i in range(nx):
             for j in range(ny):
                 for k in range(nz):
@@ -197,22 +205,22 @@ class Poisson3DSolver:
                         continue
                     
                     # Interior points: 7-point stencil
-                    # G_eff at cell faces (harmonic mean for better numerics)
-                    G_xp = 2.0 / (1.0/G_eff[i,j,k] + 1.0/G_eff[i+1,j,k])  # i+½
-                    G_xm = 2.0 / (1.0/G_eff[i,j,k] + 1.0/G_eff[i-1,j,k])  # i-½
-                    G_yp = 2.0 / (1.0/G_eff[i,j,k] + 1.0/G_eff[i,j+1,k])  # j+½
-                    G_ym = 2.0 / (1.0/G_eff[i,j,k] + 1.0/G_eff[i,j-1,k])  # j-½
-                    G_zp = 2.0 / (1.0/G_eff[i,j,k] + 1.0/G_eff[i,j,k+1])  # k+½
-                    G_zm = 2.0 / (1.0/G_eff[i,j,k] + 1.0/G_eff[i,j,k-1])  # k-½
+                    # A = G_eff/G at cell faces (harmonic mean for better numerics)
+                    A_xp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i+1,j,k])  # i+½
+                    A_xm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i-1,j,k])  # i-½
+                    A_yp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j+1,k])  # j+½
+                    A_ym = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j-1,k])  # j-½
+                    A_zp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k+1])  # k+½
+                    A_zm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k-1])  # k-½
                     
                     # Stencil coefficients
-                    c_center = -(G_xp + G_xm)/dx**2 - (G_yp + G_ym)/dy**2 - (G_zp + G_zm)/dz**2
-                    c_xp = G_xp / dx**2
-                    c_xm = G_xm / dx**2
-                    c_yp = G_yp / dy**2
-                    c_ym = G_ym / dy**2
-                    c_zp = G_zp / dz**2
-                    c_zm = G_zm / dz**2
+                    c_center = -(A_xp + A_xm)/dx**2 - (A_yp + A_ym)/dy**2 - (A_zp + A_zm)/dz**2
+                    c_xp = A_xp / dx**2
+                    c_xm = A_xm / dx**2
+                    c_yp = A_yp / dy**2
+                    c_ym = A_ym / dy**2
+                    c_zp = A_zp / dz**2
+                    c_zm = A_zm / dz**2
                     
                     # Fill matrix row
                     A[idx, idx] = c_center
