@@ -1,4 +1,4 @@
-.PHONY: help test quick-bench bench lint format format-check clean install-dev domain-sweep cache-info cache-clean
+.PHONY: help test quick-bench bench lint format format-check clean install-dev domain-sweep cache-info cache-clean analysis
 
 help:
 	@echo "coherence-gravity-coupling development targets"
@@ -8,6 +8,9 @@ help:
 	@echo "  make quick-bench   - Quick benchmark at 41³ (2 runs, ~30s)"
 	@echo "  make bench         - Full benchmark at 61³ (3 runs, ~2min)"
 	@echo "  make domain-sweep  - Domain padding sensitivity study"
+	@echo ""
+	@echo "Analysis:"
+	@echo "  make analysis      - Run interactive analysis menu"
 	@echo ""
 	@echo "Code quality:"
 	@echo "  make lint          - Run flake8 linter"
@@ -59,6 +62,9 @@ cache-info:
 
 cache-clean:
 	@python -c "from src.utils.result_cache import get_cache; get_cache().clear(); print('✅ Cache cleared')"
+
+analysis:
+	@python run_analysis.py
 
 install-dev:
 	pip install -e .

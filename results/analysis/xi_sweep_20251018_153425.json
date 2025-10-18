@@ -1,0 +1,24 @@
+{
+  "timestamp": "20251018_153425",
+  "description": "Xi sweep: res=41",
+  "data": {
+    "xi_50.0": {
+      "xi": 50.0,
+      "delta_tau": -4.991613514735235e-13,
+      "delta_G_over_G": 0.0,
+      "tau_coherent": -4.991613514735235e-13,
+      "tau_newtonian": 0.0,
+      "solve_time": 4.253234386444092,
+      "elapsed_time": 4.322620868682861
+    },
+    "xi_100.0": {
+      "xi": 100.0,
+      "delta_tau": -4.991613518802621e-13,
+      "delta_G_over_G": 0.0,
+      "tau_coherent": -4.991613518802621e-13,
+      "tau_newtonian": 0.0,
+      "solve_time": 3.200791120529175,
+      "elapsed_time": 0.013653039932250977
+    }
+  }
+}

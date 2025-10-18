@@ -253,6 +253,8 @@ def test_1d_slab_interface():
     else:
         print(f"\n❌ OVERALL: FAIL")
     
+    assert overall_pass, f"Interface matching failed: max_error={max_error:.3e}, max_rel_error={max_rel_error:.3e}, flux_mismatch={max(flux_mismatch_1, flux_mismatch_2):.3e}"
+    
     # Plot
     if HAS_MATPLOTLIB:
         fig, axes = plt.subplots(2, 2, figsize=(12, 10))
@@ -309,8 +311,6 @@ def test_1d_slab_interface():
         plt.close()
     
     print("="*70 + "\n")
-    
-    return overall_pass
 
 
 if __name__ == '__main__':
