@@ -15,46 +15,86 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from scipy.constants import k as k_B, hbar, c, G as G_newton
 
-# Physical constants
-m_test = 10e-3  # Test mass 10 mg (typical for micro-torsion balance)
+# Physical constants (baseline geometry)
+m_test_baseline = 10e-3  # Test mass 10 mg (typical for micro-torsion balance)
 L_arm = 0.10    # Torsion bar arm length 10 cm
 kappa = 1e-8    # Torsion constant ~10 nN·m/rad (ultra-soft fiber)
-omega_0 = np.sqrt(kappa / (m_test * L_arm**2))  # Natural frequency
-T = 300  # Temperature in K
+omega_0_baseline = np.sqrt(kappa / (m_test_baseline * L_arm**2))  # Natural frequency
+
+# Noise budget presets
+class NoiseProfile:
+    """Experimental noise scenario with isolation and cryogenics."""
+    def __init__(self, name: str, T: float, seismic_suppression: float, 
+                 tilt_suppression: float, readout_improvement: float,
+                 m_test_factor: float = 1.0):
+        self.name = name
+        self.T = T  # Temperature [K]
+        self.seismic_suppression = seismic_suppression  # Factor reduction in seismic noise
+        self.tilt_suppression = tilt_suppression  # Factor reduction in tilt noise
+        self.readout_improvement = readout_improvement  # Factor improvement in readout
+        self.m_test_factor = m_test_factor  # Test mass scaling factor
+        
+        # Derived params
+        self.m_test = m_test_baseline * m_test_factor
+        self.omega_0 = np.sqrt(kappa / (self.m_test * L_arm**2))
+
+NOISE_PRESETS = {
+    'room_temp_baseline': NoiseProfile(
+        'Room temp (300K), basic isolation',
+        T=300, seismic_suppression=1.0, tilt_suppression=1.0, 
+        readout_improvement=1.0, m_test_factor=1.0
+    ),
+    'cryo_moderate': NoiseProfile(
+        '4K cryo, 10× seismic, 10× tilt, 10× readout',
+        T=4, seismic_suppression=10.0, tilt_suppression=10.0,
+        readout_improvement=10.0, m_test_factor=1.0
+    ),
+    'cryo_advanced': NoiseProfile(
+        '4K cryo, 30× seismic, 10× tilt, 10× readout',
+        T=4, seismic_suppression=30.0, tilt_suppression=10.0,
+        readout_improvement=10.0, m_test_factor=1.0
+    ),
+    'optimized': NoiseProfile(
+        '4K cryo, 100× seismic, 10× tilt, 10× readout, 10× mass',
+        T=4, seismic_suppression=100.0, tilt_suppression=10.0,
+        readout_improvement=10.0, m_test_factor=10.0
+    ),
+}
 
 # Noise sources (all in units of torque N·m for 1 Hz bandwidth)
 
-def seismic_noise(freq_Hz=1e-3):
+def seismic_noise(profile: NoiseProfile, freq_Hz=1e-3):
     """
     Seismic acceleration noise: ~10^-9 g/sqrt(Hz) at 1 mHz.
     Couples to test mass as F_seismic = m * a_seismic.
     """
-    a_seismic = 1e-9 * 9.81  # m/s^2/sqrt(Hz)
-    F_seismic = m_test * a_seismic
+    a_seismic = 1e-9 * 9.81 / profile.seismic_suppression  # m/s^2/sqrt(Hz)
+    F_seismic = profile.m_test * a_seismic
     tau_seismic = F_seismic * L_arm
     return tau_seismic
 
-def thermal_noise():
+def thermal_noise(profile: NoiseProfile):
     """
     Brownian motion of torsion fiber: tau_th = sqrt(4 k_B T kappa / omega_0).
     This is the fundamental thermal limit.
     """
     # Fluctuation-dissipation theorem
-    # For Q ~ 10^4 typical of good torsion fibers
-    Q = 1e4
-    tau_th = np.sqrt(4 * k_B * T * kappa / (omega_0 * Q))
+    # For Q ~ 10^4 typical of good torsion fibers (improves at low T)
+    Q_base = 1e4
+    Q = Q_base * (300.0 / profile.T)  # Q improves ~linearly with T reduction
+    tau_th = np.sqrt(4 * k_B * profile.T * kappa / (profile.omega_0 * Q))
     return tau_th
 
-def tilt_coupling_noise():
+def tilt_coupling_noise(profile: NoiseProfile):
     """
     Earth tides + building tilt: ~1 μrad/sqrt(hr) at mHz.
     Couples to gravitational gradient.
     """
-    tilt_rad = 1e-6 / np.sqrt(3600)  # rad/sqrt(Hz)
+    tilt_rad = 1e-6 / (np.sqrt(3600) * profile.tilt_suppression)  # rad/sqrt(Hz)
     # Tilt creates spurious torque via gradient of local g
     # tau_tilt ~ m * g * L * theta
     g_local = 9.81
-    tau_tilt = m_test * g_local * L_arm * tilt_rad
+    tau_tilt = profile.m_test * g_local * L_arm * tilt_rad
     return tau_tilt
 
 def casimir_patch_potential_noise():
@@ -70,29 +110,31 @@ def casimir_patch_potential_noise():
     # Fluctuating capacitive force: F ~ epsilon_0 A V^2 / d^2
     # With Johnson noise fluctuations delta_V ~ sqrt(4 k_B T R B)
     # For R ~ 1 MOhm, B ~ 1 Hz:
-    delta_V = np.sqrt(4 * k_B * T * 1e6 * 1.0)
+    T_room = 300  # Patch noise not strongly T-dependent (uses room-temp electronics)
+    delta_V = np.sqrt(4 * k_B * T_room * 1e6 * 1.0)
     F_patch = epsilon_0 * A_patch * 2 * V_patch * delta_V / d_gap**2
     tau_patch = F_patch * L_arm
     return tau_patch
 
-def detector_readout_noise():
+def detector_readout_noise(profile: NoiseProfile):
     """
     Optical lever / capacitive readout noise.
     Modern systems: ~1 nrad/sqrt(Hz) angular resolution.
+    Advanced interferometry: ~0.1 nrad/sqrt(Hz)
     """
-    theta_readout = 1e-9  # rad/sqrt(Hz)
+    theta_readout = 1e-9 / profile.readout_improvement  # rad/sqrt(Hz)
     tau_readout = kappa * theta_readout
     return tau_readout
 
-def total_noise_budget():
+def total_noise_budget(profile: NoiseProfile):
     """
     Combine all noise sources in quadrature (assuming uncorrelated).
     """
-    tau_seismic = seismic_noise()
-    tau_thermal = thermal_noise()
-    tau_tilt = tilt_coupling_noise()
-    tau_patch = casimir_patch_potential_noise()
-    tau_readout = detector_readout_noise()
+    tau_seismic = seismic_noise(profile)
+    tau_thermal = thermal_noise(profile)
+    tau_tilt = tilt_coupling_noise(profile)
+    tau_patch = casimir_patch_potential_noise()  # Not strongly T-dependent
+    tau_readout = detector_readout_noise(profile)
     
     tau_total = np.sqrt(
         tau_seismic**2 + 
@@ -142,11 +184,19 @@ def integration_time_for_snr(signal_torque, noise_torque, target_snr=5.0):
     t_int = (target_snr * noise_torque / signal_torque)**2
     return t_int
 
-def main():
-    print("=== Refined Cavendish Feasibility with Geometric Effects ===\n")
+def main(profile_name: str = 'room_temp_baseline'):
+    profile = NOISE_PRESETS[profile_name]
+    
+    print("=== Refined Cavendish Feasibility with Geometric Effects ===")
+    print(f"\nNoise profile: {profile.name}")
+    print(f"  T = {profile.T} K")
+    print(f"  Seismic suppression: {profile.seismic_suppression}×")
+    print(f"  Tilt suppression: {profile.tilt_suppression}×")
+    print(f"  Readout improvement: {profile.readout_improvement}×")
+    print(f"  Test mass: {profile.m_test*1e3:.1f} mg\n")
     
     # Get noise budget
-    noise = total_noise_budget()
+    noise = total_noise_budget(profile)
     print("Noise budget (per sqrt(Hz)):")
     for source, tau in noise.items():
         print(f"  {source:12s}: {tau:.3e} N·m/√Hz")
@@ -169,12 +219,16 @@ def main():
         tau_newtonian = abs(result['tau_newtonian'])
         
         # Signal is the *difference* between coherent and Newtonian
-        signal = abs(tau_coherent - tau_newtonian)
+        signal_base = abs(tau_coherent - tau_newtonian)
+        
+        # Signal scales with test mass (torque ∝ m_test)
+        signal = signal_base * profile.m_test_factor
         
         # Integration time for SNR=5
         t_int = integration_time_for_snr(signal, noise['total'], target_snr)
         
         result['signal_torque'] = signal
+        result['signal_torque_base'] = signal_base
         result['snr_per_sqrt_sec'] = signal / noise['total']
         result['integration_time_hr'] = t_int / 3600
         
@@ -271,7 +325,128 @@ def main():
         print("Recommendations:")
         print("  1. Lower temperature to 4K (reduces thermal noise by ~9×)")
         print("  2. Improve seismic isolation (active platform)")
-        print("  3. Increase test mass (signal scales as m²)")
+        print("  3. Increase test mass (signal scales as m_test)")
+
+
+def sweep_noise_profiles(geometric_results, output_dir="figures"):
+    """
+    Sweep across all noise profiles and generate comparison plots.
+    
+    Parameters
+    ----------
+    geometric_results : list
+        Geometric sweep results from geometric_cavendish_sweep.json
+    output_dir : str
+        Output directory for figures
+    """
+    print("\n" + "="*80)
+    print("SWEEPING NOISE PROFILES")
+    print("="*80)
+    
+    profile_names = list(NOISE_PRESETS.keys())
+    
+    # Store results for each profile
+    all_results = {}
+    
+    for profile_name in profile_names:
+        print(f"\n--- Profile: {profile_name} ---")
+        profile = NOISE_PRESETS[profile_name]
+        
+        # Compute feasibility for this profile
+        feasible_count = 0
+        for result in geometric_results:
+            tau_coherent = result['tau_coherent']
+            tau_newtonian = result['tau_newtonian']
+            signal_base = abs(tau_coherent - tau_newtonian)
+            signal = signal_base * profile.m_test_factor
+            
+            noise = total_noise_budget(profile)
+            target_snr = 5.0
+            t_int = integration_time_for_snr(signal, noise['total'], target_snr)
+            
+            result_copy = result.copy()
+            result_copy['signal_torque'] = signal
+            result_copy['integration_time_hr'] = t_int / 3600
+            
+            if t_int < 24 * 3600:
+                feasible_count += 1
+        
+        all_results[profile_name] = {
+            'feasible_count': feasible_count,
+            'total': len(geometric_results)
+        }
+        
+        print(f"  Temperature: {profile.T} K")
+        print(f"  Seismic suppression: {profile.seismic_suppression}×")
+        print(f"  Tilt suppression: {profile.tilt_suppression}×")
+        print(f"  Readout improvement: {profile.readout_improvement}×")
+        print(f"  Test mass factor: {profile.m_test_factor}×")
+        print(f"  Feasible configs: {feasible_count}/{len(geometric_results)}")
+    
+    # Bar plot comparison
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    x_pos = range(len(profile_names))
+    feasible_counts = [all_results[p]['feasible_count'] for p in profile_names]
+    
+    bars = ax.bar(x_pos, feasible_counts, color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728'])
+    ax.axhline(18, color='gray', linestyle='--', linewidth=1, label='Total configs')
+    
+    ax.set_xlabel('Noise Profile', fontsize=12)
+    ax.set_ylabel('Feasible Configurations (<24 hr)', fontsize=12)
+    ax.set_title('Experimental Feasibility vs Noise Environment', fontsize=13)
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels([p.replace('_', '\n') for p in profile_names], fontsize=10)
+    ax.legend()
+    ax.grid(True, axis='y', alpha=0.3)
+    
+    # Add value labels on bars
+    for bar, count in zip(bars, feasible_counts):
+        height = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+                f'{count}', ha='center', va='bottom', fontsize=11, fontweight='bold')
+    
+    output_path = Path(__file__).parent / output_dir / "noise_profile_sweep.png"
+    output_path.parent.mkdir(exist_ok=True)
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    print(f"\nComparison figure saved to: {output_path}")
+    
+    return all_results
+
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description='Compute experimental feasibility with parameterized noise models'
+    )
+    parser.add_argument(
+        '--profile',
+        type=str,
+        default='room_temp_baseline',
+        choices=list(NOISE_PRESETS.keys()),
+        help='Noise profile to use (default: room_temp_baseline)'
+    )
+    parser.add_argument(
+        '--sweep',
+        action='store_true',
+        help='Sweep across all noise profiles and compare feasibility'
+    )
+    
+    args = parser.parse_args()
+    
+    if args.sweep:
+        # Load geometric results
+        sweep_path = Path(__file__).parent.parent / "results" / "geometric_cavendish_sweep.json"
+        if not sweep_path.exists():
+            print(f"Error: {sweep_path} not found. Run geometric_cavendish.py first.")
+            exit(1)
+        
+        with open(sweep_path) as f:
+            geometric_results = json.load(f)
+        
+        sweep_noise_profiles(geometric_results)
+    else:
+        main(profile_name=args.profile)
+
