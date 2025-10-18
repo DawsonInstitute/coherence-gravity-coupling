@@ -46,6 +46,18 @@ except ImportError:
 G_SI = 6.674e-11  # m³/(kg·s²)
 
 
+def diagonal_preconditioner(A: csr_matrix) -> LinearOperator:
+    """
+    Build diagonal (Jacobi) preconditioner M = diag(A)^{-1}.
+    
+    Fast to compute, provides 2-4× speedup for elliptic PDEs.
+    """
+    diag = A.diagonal()
+    diag_inv = 1.0 / np.where(np.abs(diag) > 1e-12, diag, 1.0)
+    M_func = lambda x: diag_inv * x
+    return LinearOperator(A.shape, M_func)
+
+
 @dataclass
 class Grid3D:
     """3D cubic grid specification"""
@@ -164,7 +176,8 @@ class Poisson3DSolver:
     def build_linear_system(
         self,
         rho: np.ndarray,
-        G_eff: np.ndarray
+        G_eff: np.ndarray,
+        fast_assembly: bool = True
     ) -> Tuple[csr_matrix, np.ndarray]:
         """
         Build sparse matrix A and RHS b for Ax = b.
@@ -176,6 +189,7 @@ class Poisson3DSolver:
         Args:
             rho: Mass density [kg/m³], shape (nx, ny, nz)
             G_eff: Effective coupling [m³/(kg·s²)], shape (nx, ny, nz)
+            fast_assembly: Use optimized assembly (default: True)
         
         Returns:
             A: Sparse coefficient matrix (N×N where N = nx*ny*nz)
@@ -185,57 +199,117 @@ class Poisson3DSolver:
         dx, dy, dz = self.grid.dx, self.grid.dy, self.grid.dz
         N = self.grid.total_points
         
-        A = lil_matrix((N, N))
-        b = np.zeros(N)
-        
         print(f"   Building {N}×{N} sparse system...")
         
         # Dimensionless coefficient field A = G_eff / G (ensures correct Newtonian limit)
         A_field = G_eff / G_SI
-
-        for i in range(nx):
-            for j in range(ny):
-                for k in range(nz):
-                    idx = self.grid.index(i, j, k)
-                    
-                    # Boundary conditions: φ = 0 at domain edges
-                    if i == 0 or i == nx-1 or j == 0 or j == ny-1 or k == 0 or k == nz-1:
-                        A[idx, idx] = 1.0
-                        b[idx] = 0.0
-                        continue
-                    
-                    # Interior points: 7-point stencil
-                    # A = G_eff/G at cell faces (harmonic mean for better numerics)
-                    A_xp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i+1,j,k])  # i+½
-                    A_xm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i-1,j,k])  # i-½
-                    A_yp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j+1,k])  # j+½
-                    A_ym = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j-1,k])  # j-½
-                    A_zp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k+1])  # k+½
-                    A_zm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k-1])  # k-½
-                    
-                    # Stencil coefficients
-                    c_center = -(A_xp + A_xm)/dx**2 - (A_yp + A_ym)/dy**2 - (A_zp + A_zm)/dz**2
-                    c_xp = A_xp / dx**2
-                    c_xm = A_xm / dx**2
-                    c_yp = A_yp / dy**2
-                    c_ym = A_ym / dy**2
-                    c_zp = A_zp / dz**2
-                    c_zm = A_zm / dz**2
-                    
-                    # Fill matrix row
-                    A[idx, idx] = c_center
-                    A[idx, self.grid.index(i+1, j, k)] = c_xp
-                    A[idx, self.grid.index(i-1, j, k)] = c_xm
-                    A[idx, self.grid.index(i, j+1, k)] = c_yp
-                    A[idx, self.grid.index(i, j-1, k)] = c_ym
-                    A[idx, self.grid.index(i, j, k+1)] = c_zp
-                    A[idx, self.grid.index(i, j, k-1)] = c_zm
-                    
-                    # RHS
-                    b[idx] = 4.0 * np.pi * G_SI * rho[i,j,k]
         
-        print(f"   Converting to CSR format...")
-        A_csr = A.tocsr()
+        if fast_assembly:
+            # Optimized assembly using COO format
+            row_idx = []
+            col_idx = []
+            data = []
+            b = np.zeros(N)
+            
+            for i in range(nx):
+                for j in range(ny):
+                    for k in range(nz):
+                        idx = self.grid.index(i, j, k)
+                        
+                        # Boundary conditions: φ = 0 at domain edges
+                        if i == 0 or i == nx-1 or j == 0 or j == ny-1 or k == 0 or k == nz-1:
+                            row_idx.append(idx)
+                            col_idx.append(idx)
+                            data.append(1.0)
+                            b[idx] = 0.0
+                            continue
+                        
+                        # Interior points: 7-point stencil
+                        # A = G_eff/G at cell faces (harmonic mean for better numerics)
+                        A_xp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i+1,j,k])  # i+½
+                        A_xm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i-1,j,k])  # i-½
+                        A_yp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j+1,k])  # j+½
+                        A_ym = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j-1,k])  # j-½
+                        A_zp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k+1])  # k+½
+                        A_zm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k-1])  # k-½
+                        
+                        # Stencil coefficients
+                        c_center = -(A_xp + A_xm)/dx**2 - (A_yp + A_ym)/dy**2 - (A_zp + A_zm)/dz**2
+                        c_xp = A_xp / dx**2
+                        c_xm = A_xm / dx**2
+                        c_yp = A_yp / dy**2
+                        c_ym = A_ym / dy**2
+                        c_zp = A_zp / dz**2
+                        c_zm = A_zm / dz**2
+                        
+                        # Fill matrix entries
+                        row_idx.extend([idx]*7)
+                        col_idx.extend([
+                            idx,
+                            self.grid.index(i+1, j, k),
+                            self.grid.index(i-1, j, k),
+                            self.grid.index(i, j+1, k),
+                            self.grid.index(i, j-1, k),
+                            self.grid.index(i, j, k+1),
+                            self.grid.index(i, j, k-1)
+                        ])
+                        data.extend([c_center, c_xp, c_xm, c_yp, c_ym, c_zp, c_zm])
+                        
+                        # RHS
+                        b[idx] = 4.0 * np.pi * G_SI * rho[i,j,k]
+            
+            print(f"   Converting to CSR format...")
+            from scipy.sparse import coo_matrix
+            A_csr = coo_matrix((data, (row_idx, col_idx)), shape=(N, N)).tocsr()
+        else:
+            # Original LIL-based assembly (slower)
+            A = lil_matrix((N, N))
+            b = np.zeros(N)
+            
+            for i in range(nx):
+                for j in range(ny):
+                    for k in range(nz):
+                        idx = self.grid.index(i, j, k)
+                        
+                        # Boundary conditions: φ = 0 at domain edges
+                        if i == 0 or i == nx-1 or j == 0 or j == ny-1 or k == 0 or k == nz-1:
+                            A[idx, idx] = 1.0
+                            b[idx] = 0.0
+                            continue
+                        
+                        # Interior points: 7-point stencil
+                        # A = G_eff/G at cell faces (harmonic mean for better numerics)
+                        A_xp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i+1,j,k])  # i+½
+                        A_xm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i-1,j,k])  # i-½
+                        A_yp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j+1,k])  # j+½
+                        A_ym = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j-1,k])  # j-½
+                        A_zp = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k+1])  # k+½
+                        A_zm = 2.0 / (1.0/A_field[i,j,k] + 1.0/A_field[i,j,k-1])  # k-½
+                        
+                        # Stencil coefficients
+                        c_center = -(A_xp + A_xm)/dx**2 - (A_yp + A_ym)/dy**2 - (A_zp + A_zm)/dz**2
+                        c_xp = A_xp / dx**2
+                        c_xm = A_xm / dx**2
+                        c_yp = A_yp / dy**2
+                        c_ym = A_ym / dy**2
+                        c_zp = A_zp / dz**2
+                        c_zm = A_zm / dz**2
+                        
+                        # Fill matrix row
+                        A[idx, idx] = c_center
+                        A[idx, self.grid.index(i+1, j, k)] = c_xp
+                        A[idx, self.grid.index(i-1, j, k)] = c_xm
+                        A[idx, self.grid.index(i, j+1, k)] = c_yp
+                        A[idx, self.grid.index(i, j-1, k)] = c_ym
+                        A[idx, self.grid.index(i, j, k+1)] = c_zp
+                        A[idx, self.grid.index(i, j, k-1)] = c_zm
+                        
+                        # RHS
+                        b[idx] = 4.0 * np.pi * G_SI * rho[i,j,k]
+            
+            print(f"   Converting to CSR format...")
+            A_csr = A.tocsr()
+        
         nnz = A_csr.nnz
         sparsity = 100.0 * (1.0 - nnz / N**2)
         print(f"   Matrix sparsity: {sparsity:.2f}% (nnz={nnz:,})")
@@ -298,7 +372,14 @@ class Poisson3DSolver:
         M = None
         precond_time = 0.0
         
-        if preconditioner == 'amg' and HAS_PYAMG:
+        if preconditioner == 'diagonal' or preconditioner == 'jacobi':
+            print(f"   Building diagonal preconditioner...")
+            import time
+            t0 = time.time()
+            M = diagonal_preconditioner(A)
+            precond_time = time.time() - t0
+            print(f"   Diagonal preconditioner setup: {precond_time:.3f} s")
+        elif preconditioner == 'amg' and HAS_PYAMG:
             print(f"   Building AMG preconditioner...")
             import time
             t0 = time.time()

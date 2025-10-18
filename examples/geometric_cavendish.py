@@ -432,6 +432,8 @@ def run_geometric_cavendish(
     use_interpolation: bool = True,
     use_volume_average: bool = False,
     grid_nx: Optional[int] = None,
+    solver_method: str = 'cg',
+    preconditioner: str = 'diagonal',
 ) -> Dict:
     """
     Run full geometric Cavendish simulation.
@@ -446,6 +448,8 @@ def run_geometric_cavendish(
         use_interpolation: Use trilinear interpolation for force
         use_volume_average: Use volume-averaged force (reduces aliasing)
         grid_nx: Alias for grid_resolution (for test compatibility)
+        solver_method: Iterative solver ('cg' or 'bicgstab')
+        preconditioner: Preconditioner type ('none', 'diagonal', 'amg', 'ilu')
     
     Returns:
         Dictionary with torque, ΔG/G, timing, etc.
@@ -492,7 +496,8 @@ def run_geometric_cavendish(
     solution_coherent = solver.solve(
         geom.density_function,
         geom.coherence_function,
-        method='cg',
+        method=solver_method,
+        preconditioner=preconditioner,
         tol=1e-8
     )
     t_coherent = time.time() - t0
@@ -518,7 +523,8 @@ def run_geometric_cavendish(
     solution_newtonian = solver.solve(
         geom.density_function,
         zero_coherence,
-        method='cg',
+        method=solver_method,
+        preconditioner=preconditioner,
         tol=1e-8
     )
     t_newtonian = time.time() - t0

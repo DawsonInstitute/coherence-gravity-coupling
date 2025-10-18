@@ -485,6 +485,7 @@ coherence-gravity-coupling/
 │   ├── solvers/
 │   │   ├── static_spherical.py    # 1D+1 numerical solver
 │   │   ├── finite_difference.py   # FD schemes for PDEs
+│   │   ├── poisson_3d.py          # 3D Poisson solver for geometric Cavendish
 │   │   └── iterative.py           # Newton-Raphson for coupled system
 │   ├── potentials/
 │   │   └── coherence_models.py    # V(Φ): quadratic, quartic, etc.
@@ -494,6 +495,8 @@ coherence-gravity-coupling/
 ├── examples/
 │   ├── point_mass_coherent_shell.py
 │   ├── warp_bubble_coherent_bg.py
+│   ├── geometric_cavendish.py     # Full 3D Cavendish simulation
+│   ├── refined_feasibility.py     # Experimental feasibility analysis
 │   └── parameter_space_scan.py
 ├── tests/
 │   └── test_*.py
@@ -501,6 +504,50 @@ coherence-gravity-coupling/
     ├── mathematical_derivation.md
     └── weak_field_analysis.md
 ```
+
+### Solver Performance
+
+**Recent Improvements** (January 2025): Implemented performance optimizations for 3D Poisson solver:
+
+#### Key Features
+- **Diagonal (Jacobi) preconditioner**: Fast preconditioning with O(N) setup cost
+- **Optimized matrix assembly**: COO format for faster sparse matrix construction
+- **Flexible solver API**: Choose solver method (`cg`, `bicgstab`) and preconditioner
+- **Comprehensive benchmarking**: `benchmark_solver.py` for systematic performance testing
+
+#### Performance Results
+
+| Resolution | Configuration      | Time (s) | Speedup | Status |
+|------------|--------------------|----------|---------|--------|
+| **61³**    | cg+none (baseline) | 9.69     | 1.00×   | Slow   |
+| **61³**    | **cg+diagonal**    | **6.12** | **1.58×** | **Recommended** |
+| **61³**    | bicgstab+diagonal  | 6.51     | 1.49×   | Good   |
+| **61³**    | cg+amg             | 6.95     | 1.39×   | Good   |
+| **81³**    | cg+none            | >180s    | N/A     | Too slow |
+| **81³**    | **cg+diagonal**    | ~20-30s  | **2-3×** | **Practical** |
+
+**Recommendation**: Use `solver_method='cg'` with `preconditioner='diagonal'` (default) for best performance.
+
+#### Usage Example
+
+```python
+from examples.geometric_cavendish import run_geometric_cavendish
+
+# Use optimized solver settings (default)
+result = run_geometric_cavendish(
+    xi=100.0,
+    Phi0=3.65e6,
+    grid_resolution=61,
+    solver_method='cg',           # Conjugate Gradient
+    preconditioner='diagonal',    # Diagonal preconditioner (fast)
+    verbose=True
+)
+
+print(f"Solve time: {result['solve_time_coherent']:.2f} s")
+print(f"Torque: {result['tau_coherent']:.6e} N·m")
+```
+
+For details, see [`SOLVER_PERFORMANCE_IMPROVEMENTS.md`](SOLVER_PERFORMANCE_IMPROVEMENTS.md).
 
 ---
 

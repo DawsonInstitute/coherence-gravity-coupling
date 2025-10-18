@@ -1,0 +1,74 @@
+{
+  "resolution": 61,
+  "n_runs": 2,
+  "materials": [
+    "rb87_bec"
+  ],
+  "results": {
+    "rb87_bec": {
+      "cg+none": {
+        "mean_time": 9.693347334861755,
+        "std_time": 0.23512446880340576,
+        "min_time": 9.45822286605835,
+        "max_time": 9.928471803665161,
+        "mean_residual": 0.0,
+        "mean_torque": -3.486676117400167e-13,
+        "solver_method": "cg",
+        "preconditioner": "none",
+        "speedup": 1.0
+      },
+      "cg+diagonal": {
+        "mean_time": 6.121272802352905,
+        "std_time": 0.07975625991821289,
+        "min_time": 6.041516542434692,
+        "max_time": 6.201029062271118,
+        "mean_residual": 0.0,
+        "mean_torque": -3.4866761659139485e-13,
+        "solver_method": "cg",
+        "preconditioner": "diagonal",
+        "speedup": 1.583550945668654
+      },
+      "bicgstab+none": {
+        "mean_time": 24.436853170394897,
+        "std_time": 1.0477709770202637,
+        "min_time": 23.389082193374634,
+        "max_time": 25.48462414741516,
+        "mean_residual": 0.0,
+        "mean_torque": -3.4866769001639696e-13,
+        "solver_method": "bicgstab",
+        "preconditioner": "none",
+        "speedup": 0.3966692138006209
+      },
+      "bicgstab+diagonal": {
+        "mean_time": 6.510534763336182,
+        "std_time": 0.02605295181274414,
+        "min_time": 6.4844818115234375,
+        "max_time": 6.536587715148926,
+        "mean_residual": 0.0,
+        "mean_torque": -3.4866760727827153e-13,
+        "solver_method": "bicgstab",
+        "preconditioner": "diagonal",
+        "speedup": 1.4888711430356623
+      },
+      "cg+amg": {
+        "mean_time": 6.951504349708557,
+        "std_time": 0.6220754384994507,
+        "min_time": 6.3294289112091064,
+        "max_time": 7.573579788208008,
+        "mean_residual": 0.0,
+        "mean_torque": -3.486676062415816e-13,
+        "solver_method": "cg",
+        "preconditioner": "amg",
+        "speedup": 1.3944244076130299
+      }
+    }
+  },
+  "best_configs": {
+    "rb87_bec": {
+      "config": "cg+diagonal",
+      "time": 6.121272802352905,
+      "speedup": 1.583550945668654
+    }
+  },
+  "target_speedup": 2.0
+}
