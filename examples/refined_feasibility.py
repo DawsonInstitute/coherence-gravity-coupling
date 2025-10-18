@@ -415,6 +415,124 @@ def sweep_noise_profiles(geometric_results, output_dir="figures"):
     return all_results
 
 
+def compare_optimized_vs_baseline(profile_name: str = 'cryo_moderate'):
+    """
+    Run geometry optimization and compare feasibility vs baseline.
+    
+    Generates a figure showing integration time improvements.
+    """
+    from examples.geometric_cavendish import optimize_geometry, run_geometric_cavendish
+    
+    profile = NOISE_PRESETS[profile_name]
+    
+    print("\n" + "="*80)
+    print("OPTIMIZED vs BASELINE GEOMETRY COMPARISON")
+    print("="*80)
+    print(f"\nNoise profile: {profile.name}")
+    
+    # Load baseline results
+    baseline_path = Path(__file__).parent.parent / "results" / "geometric_cavendish_sweep.json"
+    if not baseline_path.exists():
+        print(f"Error: {baseline_path} not found. Run geometric_cavendish.py first.")
+        return
+    
+    with open(baseline_path) as f:
+        baseline_results = json.load(f)
+    
+    # Pick a few representative configs to optimize
+    test_configs = [
+        {'xi': 100.0, 'Phi0': 6.67e8, 'name': 'YBCO ξ=100'},
+        {'xi': 10.0, 'Phi0': 2.63e7, 'name': 'Nb ξ=10'},
+        {'xi': 100.0, 'Phi0': 3.65e6, 'name': 'Rb87 ξ=100'},
+    ]
+    
+    results_table = []
+    noise = total_noise_budget(profile)
+    
+    for config in test_configs:
+        print(f"\n--- Optimizing {config['name']} ---")
+        
+        # Find baseline
+        baseline = None
+        for r in baseline_results:
+            if abs(r['xi'] - config['xi']) < 0.1 and abs(r['Phi0'] - config['Phi0']) < config['Phi0']*0.1:
+                # Take offset position as baseline
+                if abs(r['coherent_position'][2] + 0.08) < 0.01:
+                    baseline = r
+                    break
+        
+        if baseline is None:
+            print(f"  Warning: No baseline found for {config['name']}")
+            continue
+        
+        # Run optimization
+        opt_result = optimize_geometry(xi=config['xi'], Phi0=config['Phi0'], verbose=False)
+        
+        # Extract optimized delta_tau
+        delta_tau_baseline = abs(baseline['tau_coherent'] - baseline['tau_newtonian'])
+        delta_tau_optimized = abs(opt_result['final_config']['delta_tau'])
+        
+        # Scale by mass factor
+        signal_baseline = delta_tau_baseline * profile.m_test_factor
+        signal_optimized = delta_tau_optimized * profile.m_test_factor
+        
+        # Integration times
+        t_baseline_hr = integration_time_for_snr(signal_baseline, noise['total'], 5.0) / 3600
+        t_optimized_hr = integration_time_for_snr(signal_optimized, noise['total'], 5.0) / 3600
+        
+        improvement = t_baseline_hr / t_optimized_hr if t_optimized_hr > 0 else 1.0
+        
+        results_table.append({
+            'name': config['name'],
+            'baseline_hr': t_baseline_hr,
+            'optimized_hr': t_optimized_hr,
+            'improvement': improvement
+        })
+        
+        print(f"  Baseline T_int: {t_baseline_hr:.2f} hr")
+        print(f"  Optimized T_int: {t_optimized_hr:.2f} hr")
+        print(f"  Improvement: {improvement:.2f}×")
+    
+    # Plot comparison
+    if len(results_table) > 0:
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        names = [r['name'] for r in results_table]
+        baseline_times = [r['baseline_hr'] for r in results_table]
+        optimized_times = [r['optimized_hr'] for r in results_table]
+        
+        x = np.arange(len(names))
+        width = 0.35
+        
+        bars1 = ax.bar(x - width/2, baseline_times, width, label='Baseline', color='#1f77b4')
+        bars2 = ax.bar(x + width/2, optimized_times, width, label='Optimized', color='#2ca02c')
+        
+        ax.axhline(24, color='red', linestyle='--', linewidth=2, label='24 hr limit')
+        ax.axhline(1, color='orange', linestyle=':', linewidth=1.5, label='1 hr')
+        
+        ax.set_ylabel('Integration Time (hr) for SNR=5', fontsize=12)
+        ax.set_title(f'Optimized vs Baseline Geometry\n({profile.name})', fontsize=13)
+        ax.set_xticks(x)
+        ax.set_xticklabels(names, fontsize=11)
+        ax.legend(fontsize=11)
+        ax.set_yscale('log')
+        ax.grid(True, axis='y', alpha=0.3)
+        
+        # Add improvement labels
+        for i, r in enumerate(results_table):
+            ax.text(i, max(r['baseline_hr'], r['optimized_hr']) * 1.5,
+                   f"{r['improvement']:.1f}×",
+                   ha='center', fontsize=10, fontweight='bold', color='darkgreen')
+        
+        output_path = Path(__file__).parent / "figures" / "optimized_vs_baseline.png"
+        output_path.parent.mkdir(exist_ok=True)
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        print(f"\nComparison figure saved to: {output_path}")
+    
+    print("\n" + "="*80)
+
+
 if __name__ == '__main__':
     import argparse
     
@@ -433,10 +551,17 @@ if __name__ == '__main__':
         action='store_true',
         help='Sweep across all noise profiles and compare feasibility'
     )
+    parser.add_argument(
+        '--optimize',
+        action='store_true',
+        help='Run geometry optimization and compare with baseline'
+    )
     
     args = parser.parse_args()
     
-    if args.sweep:
+    if args.optimize:
+        compare_optimized_vs_baseline(profile_name=args.profile)
+    elif args.sweep:
         # Load geometric results
         sweep_path = Path(__file__).parent.parent / "results" / "geometric_cavendish_sweep.json"
         if not sweep_path.exists():

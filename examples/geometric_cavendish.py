@@ -236,7 +236,85 @@ class CavendishGeometry:
         
         return np.array([grad_x, grad_y, grad_z])
     
-    def compute_torque(self, solution: PoissonSolution, use_interpolation: bool = True) -> Dict:
+    def volume_average_force(self, phi: np.ndarray, grid: Grid3D, center: Tuple[float, float, float], radius: float, n_samples: int = 5) -> np.ndarray:
+        """
+        Compute volume-averaged force over a spherical test mass.
+        
+        Uses Simpson-like quadrature with trilinear-interpolated gradients.
+        Reduces grid aliasing compared to point-sample.
+        
+        Args:
+            phi: Potential field
+            grid: Grid3D object
+            center: Center of test mass
+            radius: Radius of test mass sphere
+            n_samples: Number of radial samples (odd for Simpson's rule)
+            
+        Returns:
+            Average force vector F_avg = -m_test * <∇φ>_volume
+        """
+        if n_samples % 2 == 0:
+            n_samples += 1  # Ensure odd for Simpson's rule
+        
+        # Radial samples from 0 to radius
+        r_samples = np.linspace(0, radius, n_samples)
+        
+        # Angular samples (simplified: use theta-phi grid)
+        n_theta = max(3, n_samples)
+        n_phi = max(5, 2 * n_samples)
+        
+        theta = np.linspace(0, np.pi, n_theta)
+        phi_angle = np.linspace(0, 2*np.pi, n_phi, endpoint=False)
+        
+        force_sum = np.zeros(3)
+        weight_sum = 0.0
+        
+        for ir, r in enumerate(r_samples):
+            # Simpson weights for radial integration
+            if ir == 0 or ir == n_samples - 1:
+                w_r = 1.0
+            elif ir % 2 == 1:
+                w_r = 4.0
+            else:
+                w_r = 2.0
+            
+            # Surface integral at this radius
+            for th in theta:
+                for ph in phi_angle:
+                    # Spherical to Cartesian
+                    x = center[0] + r * np.sin(th) * np.cos(ph)
+                    y = center[1] + r * np.sin(th) * np.sin(ph)
+                    z = center[2] + r * np.cos(th)
+                    
+                    pos = (x, y, z)
+                    
+                    # Get gradient at this point
+                    try:
+                        grad_phi_local = self.gradient_trilinear(phi, grid, pos)
+                    except (IndexError, ValueError):
+                        # Out of bounds, skip
+                        continue
+                    
+                    # Volume element: r² sin(θ) dr dθ dφ
+                    dtheta = np.pi / (n_theta - 1) if n_theta > 1 else np.pi
+                    dphi = 2*np.pi / n_phi
+                    dV_weight = r**2 * np.sin(th) * w_r * dtheta * dphi
+                    
+                    force_sum += -grad_phi_local * dV_weight
+                    weight_sum += dV_weight
+        
+        # Normalize by total weight (approximate volume integral)
+        if weight_sum > 0:
+            force_avg = force_sum / weight_sum
+        else:
+            # Fallback to point sample
+            grad_center = self.gradient_trilinear(phi, grid, center)
+            force_avg = -grad_center
+        
+        # Scale by mass
+        return self.m_test * force_avg
+    
+    def compute_torque(self, solution: PoissonSolution, use_interpolation: bool = True, use_volume_average: bool = False) -> Dict:
         """
         Compute gravitational torque on torsion bar from 3D potential field.
         
@@ -250,11 +328,19 @@ class CavendishGeometry:
         Args:
             solution: PoissonSolution with phi field
             use_interpolation: If True, use trilinear interpolation; otherwise nearest-grid
+            use_volume_average: If True, volume-average force over test mass (reduces aliasing)
         """
         grid = solution.grid
         phi = solution.phi
         
-        if use_interpolation:
+        if use_volume_average:
+            # Volume-averaged force (preferred for convergence)
+            F1 = self.volume_average_force(phi, grid, self.test1_pos, self.R_test)
+            F2 = self.volume_average_force(phi, grid, self.test2_pos, self.R_test)
+            
+            phi1 = self.trilinear_interpolate(phi, grid, self.test1_pos)
+            phi2 = self.trilinear_interpolate(phi, grid, self.test2_pos)
+        elif use_interpolation:
             # Use trilinear interpolation for gradient evaluation
             grad_phi1 = self.gradient_trilinear(phi, grid, self.test1_pos)
             grad_phi2 = self.gradient_trilinear(phi, grid, self.test2_pos)
@@ -328,7 +414,12 @@ def run_geometric_cavendish(
     coherent_position: Tuple[float, float, float] = (0.0, 0.0, -0.08),
     grid_resolution: int = 41,
     domain_size: float = 0.6,
-    verbose: bool = True
+    verbose: bool = True,
+    use_interpolation: bool = True,
+    use_volume_average: bool = False,
+    grid_nx: Optional[int] = None,
+    R_test: Optional[float] = None,
+    L_torsion: Optional[float] = None
 ) -> Dict:
     """
     Run full geometric Cavendish simulation.
@@ -341,10 +432,22 @@ def run_geometric_cavendish(
         grid_resolution: Number of grid points per dimension
         domain_size: Total domain size [m]
         verbose: Print progress
+        use_interpolation: Use trilinear interpolation for force
+        use_volume_average: Use volume-averaged force (reduces aliasing)
+        grid_nx: Alias for grid_resolution (for test compatibility)
+        R_test: Test mass radius [m] (overrides default)
+        L_torsion: Torsion arm length [m] (overrides default)
     
     Returns:
         Dictionary with torque, ΔG/G, timing, etc.
     """
+    # Handle optional parameter aliases
+    if grid_nx is not None:
+        grid_resolution = grid_nx
+    # Handle optional parameter aliases
+    if grid_nx is not None:
+        grid_resolution = grid_nx
+    
     if verbose:
         print(f"\n{'='*70}")
         print(f"GEOMETRIC CAVENDISH SIMULATION")
@@ -354,12 +457,18 @@ def run_geometric_cavendish(
         print(f"   Coherent volume: {coherent_volume}")
         print(f"   Coherent position: {coherent_position}")
     
-    # Setup geometry
-    geom = CavendishGeometry(
-        coherent_volume=coherent_volume,
-        coherent_position=coherent_position,
-        Phi_coherent=Phi0
-    )
+    # Setup geometry with optional overrides
+    geom_params = {
+        'coherent_volume': coherent_volume,
+        'coherent_position': coherent_position,
+        'Phi_coherent': Phi0
+    }
+    if R_test is not None:
+        geom_params['R_test'] = R_test
+    if L_torsion is not None:
+        geom_params['L_torsion'] = L_torsion
+    
+    geom = CavendishGeometry(**geom_params)
     
     # Grid (needs to encompass all masses)
     grid = Grid3D(
@@ -388,8 +497,8 @@ def run_geometric_cavendish(
     if verbose:
         print(f"   Solve time: {t_coherent:.2f} s")
     
-    # Compute torque
-    torque_result = geom.compute_torque(solution_coherent)
+    # Compute torque with specified method
+    torque_result = geom.compute_torque(solution_coherent, use_interpolation=use_interpolation, use_volume_average=use_volume_average)
     tau_coherent = torque_result['torque_total']
     
     if verbose:
@@ -414,7 +523,7 @@ def run_geometric_cavendish(
     if verbose:
         print(f"   Solve time: {t_newtonian:.2f} s")
     
-    torque_newton = geom.compute_torque(solution_newtonian)
+    torque_newton = geom.compute_torque(solution_newtonian, use_interpolation=use_interpolation, use_volume_average=use_volume_average)
     tau_newtonian = torque_newton['torque_total']
     
     if verbose:
