@@ -29,6 +29,11 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 import numpy as np
 from scipy.optimize import minimize, differential_evolution
+import multiprocessing as mp
+import platform
+import sys
+import subprocess
+from importlib import metadata as _metadata
 
 from examples.geometric_cavendish import run_geometric_cavendish
 
@@ -321,7 +326,9 @@ class GeometryOptimizer:
         self,
         x_range: Tuple[float, float, int],
         y_range: Tuple[float, float, int],
-        z_range: Tuple[float, float, int]
+        z_range: Tuple[float, float, int],
+        jobs: int = 1,
+        show_progress: bool = True
     ) -> Dict:
         """
         Exhaustive grid search over position space.
@@ -353,37 +360,74 @@ class GeometryOptimizer:
         best_pos = None
         
         t0 = time.time()
-        
+
+        # Prepare evaluation queue
+        tasks: List[Tuple[int, float, float, float]] = []
         for i, x in enumerate(x_vals):
             for j, y in enumerate(y_vals):
                 for k, z in enumerate(z_vals):
-                    idx = i * len(y_vals) * len(z_vals) + j * len(z_vals) + k + 1
-                    
-                    geom_params = {'coherent_position': [x, y, z]}
-                    
-                    result = run_geometric_cavendish(
-                        xi=self.xi,
-                        Phi0=self.Phi0,
-                        geom_params=geom_params,
-                        grid_resolution=self.resolution,
-                        cache=self.cache,
-                        verbose=False
-                    )
-                    
-                    delta_tau = result['delta_tau']
-                    
-                    results.append({
-                        'position': [x, y, z],
-                        'delta_tau': delta_tau
-                    })
-                    
-                    if abs(delta_tau) > abs(best_tau):
-                        best_tau = delta_tau
-                        best_pos = [x, y, z]
-                    
-                    if idx % 10 == 0:
-                        print(f"  [{idx}/{total_points}] Current best: Δτ={best_tau:.3e} N·m "
-                              f"at ({best_pos[0]:.3f}, {best_pos[1]:.3f}, {best_pos[2]:.3f}) m")
+                    idx = i * len(y_vals) * len(z_vals) + j * len(z_vals) + k
+                    tasks.append((idx, float(x), float(y), float(z)))
+
+        def _evaluate_point(args: Tuple[int, float, float, float]) -> Dict:
+            idx, x, y, z = args
+            geom_params = {'coherent_position': [x, y, z]}
+            try:
+                r = run_geometric_cavendish(
+                    xi=self.xi,
+                    Phi0=self.Phi0,
+                    geom_params=geom_params,
+                    grid_resolution=self.resolution,
+                    cache=self.cache,
+                    verbose=False
+                )
+                return {
+                    'idx': idx,
+                    'position': [x, y, z],
+                    'delta_tau': r['delta_tau']
+                }
+            except Exception as e:
+                return {
+                    'idx': idx,
+                    'position': [x, y, z],
+                    'delta_tau': 0.0,
+                    'error': str(e)
+                }
+
+        # Optional progress bar
+        try:
+            from tqdm.auto import tqdm  # type: ignore
+        except Exception:
+            tqdm = None  # type: ignore
+
+        if jobs and jobs > 1:
+            # Use default context (fork on Linux) to allow nested function pickling
+            with mp.Pool(processes=jobs) as pool:
+                iterator = pool.imap_unordered(_evaluate_point, tasks, chunksize=1)
+                if show_progress and tqdm is not None:
+                    iterator = tqdm(iterator, total=total_points, desc="Grid evals", unit="pt")
+                for item in iterator:
+                    results.append(item)
+                    dt = item['delta_tau']
+                    if abs(dt) > abs(best_tau):
+                        best_tau = dt
+                        best_pos = item['position']
+        else:
+            iterator = tasks
+            if show_progress and tqdm is not None:
+                iterator = tqdm(iterator, total=total_points, desc="Grid evals", unit="pt")
+            for item in iterator:
+                out = _evaluate_point(item)
+                results.append(out)
+                dt = out['delta_tau']
+                if abs(dt) > abs(best_tau):
+                    best_tau = dt
+                    best_pos = out['position']
+
+        # Sort results by idx for deterministic ordering
+        results_sorted = sorted(results, key=lambda r: r['idx'])
+        # Compact result objects
+        compact_results = [{'position': r['position'], 'delta_tau': r['delta_tau']} for r in results_sorted]
         
         t_elapsed = time.time() - t0
         
@@ -403,8 +447,38 @@ class GeometryOptimizer:
             'optimal_delta_tau': best_tau,
             'n_evaluations': total_points,
             'elapsed_time': t_elapsed,
-            'all_results': results
+            'all_results': compact_results
         }
+
+
+def _get_env_metadata() -> Dict:
+    """Collect minimal environment metadata for reproducibility."""
+    def _git(cmd: List[str]) -> Optional[str]:
+        try:
+            out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode().strip()
+            return out or None
+        except Exception:
+            return None
+
+    git_sha = _git(["git", "rev-parse", "HEAD"])
+    git_branch = _git(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+
+    try:
+        sp_ver = _metadata.version("scipy")
+    except Exception:
+        sp_ver = None
+
+    return {
+        'python': sys.version.split(" ")[0],
+        'numpy': np.__version__,
+        'scipy': sp_ver,
+        'platform': {
+            'system': platform.system(),
+            'release': platform.release(),
+            'machine': platform.machine(),
+        },
+        'git': {'sha': git_sha, 'branch': git_branch},
+    }
 
 
 def save_optimization_results(results: Dict, name: str = "optimization") -> Path:
@@ -413,8 +487,10 @@ def save_optimization_results(results: Dict, name: str = "optimization") -> Path
     filename = f"{name}_{timestamp}.json"
     filepath = RESULTS_DIR / filename
     
+    payload = dict(results)
+    payload.setdefault('environment', _get_env_metadata())
     with open(filepath, 'w') as f:
-        json.dump(results, f, indent=2)
+        json.dump(payload, f, indent=2)
     
     print(f"💾 Results saved: {filepath}")
     return filepath
@@ -443,8 +519,12 @@ def main():
                        help='Use grid search instead of optimization')
     parser.add_argument('--grid-size', type=int, default=5,
                        help='Grid points per dimension for grid search')
+    parser.add_argument('--jobs', type=int, default=1,
+                       help='Parallel workers for grid search (1 = serial)')
     parser.add_argument('--no-cache', action='store_true',
                        help='Disable result caching')
+    parser.add_argument('--no-progress', action='store_true',
+                       help='Disable progress bars')
     parser.add_argument('--plot', action='store_true',
                        help='Generate convergence plots')
     parser.add_argument('--save-trace', action='store_true',
@@ -467,7 +547,9 @@ def main():
         results = optimizer.grid_search(
             x_range=(-0.10, 0.10, args.grid_size),
             y_range=(-0.10, 0.10, args.grid_size),
-            z_range=(-0.15, -0.05, args.grid_size)
+            z_range=(-0.15, -0.05, args.grid_size),
+            jobs=args.jobs,
+            show_progress=not args.no_progress
         )
         filepath = save_optimization_results(results, "grid_search")
         

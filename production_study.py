@@ -67,10 +67,11 @@ MATERIALS = {
 class ProductionStudy:
     """Orchestrate comprehensive optimization study."""
     
-    def __init__(self, resolution: int = 41, cache: bool = True, verbose: bool = False):
+    def __init__(self, resolution: int = 41, cache: bool = True, verbose: bool = False, jobs: int = 1):
         self.resolution = resolution
         self.cache = cache
         self.verbose = verbose
+        self.jobs = jobs
         self.results = {}
     
     def run_material_study(
@@ -115,7 +116,9 @@ class ProductionStudy:
         grid_results = optimizer.grid_search(
             x_range=(-0.10, 0.10, grid_size),
             y_range=(-0.10, 0.10, grid_size),
-            z_range=(-0.15, -0.05, grid_size)
+            z_range=(-0.15, -0.05, grid_size),
+            jobs=self.jobs,
+            show_progress=True
         )
         
         grid_optimal_pos = grid_results['optimal_position']
@@ -296,6 +299,8 @@ def main():
                        help='Grid resolution')
     parser.add_argument('--grid-size', type=int, default=5,
                        help='Grid points per dimension (5³ = 125 evaluations)')
+    parser.add_argument('--jobs', type=int, default=1,
+                       help='Parallel workers for grid search (1 = serial)')
     parser.add_argument('--quick', action='store_true',
                        help='Quick mode: grid search only, no refinement')
     parser.add_argument('--no-cache', action='store_true',
@@ -324,7 +329,8 @@ def main():
     study = ProductionStudy(
         resolution=args.resolution,
         cache=not args.no_cache,
-        verbose=args.verbose
+        verbose=args.verbose,
+        jobs=args.jobs
     )
     
     all_results = []
@@ -349,6 +355,7 @@ def main():
         'grid_size': args.grid_size,
         'quick': args.quick,
         'cache': not args.no_cache,
+        'jobs': args.jobs,
     }
     env_meta = study._get_env_metadata()
     study.save_study_results(all_results, study_config=study_config, environment=env_meta)
