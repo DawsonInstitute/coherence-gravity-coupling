@@ -1,4 +1,5 @@
 .PHONY: help test quick-bench bench lint format format-check clean install-dev domain-sweep cache-info cache-clean analysis
+.PHONY: env figures paper manifest release-verify
 
 help:
 	@echo "coherence-gravity-coupling development targets"
@@ -25,6 +26,11 @@ help:
 	@echo "Setup:"
 	@echo "  make install-dev   - Install development dependencies"
 	@echo "  make clean         - Remove generated files"
+	@echo "  make env           - Create/activate conda env (cohgrav)"
+	@echo "  make figures       - Generate manuscript figures into papers/figures"
+	@echo "  make paper         - Build LaTeX manuscript PDF"
+	@echo "  make manifest      - Generate data_manifest.csv for results and figures"
+	@echo "  make release-verify- Run release verification script"
 
 test:
 	pytest -v
@@ -74,3 +80,20 @@ install-dev:
 	pip install -e .
 	pip install pytest pytest-asyncio black isort flake8 tox pre-commit scipy
 	pre-commit install
+
+env:
+	conda env create -f environment.yml || true
+	@echo "Activate with: conda activate cohgrav"
+
+figures:
+	python generate_figures.py
+
+paper:
+	cd papers && pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
+	  && pdflatex coherence_gravity_coupling.tex && pdflatex coherence_gravity_coupling.tex
+
+manifest:
+	python scripts/generate_manifest.py --output data_manifest.csv --roots results papers/figures
+
+release-verify:
+	bash scripts/verify_release.sh
