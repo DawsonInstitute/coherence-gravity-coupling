@@ -48,9 +48,9 @@ We present a coherence-modulated gravity framework in which a non-minimally coup
 
 \section{Introduction}
 
-General Relativity (GR) ties curvature to stress-energy via $G_{\mu\nu} = (8\pi G / c^4) T_{\mu\nu}$, where the coupling is fixed by Newton's constant $G$. Prior approaches to engineering spacetime (warp drives, wormholes, screening) targeted $T_{\mu\nu}$ and faced no-go constraints (ANEC/QI violations, exotic matter gaps). Here we explore modifying the effective coupling itself via a localized, macroscopic coherence field coupled non-minimally to curvature.
+General Relativity (GR) ties curvature to stress-energy via $G_{\mu\nu} = (8\pi G / c^4) T_{\mu\nu}$, where the coupling is fixed by Newton's constant $G$. Alternative approaches to engineering spacetime (warp drives, wormholes, screening) have targeted $T_{\mu\nu}$ and faced no-go constraints (ANEC/QI violations, exotic matter gaps). Here we explore modifying the effective coupling itself via a localized, macroscopic coherence field coupled non-minimally to curvature.
 
-Our key hypothesis is that near coherent systems (BECs, superconductors) the effective coupling becomes $G_{\text{eff}}(\Phi) < G$, reducing curvature cost in the weak-field limit. We work explicitly within conservative assumptions: a non-minimally coupled scalar field ($\xi R \Phi^2$) preserving diffeomorphism invariance and local conservation, and a weak-field 3D Poisson equation with spatially varying $G_{\text{eff}}$.
+Our key hypothesis is that near coherent systems (BECs, superconductors) the effective coupling becomes $G_{\text{eff}}(\Phi) < G$, reducing curvature cost in the weak-field limit. We work explicitly within conservative assumptions: a non-minimally coupled scalar field ($\xi R \Phi^2$) preserving diffeomorphism invariance and local conservation~\cite{birrell1982,fujii2003}, and a weak-field 3D Poisson equation with spatially varying $G_{\text{eff}}$.
 
 This paper reports a complete numerical implementation, validation protocol, and experimental feasibility analysis for detecting coherence-modulated gravity in a tabletop Cavendish-style torsion balance. A previously reported 523$\times$ torque enhancement at $41^3$ resolution is shown to be a numerical artifact. Independent optimization and resolution convergence establish a robust, physically plausible signal: $\tau_{\text{coh}} \sim 10^{-12}$ N$\cdot$m.
 
@@ -154,7 +154,7 @@ Integration time estimates for $10^{-14}$ N$\cdot$m sensitivity:
 \item \textbf{Cryogenic 4~K} (liquid helium, 10$\times$ vibration isolation): $t_{\text{int}} \approx 0.8$ hours \checkmark
 \end{itemize}
 
-The 4~K cryogenic scenario enables practical hour-scale measurements with existing torsion balance technology (e.g., Eöt-Wash rotating attractor experiments). Material choice (YBCO vs. Rb-87 vs. Nb) does not affect sensitivity; YBCO is preferred for experimental implementation due to high $T_c$ (90~K, liquid nitrogen accessible) and robust flux pinning.
+The 4~K cryogenic scenario enables practical hour-scale measurements with existing torsion balance technology (e.g., Eöt-Wash rotating attractor experiments)~\cite{eotwash2008}. Material choice (YBCO vs. Rb-87 vs. Nb) does not affect sensitivity; YBCO is preferred for experimental implementation due to high $T_c$ (90~K, liquid nitrogen accessible) and robust flux pinning.
 
 The production grid study completed in $\sim$32 minutes using 4-worker parallelization ($61^3$ resolution, 125 points $\times$ 3 materials), with caching providing $\sim$250$\times$ speedup on repeated evaluations. This computational efficiency enables rapid exploration of parameter space (varying $\xi$, geometry configurations, material systems) for optimization and systematic error studies.
 
@@ -178,7 +178,7 @@ This correction underscores the critical importance of resolution convergence st
 
 The null-configuration torsion balance geometry (coherent system at ${\bf r}_{\text{coh}}$; test mass at ${\bf r}_{\text{test}} = -{\bf r}_{\text{coh}}$) offers a significant experimental advantage: $\tau_{\text{coh}}$ is a \textit{direct} measurement of the coherence-modulated torque, with no Newtonian background to subtract. In the coherent-off state ($\Phi = 0$), $G_{\text{eff}} = G$ everywhere and the geometry is symmetric, yielding $\tau_{\text{off}} = 0$ by construction. The measured torque in the coherent-on state is therefore $\tau_{\text{coh}} = \tau_{\text{on}} - \tau_{\text{off}} = \tau_{\text{on}}$, eliminating systematic errors associated with imperfect background cancellation.
 
-This is in contrast to previous tabletop gravity experiments (e.g., short-range modified gravity searches), which require precise subtraction of a large Newtonian signal to isolate small anomalies. Here, the signal-to-background ratio is \textit{infinite} in principle, limited only by instrumental noise and environmental systematics (vibrations, thermal drifts, stray fields).
+This is in contrast to previous tabletop gravity experiments (e.g., short-range modified gravity searches), which require precise subtraction of a large Newtonian signal to isolate small anomalies~\cite{eotwash2008}. Here, the signal-to-background ratio is \textit{infinite} in principle, limited only by instrumental noise and environmental systematics (vibrations, thermal drifts, stray fields).
 
 \subsection{Material Universality and $\Phi_0$ Scaling}
 
@@ -252,7 +252,7 @@ Assuming existing cryogenic torsion balance infrastructure:
 
 Positive detection would constitute the first direct evidence for macroscopic quantum coherence effects in gravitational interactions, validating non-minimal coupling frameworks beyond Standard Model predictions. Null results would constrain $\xi < 10^2$ (95\% CL) for scalar fields with $\Phi_0 \sim 10^8$ m$^{-1}$, ruling out broad classes of modified gravity models proposed to explain dark energy or early-universe inflation.
 
-The $G_{\text{eff}}(\Phi)$ formalism provides a bridge between quantum condensed matter (superconductivity, BEC physics) and gravitational phenomenology, opening avenues for laboratory tests of quantum gravity candidates (string theory moduli, dilaton couplings) without requiring Planck-scale energies.
+The $G_{\text{eff}}(\Phi)$ formalism provides a bridge between quantum condensed matter (superconductivity, BEC physics) and gravitational phenomenology, opening avenues for laboratory tests of quantum gravity candidates (string theory moduli, dilaton couplings)~\cite{verlinde2011,jacobson1995} without requiring Planck-scale energies.
 
 \subsection{Closing Remarks}
 
@@ -262,26 +262,7 @@ This study establishes the computational foundation for precision experimental s
 
 This work was supported by internal research and development funds. We thank the precision gravimetry community for helpful discussions regarding experimental feasibility.
 
-\begin{thebibliography}{8}
-
-\bibitem{penrose1996}
-R. Penrose, ``On Gravity's Role in Quantum State Reduction,'' \textit{Gen. Rel. Grav.}, vol. 28, pp. 581--600, 1996.
-
-\bibitem{verlinde2011}
-E. Verlinde, ``On the Origin of Gravity and the Laws of Newton,'' \textit{JHEP}, vol. 04, pp. 029, 2011.
-
-\bibitem{jacobson1995}
-T. Jacobson, ``Thermodynamics of Spacetime: The Einstein Equation of State,'' \textit{Phys. Rev. Lett.}, vol. 75, pp. 1260--1263, 1995.
-
-\bibitem{birrell1982}
-N.D. Birrell and P.C.W. Davies, \textit{Quantum Fields in Curved Space}, Cambridge University Press, 1982.
-
-\bibitem{fujii2003}
-Y. Fujii and K. Maeda, \textit{The Scalar-Tensor Theory of Gravitation}, Cambridge University Press, 2003.
-
-\bibitem{eotwash2008}
-S. Schlamminger \textit{et al.}, ``Test of the Equivalence Principle Using a Rotating Torsion Balance,'' \textit{Phys. Rev. Lett.}, vol. 100, pp. 041101, 2008.
-
-\end{thebibliography}
+\bibliographystyle{ieeetr}
+\bibliography{coherence_gravity_coupling}
 
 \end{document}
