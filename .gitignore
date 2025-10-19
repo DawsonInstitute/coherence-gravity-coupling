@@ -13,3 +13,11 @@ src/analysis/__pycache__/
 .pytest_cache/
 
 results/
+
+papers/**/*.aux
+papers/**/*.out
+papers/**/*.log
+papers/**/*.pdf
+papers/**/*.bbl
+papers/**/*.blg
+papers/**/*Zone.Identifier
