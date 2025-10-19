@@ -458,7 +458,7 @@ Linearized Einstein equation becomes:
 
 $$\square \bar{h}_{\mu\nu} = -16\pi G_{\text{eff}}(\Phi_0) T_{\mu\nu} + \text{(coherence source terms)}$$
 
-where $\bar{h}_{\mu\nu} = h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}h$ is the trace-reversed perturbation.
+where $`\bar{h}_{\mu\nu} = h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}h`$ is the trace-reversed perturbation.
 
 ### Modified Poisson Equation
 
