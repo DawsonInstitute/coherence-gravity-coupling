@@ -25,8 +25,12 @@ import json
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
+import platform
+import sys
+import subprocess
 import numpy as np
+from importlib import metadata as _metadata
 
 from optimize_geometry import GeometryOptimizer, save_optimization_results
 from src.visualization.plot_utils import (
@@ -176,6 +180,43 @@ class ProductionStudy:
         
         return study_results
     
+    @staticmethod
+    def _get_env_metadata() -> Dict:
+        """Collect lightweight reproducibility metadata for results files."""
+        # Git information
+        def _git(cmd: list[str]) -> Optional[str]:
+            try:
+                out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode().strip()
+                return out or None
+            except Exception:
+                return None
+
+        git_sha = _git(["git", "rev-parse", "HEAD"])  # current commit
+        git_branch = _git(["git", "rev-parse", "--abbrev-ref", "HEAD"])  # branch name
+
+        # Python and package versions
+        py_ver = sys.version.split(" ")[0]
+        np_ver = np.__version__
+        try:
+            sp_ver = _metadata.version("scipy")
+        except Exception:
+            sp_ver = None
+
+        return {
+            "python": py_ver,
+            "numpy": np_ver,
+            "scipy": sp_ver,
+            "platform": {
+                "system": platform.system(),
+                "release": platform.release(),
+                "machine": platform.machine(),
+            },
+            "git": {
+                "sha": git_sha,
+                "branch": git_branch,
+            },
+        }
+
     def generate_comparison_plots(self, all_results: List[Dict]) -> None:
         """Generate comparison plots across materials."""
         
@@ -219,8 +260,8 @@ class ProductionStudy:
         
         print("   ✅ Comparison plots complete")
     
-    def save_study_results(self, all_results: List[Dict]) -> Path:
-        """Save complete study results."""
+    def save_study_results(self, all_results: List[Dict], study_config: Optional[Dict] = None, environment: Optional[Dict] = None) -> Path:
+        """Save complete study results with configuration and environment metadata."""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"production_study_{timestamp}.json"
         filepath = RESULTS_DIR / filename
@@ -229,6 +270,8 @@ class ProductionStudy:
             'timestamp': timestamp,
             'resolution': self.resolution,
             'materials_studied': [r['material'] for r in all_results],
+            'study_config': study_config or {},
+            'environment': environment or self._get_env_metadata(),
             'results': all_results
         }
         
@@ -299,8 +342,16 @@ def main():
             import traceback
             traceback.print_exc()
     
-    # Save results
-    study.save_study_results(all_results)
+    # Save results with run configuration and environment metadata
+    study_config = {
+        'materials': materials_to_study,
+        'resolution': args.resolution,
+        'grid_size': args.grid_size,
+        'quick': args.quick,
+        'cache': not args.no_cache,
+    }
+    env_meta = study._get_env_metadata()
+    study.save_study_results(all_results, study_config=study_config, environment=env_meta)
     
     # Generate comparison plots
     if len(all_results) > 1:
