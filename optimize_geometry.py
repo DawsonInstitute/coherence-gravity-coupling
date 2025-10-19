@@ -369,30 +369,13 @@ class GeometryOptimizer:
                     idx = i * len(y_vals) * len(z_vals) + j * len(z_vals) + k
                     tasks.append((idx, float(x), float(y), float(z)))
 
-        def _evaluate_point(args: Tuple[int, float, float, float]) -> Dict:
-            idx, x, y, z = args
-            geom_params = {'coherent_position': [x, y, z]}
-            try:
-                r = run_geometric_cavendish(
-                    xi=self.xi,
-                    Phi0=self.Phi0,
-                    geom_params=geom_params,
-                    grid_resolution=self.resolution,
-                    cache=self.cache,
-                    verbose=False
-                )
-                return {
-                    'idx': idx,
-                    'position': [x, y, z],
-                    'delta_tau': r['delta_tau']
-                }
-            except Exception as e:
-                return {
-                    'idx': idx,
-                    'position': [x, y, z],
-                    'delta_tau': 0.0,
-                    'error': str(e)
-                }
+        # Prepare a module-level compatible worker by partially binding context
+        worker_ctx = {
+            'xi': self.xi,
+            'Phi0': self.Phi0,
+            'resolution': self.resolution,
+            'cache': self.cache,
+        }
 
         # Optional progress bar
         try:
@@ -401,9 +384,10 @@ class GeometryOptimizer:
             tqdm = None  # type: ignore
 
         if jobs and jobs > 1:
-            # Use default context (fork on Linux) to allow nested function pickling
+            # Use a picklable top-level worker with context tuple (ctx, args)
+            payloads = [ (worker_ctx, t) for t in tasks ]
             with mp.Pool(processes=jobs) as pool:
-                iterator = pool.imap_unordered(_evaluate_point, tasks, chunksize=1)
+                iterator = pool.imap_unordered(_evaluate_point_mp, payloads, chunksize=1)
                 if show_progress and tqdm is not None:
                     iterator = tqdm(iterator, total=total_points, desc="Grid evals", unit="pt")
                 for item in iterator:
@@ -417,7 +401,7 @@ class GeometryOptimizer:
             if show_progress and tqdm is not None:
                 iterator = tqdm(iterator, total=total_points, desc="Grid evals", unit="pt")
             for item in iterator:
-                out = _evaluate_point(item)
+                out = _evaluate_point_local(worker_ctx, item)
                 results.append(out)
                 dt = out['delta_tau']
                 if abs(dt) > abs(best_tau):
@@ -479,6 +463,43 @@ def _get_env_metadata() -> Dict:
         },
         'git': {'sha': git_sha, 'branch': git_branch},
     }
+
+
+# --- Module-level workers for grid_search (picklable for multiprocessing) ---
+def _evaluate_point_local(ctx: Dict, args: Tuple[int, float, float, float]) -> Dict:
+    """Serial path worker using provided context dict.
+    ctx keys: xi, Phi0, resolution, cache
+    args: (idx, x, y, z)
+    """
+    idx, x, y, z = args
+    geom_params = {'coherent_position': [x, y, z]}
+    try:
+        r = run_geometric_cavendish(
+            xi=ctx['xi'],
+            Phi0=ctx['Phi0'],
+            geom_params=geom_params,
+            grid_resolution=ctx['resolution'],
+            cache=ctx['cache'],
+            verbose=False
+        )
+        return {
+            'idx': idx,
+            'position': [x, y, z],
+            'delta_tau': r['delta_tau']
+        }
+    except Exception as e:
+        return {
+            'idx': idx,
+            'position': [x, y, z],
+            'delta_tau': 0.0,
+            'error': str(e)
+        }
+
+
+def _evaluate_point_mp(payload: Tuple[Dict, Tuple[int, float, float, float]]) -> Dict:
+    """Multiprocessing worker wrapper: accepts (ctx, args) and returns result."""
+    ctx, args = payload
+    return _evaluate_point_local(ctx, args)
 
 
 def save_optimization_results(results: Dict, name: str = "optimization") -> Path:
