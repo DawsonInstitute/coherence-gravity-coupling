@@ -1213,3 +1213,5331 @@ GEOMETRIC CAVENDISH SIMULATION
    Torque: -2.190679e-14 N·m
 
 --- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.21 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.00 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -2.190679e-14 N·m
+   Δτ: 1.956491e-14 N·m
+   Δτ/τ: -4.717653e-01
+   ΔG_eff/G (estimated): -4.717653e-01
+======================================================================
+
+💾 Saved to cache: 433f40352170242e
+  [21] pos=(0.002, -0.096, -0.022) m, Δτ=1.956e-14 N·m
+⚠️  Cache MISS: 2bc4e8d2a4b1b951
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.14651961587697987, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.84 s!
+   Relative residual: 9.701e-09
+   φ range: [-3.214e-09, 0.000e+00] m²/s²
+   Solve time: 10.98 s
+   Torque: -4.471193e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.10 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.41 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.471193e-14 N·m
+   Δτ: -3.240229e-15 N·m
+   Δτ/τ: 7.813107e-02
+   ΔG_eff/G (estimated): 7.813107e-02
+======================================================================
+
+💾 Saved to cache: 2bc4e8d2a4b1b951
+  [22] pos=(0.002, 0.147, -0.022) m, Δτ=-3.240e-15 N·m
+⚠️  Cache MISS: b2e26757624dfe2c
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.0211876402142036, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.64 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.20 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.54 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.40 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: b2e26757624dfe2c
+  [23] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 6349d8764a232b06
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.0213938201071018, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.05 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.20 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.32 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.82 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: 6349d8764a232b06
+  [24] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: dd4971302cfd24ff
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021315066398131046, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.34 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.75 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.67 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.84 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: dd4971302cfd24ff
+  [25] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 6ce6c2d8d64ca3c4
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021266393928361015, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.87 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.85 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.57 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.28 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: 6ce6c2d8d64ca3c4
+  [26] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 262dbcc7178f6fbf
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021236312687179165, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.47 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.31 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.60 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 11.33 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: 262dbcc7178f6fbf
+  [27] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: a864f0e30501054f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.02121772145736658, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.68 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.75 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.92 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.62 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: a864f0e30501054f
+  [28] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 17ad6aa600413d63
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.02120623144524059, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.21 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.94 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.49 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.97 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: 17ad6aa600413d63
+  [29] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 09a4884ad8d9d63a
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021199130227086315, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.25 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.71 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.31 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.72 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: 09a4884ad8d9d63a
+  [30] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 0c31c6a23ca33f26
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, -0.0224]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.36 s!
+   Relative residual: 9.690e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.07 s
+   Torque: 9.865685e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.92 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.47 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.865685e-14 N·m
+   Δτ: 1.401286e-13 N·m
+   Δτ/τ: -3.378896e+00
+   ΔG_eff/G (estimated): -3.378896e+00
+======================================================================
+
+💾 Saved to cache: 0c31c6a23ca33f26
+  [31] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+✅ Cache HIT: 0c31c6a23ca33f26
+  [32] pos=(0.002, 0.021, -0.022) m, Δτ=1.401e-13 N·m
+⚠️  Cache MISS: 150a5e7d48a62bc2
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.9776]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.46 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.09 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.99 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.36 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 150a5e7d48a62bc2
+  [33] pos=(0.002, 0.021, 0.978) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 01977d4146787498
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, -1.640434]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.22 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.11 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.98 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.46 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 01977d4146787498
+  [34] pos=(0.002, 0.021, -1.640) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 667e00952571f68f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, -0.640433974844]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.44 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.95 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.34 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.54 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 667e00952571f68f
+  [35] pos=(0.002, 0.021, -0.640) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 53778f7396163f4c
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.35956600000000005]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.70 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.41 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.84 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.29 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 53778f7396163f4c
+  [36] pos=(0.002, 0.021, 0.360) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 60bf5e0f815617ef
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, -0.140433987422]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.66 s!
+   Relative residual: 9.764e-09
+   φ range: [-3.210e-09, 0.000e+00] m²/s²
+   Solve time: 8.21 s
+   Torque: -7.421748e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.73 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.96 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -7.421748e-14 N·m
+   Δτ: -3.274577e-14 N·m
+   Δτ/τ: 7.895932e-01
+   ΔG_eff/G (estimated): 7.895932e-01
+======================================================================
+
+💾 Saved to cache: 60bf5e0f815617ef
+  [37] pos=(0.002, 0.021, -0.140) m, Δτ=-3.275e-14 N·m
+⚠️  Cache MISS: 2c1d6ce3ec90dfd8
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.09674085044745181]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.82 s!
+   Relative residual: 9.538e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 9.40 s
+   Torque: 2.272420e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.54 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.94 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 2.272420e-13 N·m
+   Δτ: 2.687137e-13 N·m
+   Δτ/τ: -6.479447e+00
+   ΔG_eff/G (estimated): -6.479447e+00
+======================================================================
+
+💾 Saved to cache: 2c1d6ce3ec90dfd8
+  [38] pos=(0.002, 0.021, 0.097) m, Δτ=2.687e-13 N·m
+⚠️  Cache MISS: e65e20df513ffec0
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.19713112152144044]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.69 s!
+   Relative residual: 8.990e-09
+   φ range: [-3.210e-09, 0.000e+00] m²/s²
+   Solve time: 8.72 s
+   Torque: -3.861207e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.47 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.17 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -3.861207e-14 N·m
+   Δτ: 2.859637e-15 N·m
+   Δτ/τ: -6.895394e-02
+   ΔG_eff/G (estimated): -6.895394e-02
+======================================================================
+
+💾 Saved to cache: e65e20df513ffec0
+  [39] pos=(0.002, 0.021, 0.197) m, Δτ=2.860e-15 N·m
+⚠️  Cache MISS: a3d3fc5a1ff2843a
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.051233096365440434]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.88 s!
+   Relative residual: 9.625e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.83 s
+   Torque: 8.495712e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.54 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.76 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 8.495712e-13 N·m
+   Δτ: 8.910429e-13 N·m
+   Δτ/τ: -2.148556e+01
+   ΔG_eff/G (estimated): -2.148556e+01
+======================================================================
+
+💾 Saved to cache: a3d3fc5a1ff2843a
+  [40] pos=(0.002, 0.021, 0.051) m, Δτ=8.910e-13 N·m
+⚠️  Cache MISS: cd796c2b8da465d2
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.03986350106576603]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.47 s!
+   Relative residual: 9.330e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 7.90 s
+   Torque: 5.705562e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.87 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.05 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 5.705562e-13 N·m
+   Δτ: 6.120279e-13 N·m
+   Δτ/τ: -1.475772e+01
+   ΔG_eff/G (estimated): -1.475772e+01
+======================================================================
+
+💾 Saved to cache: cd796c2b8da465d2
+  [41] pos=(0.002, 0.021, 0.040) m, Δτ=6.120e-13 N·m
+⚠️  Cache MISS: 20b115399e57ca10
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.06381037889800942]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.14 s!
+   Relative residual: 9.510e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.00 s
+   Torque: 1.070042e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.34 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.19 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.070042e-12 N·m
+   Δτ: 1.111514e-12 N·m
+   Δτ/τ: -2.680174e+01
+   ΔG_eff/G (estimated): -2.680174e+01
+======================================================================
+
+💾 Saved to cache: 20b115399e57ca10
+  [42] pos=(0.002, 0.021, 0.064) m, Δτ=1.112e-12 N·m
+⚠️  Cache MISS: ae39c0eaf97965eb
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.07638869939386374]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.82 s!
+   Relative residual: 9.426e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 8.36 s
+   Torque: 9.738752e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.10 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.62 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 9.738752e-13 N·m
+   Δτ: 1.015347e-12 N·m
+   Δτ/τ: -2.448288e+01
+   ΔG_eff/G (estimated): -2.448288e+01
+======================================================================
+
+💾 Saved to cache: ae39c0eaf97965eb
+  [43] pos=(0.002, 0.021, 0.076) m, Δτ=1.015e-12 N·m
+⚠️  Cache MISS: 099f04fec275aeef
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.06627971960261672]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.23 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.43 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.45 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.55 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 099f04fec275aeef
+  [44] pos=(0.002, 0.021, 0.066) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 53604a54c607a9b1
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.06981546145378525]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.24 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.52 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 8.24 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 13.06 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 53604a54c607a9b1
+  [45] pos=(0.002, 0.021, 0.070) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: caccce1fdc22a864
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.07232621485680528]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.69 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.01 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.76 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.41 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: caccce1fdc22a864
+  [46] pos=(0.002, 0.021, 0.072) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 0acca589227abaf3
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.07387794582548735]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.009 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.52 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 11.84 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.31 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 11.25 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 0acca589227abaf3
+  [47] pos=(0.002, 0.021, 0.074) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 2ff9a3c7eaf59152
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001618606698962629, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.004 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.81 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.16 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.28 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 11.37 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 2ff9a3c7eaf59152
+  [48] pos=(0.002, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: de7a80baf65a3d17
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [-0.020162786602074743, 0.02078948286565111, 0.17208145058748445]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.15 s!
+   Relative residual: 9.853e-09
+   φ range: [-3.210e-09, 0.000e+00] m²/s²
+   Solve time: 9.74 s
+   Torque: -3.331726e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.38 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.08 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -3.331726e-14 N·m
+   Δτ: 8.154439e-15 N·m
+   Δτ/τ: -1.966266e-01
+   ΔG_eff/G (estimated): -1.966266e-01
+======================================================================
+
+💾 Saved to cache: de7a80baf65a3d17
+  [49] pos=(-0.020, 0.021, 0.172) m, Δτ=8.154e-15 N·m
+✅ Cache HIT: 2ff9a3c7eaf59152
+  [50] pos=(0.002, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: cc7392c769519cc6
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [1.0016186066989625, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.007 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.59 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 11.35 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.74 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.92 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: cc7392c769519cc6
+  [51] pos=(1.002, 0.021, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 284886c36730172f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [-1.6164153933010375, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.37 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.75 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.66 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.82 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 284886c36730172f
+  [52] pos=(-1.616, 0.021, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: c7088738c4a5ed90
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [-0.6164153681450374, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.02 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.85 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.20 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.25 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: c7088738c4a5ed90
+  [53] pos=(-0.616, 0.021, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: bea81d2be7ba4057
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.38358460669896266, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.73 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.38 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.68 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.64 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: bea81d2be7ba4057
+  [54] pos=(0.384, 0.021, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 8d7911ff6a98a0d9
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [-0.11641538072303738, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.18 s!
+   Relative residual: 9.388e-09
+   φ range: [-3.210e-09, 0.000e+00] m²/s²
+   Solve time: 8.73 s
+   Torque: -2.957831e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.01 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.42 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -2.957831e-14 N·m
+   Δτ: 1.189340e-14 N·m
+   Δτ/τ: -2.867834e-01
+   ΔG_eff/G (estimated): -2.867834e-01
+======================================================================
+
+💾 Saved to cache: 8d7911ff6a98a0d9
+  [55] pos=(-0.116, 0.021, 0.075) m, Δτ=1.189e-14 N·m
+⚠️  Cache MISS: fc2eb38fb6bf5dac
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.13320685430716944, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.87 s!
+   Relative residual: 9.404e-09
+   φ range: [-3.218e-09, 0.000e+00] m²/s²
+   Solve time: 9.44 s
+   Torque: -3.224400e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.005 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.93 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.70 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -3.224400e-14 N·m
+   Δτ: 9.227704e-15 N·m
+   Δτ/τ: -2.225060e-01
+   ΔG_eff/G (estimated): -2.225060e-01
+======================================================================
+
+💾 Saved to cache: fc2eb38fb6bf5dac
+  [56] pos=(0.133, 0.021, 0.075) m, Δτ=9.228e-15 N·m
+⚠️  Cache MISS: f5a65ec358d25fc2
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.008337248189340347, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.58 s!
+   Relative residual: 9.788e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.36 s
+   Torque: 1.309517e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.007 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.85 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.16 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.309517e-12 N·m
+   Δτ: 1.350989e-12 N·m
+   Δτ/τ: -3.257616e+01
+   ΔG_eff/G (estimated): -3.257616e+01
+======================================================================
+
+💾 Saved to cache: f5a65ec358d25fc2
+  [57] pos=(0.008, 0.021, 0.075) m, Δτ=1.351e-12 N·m
+⚠️  Cache MISS: 718e9a8a16960303
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [-0.025602862995698743, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.23 s!
+   Relative residual: 9.442e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 7.99 s
+   Torque: 2.995680e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.06 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.81 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 2.995680e-13 N·m
+   Δτ: 3.410397e-13 N·m
+   Δτ/τ: -8.223432e+00
+   ΔG_eff/G (estimated): -8.223432e+00
+======================================================================
+
+💾 Saved to cache: 718e9a8a16960303
+  [58] pos=(-0.026, 0.021, 0.075) m, Δτ=3.410e-13 N·m
+⚠️  Cache MISS: 1836662595b49cb3
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011736964374390929, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.13 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.89 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.95 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.28 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 1836662595b49cb3
+  [59] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 4eaa9eeddd8ee273
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001396151568200861, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.77 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.58 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.30 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.20 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 4eaa9eeddd8ee273
+  [60] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: ccfd6cda6fcf913b
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0013111812717243113, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.62 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.29 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.007 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.74 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.34 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: ccfd6cda6fcf913b
+  [61] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: a14d5e0abba212b3
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0012586667395117236, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.02 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.82 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.14 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.42 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: a14d5e0abba212b3
+  [62] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 98176a214b8b723f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0012262109731102492, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.49 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.03 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.28 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.09 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 98176a214b8b723f
+  [63] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 8289260d8548c380
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0012061522059780803, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.19 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.87 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.44 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.76 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 8289260d8548c380
+  [64] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: dc1915e0fbb7cfe0
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011937552058923174, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.004 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.96 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.25 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.22 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.67 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: dc1915e0fbb7cfe0
+  [65] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: e74698e350b2938f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.001186093438341313, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.95 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.19 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.63 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.18 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: e74698e350b2938f
+  [66] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 608e2866c98dd49f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.021194741432825556, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.32 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.92 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.57 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.37 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 608e2866c98dd49f
+  [67] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+✅ Cache HIT: 608e2866c98dd49f
+  [68] pos=(0.001, 0.021, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 188f07ac4e3cfbc6
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 1.0211947414328255, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.69 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.18 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.55 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.87 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 188f07ac4e3cfbc6
+  [69] pos=(0.001, 1.021, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: ee2d39ebe7e84483
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, -1.5968392585671745, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.96 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.57 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.51 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.44 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: ee2d39ebe7e84483
+  [70] pos=(0.001, -1.597, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: b007e448f47d67bb
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, -0.5968392334111745, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.04 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.61 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.11 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.70 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: b007e448f47d67bb
+  [71] pos=(0.001, -0.597, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: aecd6177d378c98d
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.4031607414328256, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.72 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.48 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.47 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.16 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: aecd6177d378c98d
+  [72] pos=(0.001, 0.403, 0.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 64387bfe6aa3a22b
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, -0.09683924598917446, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.72 s!
+   Relative residual: 9.160e-09
+   φ range: [-3.210e-09, 0.000e+00] m²/s²
+   Solve time: 7.91 s
+   Torque: -7.407155e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.68 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.09 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -7.407155e-14 N·m
+   Δτ: -3.259984e-14 N·m
+   Δτ/τ: 7.860744e-01
+   ΔG_eff/G (estimated): 7.860744e-01
+======================================================================
+
+💾 Saved to cache: 64387bfe6aa3a22b
+  [73] pos=(0.001, -0.097, 0.075) m, Δτ=-3.260e-14 N·m
+⚠️  Cache MISS: 9268aa05a2a864f2
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.15211364087798057, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.85 s!
+   Relative residual: 9.119e-09
+   φ range: [-3.213e-09, 0.000e+00] m²/s²
+   Solve time: 8.49 s
+   Torque: -3.289935e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.80 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.43 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -3.289935e-14 N·m
+   Δτ: 8.572351e-15 N·m
+   Δτ/τ: -2.067036e-01
+   ΔG_eff/G (estimated): -2.067036e-01
+======================================================================
+
+💾 Saved to cache: 9268aa05a2a864f2
+  [74] pos=(0.001, 0.152, 0.075) m, Δτ=8.572e-15 N·m
+⚠️  Cache MISS: bf398eb05aac8491
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.027107323847643652, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.98 s!
+   Relative residual: 9.576e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.13 s
+   Torque: 2.975541e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.59 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.21 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 2.975541e-13 N·m
+   Δτ: 3.390258e-13 N·m
+   Δτ/τ: -8.174870e+00
+   ΔG_eff/G (estimated): -8.174870e+00
+======================================================================
+
+💾 Saved to cache: bf398eb05aac8491
+  [75] pos=(0.001, 0.027, 0.075) m, Δτ=3.390e-13 N·m
+⚠️  Cache MISS: 3a8daaf53a6463e2
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, -0.03408465325100551, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.75 s!
+   Relative residual: 9.789e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 10.44 s
+   Torque: -4.633559e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.74 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.37 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.633559e-13 N·m
+   Δτ: -4.218842e-13 N·m
+   Δτ/τ: 1.017282e+01
+   ΔG_eff/G (estimated): 1.017282e+01
+======================================================================
+
+💾 Saved to cache: 3a8daaf53a6463e2
+  [76] pos=(0.001, -0.034, 0.075) m, Δτ=-4.219e-13 N·m
+⚠️  Cache MISS: 18323cf115bcca4f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 7.989216302133756e-05, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.45 s!
+   Relative residual: 9.788e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 8.98 s
+   Torque: 5.962787e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.00 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.46 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 5.962787e-13 N·m
+   Δτ: 6.377505e-13 N·m
+   Δτ/τ: -1.537797e+01
+   ΔG_eff/G (estimated): -1.537797e+01
+======================================================================
+
+💾 Saved to cache: 18323cf115bcca4f
+  [77] pos=(0.001, 0.000, 0.075) m, Δτ=6.378e-13 N·m
+⚠️  Cache MISS: 48284e7e32ba6d3e
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.013129586916635518, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.94 s!
+   Relative residual: 9.020e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 9.78 s
+   Torque: 1.095578e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.64 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.70 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.095578e-12 N·m
+   Δτ: 1.137050e-12 N·m
+   Δτ/τ: -2.741749e+01
+   ΔG_eff/G (estimated): -2.741749e+01
+======================================================================
+
+💾 Saved to cache: 48284e7e32ba6d3e
+  [78] pos=(0.001, 0.013, 0.075) m, Δτ=1.137e-12 N·m
+⚠️  Cache MISS: 77b7b530da18ec3c
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.01811412662289451, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.88 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 7.28 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.68 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.09 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 77b7b530da18ec3c
+  [79] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: e48fbc252e4eedc1
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.019654434027860036, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.11 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.65 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.66 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.57 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: e48fbc252e4eedc1
+  [80] pos=(0.001, 0.020, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 2bcc9376912e3f12
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.019066088969614974, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.47 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.31 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.61 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.30 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 2bcc9376912e3f12
+  [81] pos=(0.001, 0.019, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 7b1864f8efc61261
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018702471719887544, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.52 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.62 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.94 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.98 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 7b1864f8efc61261
+  [82] pos=(0.001, 0.019, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 96b8748a9f13556b
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018477743896569504, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.95 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.52 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.59 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.95 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 96b8748a9f13556b
+  [83] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: f6601bc1aa80e3ce
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018338854461012962, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.43 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.82 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.88 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.25 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: f6601bc1aa80e3ce
+  [84] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 8240cd1528be403e
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.01825301606759821, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.79 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 7.21 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.91 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.55 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 8240cd1528be403e
+  [85] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 285e237f5c3dfb31
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018199965021962517, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.88 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.91 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.39 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.81 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 285e237f5c3dfb31
+  [86] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: c61de9803e96f73d
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.07484072529374222]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.95 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.51 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.74 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.31 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: c61de9803e96f73d
+  [87] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+✅ Cache HIT: c61de9803e96f73d
+  [88] pos=(0.001, 0.018, 0.075) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: c6589fba148f6479
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 1.0748407252937422]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.79 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.29 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.76 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.08 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: c6589fba148f6479
+  [89] pos=(0.001, 0.018, 1.075) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 7c3f243203c04b10
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, -1.5431932747062578]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.04 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.85 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.25 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.87 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 7c3f243203c04b10
+  [90] pos=(0.001, 0.018, -1.543) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: f8c0cbbe2979f459
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, -0.5431932495502578]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.004 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.75 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.50 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.33 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.17 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: f8c0cbbe2979f459
+  [91] pos=(0.001, 0.018, -0.543) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 3e48dd40fe7c6b4f
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.4568067252937422]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.74 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.18 s
+   Torque: -4.147170e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.90 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.62 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -4.147170e-14 N·m
+   Δτ: 0.000000e+00 N·m
+   Δτ/τ: -0.000000e+00
+   ΔG_eff/G (estimated): -0.000000e+00
+======================================================================
+
+💾 Saved to cache: 3e48dd40fe7c6b4f
+  [92] pos=(0.001, 0.018, 0.457) m, Δτ=0.000e+00 N·m
+⚠️  Cache MISS: 8d7d9fa974865738
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, -0.04319326212825779]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.79 s!
+   Relative residual: 9.310e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.94 s
+   Torque: -6.829849e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 7.13 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 11.76 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -6.829849e-13 N·m
+   Δτ: -6.415132e-13 N·m
+   Δτ/τ: 1.546870e+01
+   ΔG_eff/G (estimated): 1.546870e+01
+======================================================================
+
+💾 Saved to cache: 8d7d9fa974865738
+  [93] pos=(0.001, 0.018, -0.043) m, Δτ=-6.415e-13 N·m
+⚠️  Cache MISS: c81be4365bc1a838
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.17598795047497806]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.07 s!
+   Relative residual: 9.462e-09
+   φ range: [-3.210e-09, 0.000e+00] m²/s²
+   Solve time: 11.31 s
+   Torque: -3.556998e-14 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.35 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.03 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): -3.556998e-14 N·m
+   Δτ: 5.901728e-15 N·m
+   Δτ/τ: -1.423073e-01
+   ΔG_eff/G (estimated): -1.423073e-01
+======================================================================
+
+💾 Saved to cache: c81be4365bc1a838
+  [94] pos=(0.001, 0.018, 0.176) m, Δτ=5.902e-15 N·m
+⚠️  Cache MISS: 662656ee43540500
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.05106879495580209]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.91 s!
+   Relative residual: 9.625e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 12.12 s
+   Torque: 8.495712e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.36 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.13 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 8.495712e-13 N·m
+   Δτ: 8.910429e-13 N·m
+   Δτ/τ: -2.148556e+01
+   ΔG_eff/G (estimated): -2.148556e+01
+======================================================================
+
+💾 Saved to cache: 662656ee43540500
+  [95] pos=(0.001, 0.018, 0.051) m, Δτ=8.910e-13 N·m
+⚠️  Cache MISS: 542d808da133ca9c
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.11347552630731815]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.24 s!
+   Relative residual: 9.964e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 11.37 s
+   Torque: 1.082053e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 6.59 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 11.23 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.082053e-13 N·m
+   Δτ: 1.496770e-13 N·m
+   Δτ/τ: -3.609136e+00
+   ΔG_eff/G (estimated): -3.609136e+00
+======================================================================
+
+💾 Saved to cache: 542d808da133ca9c
+  [96] pos=(0.001, 0.018, 0.113) m, Δτ=1.497e-13 N·m
+⚠️  Cache MISS: 4e4b440202bcf90e
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.08959790569769377]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.53 s!
+   Relative residual: 8.964e-09
+   φ range: [-3.211e-09, 0.000e+00] m²/s²
+   Solve time: 10.58 s
+   Torque: 4.641630e-13 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.007 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 5.36 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 10.14 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 4.641630e-13 N·m
+   Δτ: 5.056347e-13 N·m
+   Δτ/τ: -1.219228e+01
+   ΔG_eff/G (estimated): -1.219228e+01
+======================================================================
+
+💾 Saved to cache: 4e4b440202bcf90e
+  [97] pos=(0.001, 0.018, 0.090) m, Δτ=5.056e-13 N·m
+⚠️  Cache MISS: 7ba9ab43f5ffe4ec
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06576065615028058]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.49 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.78 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.003 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.14 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 9.72 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 7ba9ab43f5ffe4ec
+  [98] pos=(0.001, 0.018, 0.066) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: f180bbe09b8af2ab
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.0703006907220114]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.20 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.94 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.53 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.73 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: f180bbe09b8af2ab
+  [99] pos=(0.001, 0.018, 0.070) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: e1d20a6a92cc2235
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06856655187678566]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.09 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.12 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.95 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.47 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: e1d20a6a92cc2235
+  [100] pos=(0.001, 0.018, 0.069) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 30cb99ed8de9c505
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06749479510971543]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.99 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.74 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.53 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.01 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 30cb99ed8de9c505
+  [101] pos=(0.001, 0.018, 0.067) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 44d408060e56f206
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06683241298793594]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 4.08 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 9.78 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.74 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.10 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 44d408060e56f206
+  [102] pos=(0.001, 0.018, 0.067) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: d7f21bbf2b344b81
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06642303831568407]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.40 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.01 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.14 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.41 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: d7f21bbf2b344b81
+  [103] pos=(0.001, 0.018, 0.066) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: dae23affc897a4d2
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06617003084949356]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.24 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.98 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.59 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.30 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: dae23affc897a4d2
+  [104] pos=(0.001, 0.018, 0.066) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: d0cf8e78ee7c6c9e
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06601366363313398]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 2.66 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 8.34 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.08 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 8.61 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: d0cf8e78ee7c6c9e
+  [105] pos=(0.001, 0.018, 0.066) m, Δτ=1.429e-12 N·m
+⚠️  Cache MISS: 631fd0ff2ed67bd4
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0011813582054946955, 0.018167177672024106, 0.06591702337693839]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 3.29 s!
+   Relative residual: 9.859e-09
+   φ range: [-3.212e-09, 0.000e+00] m²/s²
+   Solve time: 10.03 s
+   Torque: 1.387074e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 61×61×61 = 226,981 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.010 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 226981×226981 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=1,459,255)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.002 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 1.86 s!
+   Relative residual: 9.448e-09
+   φ range: [-3.209e-09, 0.000e+00] m²/s²
+   Solve time: 7.40 s
+   Torque: -4.147170e-14 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -4.147170e-14 N·m
+   Torque (with coherence): 1.387074e-12 N·m
+   Δτ: 1.428546e-12 N·m
+   Δτ/τ: -3.444628e+01
+   ΔG_eff/G (estimated): -3.444628e+01
+======================================================================
+
+💾 Saved to cache: 631fd0ff2ed67bd4
+  [106] pos=(0.001, 0.018, 0.066) m, Δτ=1.429e-12 N·m
+Optimization terminated successfully.
+         Current function value: -0.000000
+         Iterations: 2
+         Function evaluations: 106
+
+======================================================================
+OPTIMIZATION RESULTS
+======================================================================
+Initial position: (0.0234, 0.0216, -0.0224) m
+  Δτ_init = 1.085638e-13 N·m
+
+Optimal position: (0.0012, 0.0182, 0.0659) m
+  Δτ_opt  = 1.428546e-12 N·m
+
+✨ Improvement: 13.16× signal magnitude
+Evaluations: 106
+Time: 1862.9 s
+Convergence: ✅ SUCCESS
+======================================================================
+
+💾 Results saved: results/optimization/optimize_powell_20251018_190827.json
+✅ Optimization complete!
