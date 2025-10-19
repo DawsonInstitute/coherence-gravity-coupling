@@ -210,7 +210,7 @@ If you use this code, please cite:
 ```
 Coherence-Gravity Coupling Framework (2025)
 Loop Quantum Gravity modification to Cavendish experiment
-https://github.com/arcticoder/coherence-gravity-coupling
+https://github.com/DawsonInstitute/coherence-gravity-coupling
 ```
 
 ## Support

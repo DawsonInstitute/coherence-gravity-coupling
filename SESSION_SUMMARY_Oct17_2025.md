@@ -237,7 +237,7 @@ cat QUICKREF.md
 ```
 Coherence-Gravity Coupling Framework (2025)
 Loop Quantum Gravity modification to Cavendish torsion balance experiment
-https://github.com/arcticoder/coherence-gravity-coupling
+https://github.com/DawsonInstitute/coherence-gravity-coupling
 ```
 
 **For questions or collaboration**: Open a GitHub issue with details

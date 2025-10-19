@@ -207,7 +207,7 @@ If you use this framework, please cite:
   year = {2025},
   month = {10},
   note = {Loop Quantum Gravity modification to Cavendish torsion balance},
-  url = {https://github.com/arcticoder/coherence-gravity-coupling}
+  url = {https://github.com/DawsonInstitute/coherence-gravity-coupling}
 }
 ```
 

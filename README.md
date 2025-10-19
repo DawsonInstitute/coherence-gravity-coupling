@@ -11,7 +11,7 @@
 ## Quick start
 
 ```bash
-git clone https://github.com/arcticoder/coherence-gravity-coupling.git
+git clone https://github.com/DawsonInstitute/coherence-gravity-coupling.git
 cd coherence-gravity-coupling
 
 # Create environment (choose one)

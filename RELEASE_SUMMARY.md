@@ -135,7 +135,7 @@ Output written on coherence_gravity_coupling.pdf (5 pages, 266KB)
 
 ## Contact & Links
 
-- **Repository**: https://github.com/arcticoder/coherence-gravity-coupling
+- **Repository**: https://github.com/DawsonInstitute/coherence-gravity-coupling
 - **Release Tag**: v1.0.0
 - **Commit**: c169993 (2025-10-19)
 - **Zenodo DOI**: [Will be assigned upon upload]

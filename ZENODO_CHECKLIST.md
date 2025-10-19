@@ -3,7 +3,6 @@
 ## Pre-Upload Verification ✅
 
 - [x] LICENSE file present (MIT)
-- [x] CITATION.cff with metadata
 - [x] README.md with Quick Start
 - [x] REPRODUCIBILITY.md with exact environment
 - [x] data_manifest.csv with SHA256 checksums (3940 entries)
@@ -95,7 +94,7 @@ Key finding: Tabletop torsion balance can detect coherence-induced torque signal
 - coherence-effects
 
 ### Related Identifiers
-- GitHub repository: https://github.com/arcticoder/coherence-gravity-coupling
+- GitHub repository: https://github.com/DawsonInstitute/coherence-gravity-coupling
 - Related preprint: [arXiv ID if/when submitted]
 
 ### Grants (if applicable)

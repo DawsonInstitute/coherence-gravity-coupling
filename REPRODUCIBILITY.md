@@ -12,7 +12,7 @@ This document provides explicit commands to reproduce all results reported in th
 ## Environment Setup
 
 ```bash
-git clone https://github.com/arcticoder/coherence-gravity-coupling.git
+git clone https://github.com/DawsonInstitute/coherence-gravity-coupling.git
 cd coherence-gravity-coupling
 
 # Option A: conda (recommended)
@@ -191,7 +191,7 @@ All variations should be within expected numerical precision. If discrepancies e
 ## Contact
 
 For reproducibility issues or questions:
-- GitHub Issues: https://github.com/arcticoder/coherence-gravity-coupling/issues
+- GitHub Issues: https://github.com/DawsonInstitute/coherence-gravity-coupling/issues
 - Email: Contact details are provided in the PDF uploaded to Zenodo (author list and corresponding email). The repository includes `papers/author_config.tex` used during LaTeX compilation.
 
 ---
