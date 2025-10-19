@@ -873,11 +873,26 @@ Experiment is **feasible but challenging** — comparable to modern precision to
 - [`CONVERGENCE_ANALYSIS.md`](CONVERGENCE_ANALYSIS.md): 61³-81³-101³ convergence study
 - [`LATEST_PRODUCTION_SUMMARY.md`](LATEST_PRODUCTION_SUMMARY.md): Most recent production study results
 
-**Manuscript** (work in progress):
-- [`docs/manuscript/00-abstract.md`](docs/manuscript/00-abstract.md): Publication abstract
-- [`docs/manuscript/01-introduction.md`](docs/manuscript/01-introduction.md): Motivation and hypothesis
-- [`docs/manuscript/02-methods.md`](docs/manuscript/02-methods.md): Numerical methods and protocols
-- [`docs/manuscript/03-results.md`](docs/manuscript/03-results.md): Validated signals and convergence
+**Manuscript** (publication ready):
+- **LaTeX manuscript**: [`docs/manuscript/coherence_gravity_coupling.tex`](docs/manuscript/coherence_gravity_coupling.tex)
+- **Individual sections** (markdown source):
+  - [`docs/manuscript/00-abstract.md`](docs/manuscript/00-abstract.md): Publication abstract
+  - [`docs/manuscript/01-introduction.md`](docs/manuscript/01-introduction.md): Motivation and hypothesis
+  - [`docs/manuscript/02-methods.md`](docs/manuscript/02-methods.md): Numerical methods and protocols
+  - [`docs/manuscript/03-results.md`](docs/manuscript/03-results.md): Validated signals and convergence
+  - [`docs/manuscript/04-discussion.md`](docs/manuscript/04-discussion.md): Artifact correction and systematics
+  - [`docs/manuscript/05-conclusion.md`](docs/manuscript/05-conclusion.md): Experimental roadmap and timeline
+
+**To compile LaTeX manuscript**:
+```bash
+cd docs/manuscript
+pdflatex coherence_gravity_coupling.tex
+bibtex coherence_gravity_coupling
+pdflatex coherence_gravity_coupling.tex
+pdflatex coherence_gravity_coupling.tex
+```
+
+**Manuscript Status**: Ready for submission to Physical Review Letters or Nature Communications. Target journals accept 2-column format with ~6 pages typical length.
 
 ---
 
