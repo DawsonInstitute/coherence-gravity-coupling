@@ -303,7 +303,7 @@ $$v_\phi^2 = c^2 \frac{1}{1 + 2\xi\Phi_0^2} \leq c^2$$
 The modified field equations satisfy:
 $$\nabla^\mu \tilde{T}_{\mu\nu} = 0$$
 
-where $\tilde{T}_{\mu\nu} = T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{\Phi}$ includes coherence stress-energy.
+where $`\tilde{T}_{\mu\nu} = T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{\Phi}`$ includes coherence stress-energy.
 
 **Verification**:
 - Bianchi identity: $\nabla^\mu G_{\mu\nu} = 0$ (geometric identity)
