@@ -1,0 +1,83 @@
+================================================================================
+101³ FINAL CONVERGENCE TEST
+================================================================================
+Position: [0.0012, 0.0182, 0.0659] m
+Material: Rb-87 BEC (Phi0 = 3.65e6 m⁻¹)
+Coupling: xi = 100
+Note: This will take ~2-3 minutes per solve (4-6 min total)
+
+Previous 81³ volume result: Δτ = 1.343538e-12 N·m
+
+Running 101³ volume-averaged...
+
+======================================================================
+GEOMETRIC CAVENDISH SIMULATION
+======================================================================
+   ξ = 100.0
+   Φ₀ = 3.65e+06 m⁻¹
+   coherent_position: [0.0012, 0.0182, 0.0659]
+
+--- Solving with coherence (Φ₀ = 3.65e+06) ---
+
+3D Poisson Solver
+   Grid: 101×101×101 = 1,030,301 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.006 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [4.475e-07, 1.000e+00] × G
+   Building 1030301×1030301 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=6,852,095)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.014 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 11.23 s!
+   Relative residual: 9.912e-09
+   φ range: [-3.253e-09, 0.000e+00] m²/s²
+   Solve time: 34.56 s
+   Torque: 1.566862e-12 N·m
+
+--- Solving without coherence (Φ = 0) ---
+
+3D Poisson Solver
+   Grid: 101×101×101 = 1,030,301 points
+   Domain: [-0.3, 0.3]³ m
+   Resolution: Δx=0.006 m
+   Coupling: ξ=100.0
+   Evaluating ρ(x) and Φ(x)...
+   Computing G_eff(x)...
+   G_eff range: [1.000e+00, 1.000e+00] × G
+   Building 1030301×1030301 sparse system...
+   Converting to CSR format...
+   Matrix sparsity: 100.00% (nnz=6,852,095)
+   Building diagonal preconditioner...
+   Diagonal preconditioner setup: 0.010 s
+   Solving with CG with DIAGONAL preconditioner...
+   ✅ Converged in 7.47 s!
+   Relative residual: 9.758e-09
+   φ range: [-3.250e-09, 0.000e+00] m²/s²
+   Solve time: 28.88 s
+   Torque: -1.211690e-27 N·m
+
+======================================================================
+RESULTS
+======================================================================
+   Torque (Newtonian): -1.211690e-27 N·m
+   Torque (with coherence): 1.566862e-12 N·m
+   Δτ: 1.566862e-12 N·m
+   Δτ/τ: -1.293121e+15
+   ΔG_eff/G (estimated): -1.293121e+15
+======================================================================
+
+  Δτ = 1.566862e-12 N·m
+
+================================================================================
+FINAL CONVERGENCE ANALYSIS
+================================================================================
+81³ vol → 101³ vol: 16.6% change
+
+⚠️  NOT CONVERGED: >10% change, may need even higher resolution
+
+Results saved to: results/convergence_test_101_20251018_193916.json

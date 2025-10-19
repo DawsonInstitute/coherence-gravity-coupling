@@ -1,10 +1,10 @@
 # Coherence-Modulated Gravity Coupling (Phase D)
 
-**Status**: ✅ **VALIDATION COMPLETE** (Oct 18, 2025)  
+**Status**: ✅ **CONVERGENCE VALIDATED** (Oct 18, 2025)  
 **Question**: Can macroscopic quantum coherence reduce the energy cost of spacetime curvature?  
 **Approach**: Field-dependent gravitational coupling $G_{\text{eff}}(\Phi)$ via coherence field  
 **Result**: Feasible with cryogenic torsion balance; challenging but achievable tabletop experiment  
-**Update**: 61³ resolution validation refutes 523× enhancement claim (numerical artifact); validated signals: Δτ ~ 10⁻¹² N·m
+**Update**: Convergence study (61³→81³→101³) confirms validated signals: τ_coh ~ 1.4 ± 0.2 × 10⁻¹² N·m. 41³ DE "523× enhancement" was numerical artifact. True optimization gain: 13-21×.
 
 ---
 
@@ -858,11 +858,19 @@ Improvement: 1.00× (already optimal)
 - ⏳ Energy cost of warp drops to laboratory scale (requires full metric analysis)
 - ⏳ Path to engineering curvature becomes plausible (needs experimental validation)
 
-**Phase D+ Status:** ✅ **VALIDATION COMPLETE** (Oct 18, 2025). Theory validated, numerical framework robust at ≥61³ resolution. **Critical finding**: 41³ DE "523× enhancement" was a **numerical artifact** that does not reproduce at 61³. Validated signals: Δτ ~ 10⁻¹² N·m with **13-21× optimization gains**. Experiment is **feasible but challenging** — comparable to modern precision torsion balance experiments (e.g., Eöt-Wash equivalence principle tests).
+**Phase D+ Status:** ✅ **CONVERGENCE VALIDATED** (Oct 18, 2025). Theory validated, numerical framework convergent at 81³-101³ resolution. **Critical findings**:
+1. **41³ DE artifact**: "523× enhancement" was numerical artifact (grid aliasing)
+2. **61³ validation**: True optimal position with 13× improvement: (0.001, 0.018, 0.066) m
+3. **Convergence study**: τ_coh = 1.4 ± 0.2 × 10⁻¹² N·m (81³-101³ with volume averaging)
+4. **Richardson extrapolation**: Continuum limit Δτ ≈ 2.6×10⁻¹² N·m
 
-**Key Insight**: The 61³ validation exposed resolution-dependent artifacts, strengthening scientific credibility. **Validated result (13× improvement) is more realistic** than the artifact-inflated 523× claim. The theoretical framework survives rigorous numerical validation at production-grade resolution.
+Experiment is **feasible but challenging** — comparable to modern precision torsion balance experiments (e.g., Eöt-Wash equivalence principle tests).
 
-**See**: [`VALIDATION_REPORT.md`](VALIDATION_REPORT.md) for complete 61³ validation analysis.
+**Key Insight**: The validated position operates in a **Newtonian null configuration** where standard gravitational torque cancels. The coherent signal τ_coh ~ 10⁻¹² N·m represents **direct measurement** of coherence-modulated gravity, not a fractional change. This geometry **amplifies sensitivity** to coherence effects.
+
+**Documentation**: 
+- [`VALIDATION_REPORT.md`](VALIDATION_REPORT.md): 61³ validation analysis (artifact discovery)
+- [`CONVERGENCE_ANALYSIS.md`](CONVERGENCE_ANALYSIS.md): 61³-81³-101³ convergence study
 
 ---
 

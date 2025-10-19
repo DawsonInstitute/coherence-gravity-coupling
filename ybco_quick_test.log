@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+    study = ProductionStudy(
+        resolution=61,
+        caching=True,
+        use_volume_average=True
+    )
+TypeError: ProductionStudy.__init__() got an unexpected keyword argument 'caching'
