@@ -871,6 +871,13 @@ Experiment is **feasible but challenging** — comparable to modern precision to
 **Documentation**: 
 - [`VALIDATION_REPORT.md`](VALIDATION_REPORT.md): 61³ validation analysis (artifact discovery)
 - [`CONVERGENCE_ANALYSIS.md`](CONVERGENCE_ANALYSIS.md): 61³-81³-101³ convergence study
+- [`LATEST_PRODUCTION_SUMMARY.md`](LATEST_PRODUCTION_SUMMARY.md): Most recent production study results
+
+**Manuscript** (work in progress):
+- [`docs/manuscript/00-abstract.md`](docs/manuscript/00-abstract.md): Publication abstract
+- [`docs/manuscript/01-introduction.md`](docs/manuscript/01-introduction.md): Motivation and hypothesis
+- [`docs/manuscript/02-methods.md`](docs/manuscript/02-methods.md): Numerical methods and protocols
+- [`docs/manuscript/03-results.md`](docs/manuscript/03-results.md): Validated signals and convergence
 
 ---
 
@@ -905,7 +912,19 @@ python run_analysis.py sweep-materials --xi 100 --cache --plot
 # Geometry optimization
 python optimize_geometry.py --xi 100 --resolution 41 --method Nelder-Mead
 python optimize_geometry.py --grid-search --grid-range -0.1 0.1 --grid-steps 5
+
+# Production study (interactive, visible output)
+# Quick 3³ grid test at 41³
+python production_study.py --materials YBCO --grid-size 3 --resolution 41 --quick
+
+# Full 5³ grid at 61³ for all materials (recommended for publication)
+python production_study.py --materials all --resolution 61 --grid-size 5 --jobs 4 --quick
+
+# With refinement (DE + Powell polish)
+python production_study.py --materials Rb87 --resolution 61 --grid-size 5 --jobs 4
 ```
+
+**Note**: All production runs execute in the foreground with visible progress bars. Use `--jobs N` to parallelize grid evaluations across N workers. Results are timestamped and saved to `results/production_study/`.
 
 ### Domain Convergence
 
