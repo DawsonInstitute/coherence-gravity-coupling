@@ -885,7 +885,7 @@ Experiment is **feasible but challenging** — comparable to modern precision to
 
 **To compile LaTeX manuscript**:
 ```bash
-cd docs/manuscript
+cd papers
 pdflatex coherence_gravity_coupling.tex
 bibtex coherence_gravity_coupling
 pdflatex coherence_gravity_coupling.tex
