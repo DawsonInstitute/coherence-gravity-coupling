@@ -1,0 +1,39 @@
+======================================================================
+VALIDATION MONITORING
+======================================================================
+Checking every 60 seconds (max 120 min)
+
+
+[18:40:36] Status check:
+----------------------------------------------------------------------
+
+✅ Rb-87 validation COMPLETED!
+  Rb-87   : ✅ COMPLETE
+
+✅ Nb validation COMPLETED!
+  Nb      : ✅ COMPLETE
+
+======================================================================
+ALL VALIDATIONS COMPLETE!
+======================================================================
+
+
+FINAL RESULTS:
+======================================================================
+
+Rb-87: Could not parse result (check validation_61_rb87.log)
+
+Nb: Could not parse result (check validation_61_nb.log)
+
+----------------------------------------------------------------------
+COMPARISON WITH 41³ DE REFINEMENT:
+----------------------------------------------------------------------
+41³ result: Position ~[0.0234, 0.0216, -0.0224] m
+41³ result: Δτ ~ -6.174e-10 N·m (for Rb-87 & Nb)
+
+Enhancement factor: 523× over 41³ grid search optimum
+
+Validation objective: Confirm if 61³ reproduces similar Δτ
+  - If yes: Geometric resonance effect is REAL
+  - If no:  Numerical artifact in 41³ DE optimization
+======================================================================
