@@ -1,9 +1,10 @@
 # Coherence-Modulated Gravity Coupling (Phase D)
 
-**Status**: ✅ **ANALYSIS COMPLETE** (Oct 17, 2025)  
+**Status**: ✅ **VALIDATION COMPLETE** (Oct 18, 2025)  
 **Question**: Can macroscopic quantum coherence reduce the energy cost of spacetime curvature?  
 **Approach**: Field-dependent gravitational coupling $G_{\text{eff}}(\Phi)$ via coherence field  
-**Result**: Feasible with cryogenic torsion balance; challenging but achievable tabletop experiment
+**Result**: Feasible with cryogenic torsion balance; challenging but achievable tabletop experiment  
+**Update**: 61³ resolution validation refutes 523× enhancement claim (numerical artifact); validated signals: Δτ ~ 10⁻¹² N·m
 
 ---
 
@@ -857,9 +858,11 @@ Improvement: 1.00× (already optimal)
 - ⏳ Energy cost of warp drops to laboratory scale (requires full metric analysis)
 - ⏳ Path to engineering curvature becomes plausible (needs experimental validation)
 
-**Phase D+ Status:** ✅ **ANALYSIS COMPLETE**. Theory validated, numerical framework robust. Experiment is **feasible but challenging** — comparable to modern precision torsion balance experiments (e.g., Eöt-Wash equivalence principle tests). Next step: experimental collaboration for lab implementation.
+**Phase D+ Status:** ✅ **VALIDATION COMPLETE** (Oct 18, 2025). Theory validated, numerical framework robust at ≥61³ resolution. **Critical finding**: 41³ DE "523× enhancement" was a **numerical artifact** that does not reproduce at 61³. Validated signals: Δτ ~ 10⁻¹² N·m with **13-21× optimization gains**. Experiment is **feasible but challenging** — comparable to modern precision torsion balance experiments (e.g., Eöt-Wash equivalence principle tests).
 
-**Key Insight**: After normalization correction, the experiment shifted from "trivial detection" to **"realistic precision measurement"** — this is actually MORE credible scientifically and shows the theoretical framework survives contact with physical reality.
+**Key Insight**: The 61³ validation exposed resolution-dependent artifacts, strengthening scientific credibility. **Validated result (13× improvement) is more realistic** than the artifact-inflated 523× claim. The theoretical framework survives rigorous numerical validation at production-grade resolution.
+
+**See**: [`VALIDATION_REPORT.md`](VALIDATION_REPORT.md) for complete 61³ validation analysis.
 
 ---
 
