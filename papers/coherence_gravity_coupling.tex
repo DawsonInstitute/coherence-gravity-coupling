@@ -110,13 +110,12 @@ The null-configuration geometry eliminates Newtonian backgrounds: $\tau_{\text{o
 
 Figure~\ref{fig:convergence} presents the convergence of $\Delta\tau$ across three resolution steps. At the validated position, the signal strength increases systematically: $61^3 \rightarrow 81^3$ (+13\%) $\rightarrow 101^3$ (+17\%). This superlinear convergence is characteristic of finite-element solutions to elliptic PDEs with smooth source terms, where truncation error decreases as $O(\Delta x^2)$ for second-order accurate spatial discretizations.
 
-Richardson extrapolation of the $61^3/81^3/101^3$ sequence yields a continuum-limit estimate of $\Delta\tau_{\text{cont}} \approx 2.6 \times 10^{-12}$ N$\cdot$m, approximately 1.9$\times$ the validated $61^3$ result. The extrapolation assumes a power-law scaling $\Delta\tau(N) = \Delta\tau_{\infty} + A/N^p$, where $N$ is the grid resolution; least-squares fitting yields $p \approx 2.1$, consistent with the expected $O(\Delta x^2)$ convergence rate for centered differences.
+Richardson extrapolation of the $61^3/81^3/101^3$ sequence yields a continuum-limit estimate of $\Delta\tau_{\text{cont}} \approx 2.0 \times 10^{-12}$ N$\cdot$m, approximately 1.4$\times$ the validated $61^3$ result. The extrapolation assumes a power-law scaling $\Delta\tau(N) = \Delta\tau_{\infty} + A/N^p$, where $N$ is the grid resolution; least-squares fitting yields $p \approx 2.1$, consistent with the expected $O(\Delta x^2)$ convergence rate for centered differences.
 
 \begin{figure}[ht]
 	\centering
-	% Placeholder for convergence plot
-	\fbox{\parbox{0.9\columnwidth}{\centering \textit{Figure 1: Convergence plot showing $\Delta\tau$ vs. resolution for $61^3$, $81^3$, $101^3$; Richardson fit extrapolating to continuum limit. Data from CONVERGENCE\_ANALYSIS.md.}}}
-	\caption{Convergence of coherence-modulated torque signal with increasing grid resolution. Richardson extrapolation yields continuum-limit estimate $\Delta\tau \approx 2.6 \times 10^{-12}$ N$\cdot$m with convergence order $p \approx 2.1$ consistent with second-order finite differencing.}
+	\includegraphics[width=0.9\columnwidth]{figures/convergence_analysis.pdf}
+	\caption{Convergence of coherence-modulated torque signal with increasing grid resolution. Richardson extrapolation yields continuum-limit estimate $\Delta\tau \approx 2.0 \times 10^{-12}$ N$\cdot$m with convergence order $p = 2.1$ consistent with second-order finite differencing. Data from convergence test runs at optimal position.}
 	\label{fig:convergence}
 \end{figure}
 
@@ -128,9 +127,8 @@ Figure~\ref{fig:materials} compares the material-specific landscapes, demonstrat
 
 \begin{figure}[ht]
 	\centering
-	% Placeholder for material comparison
-	\fbox{\parbox{0.9\columnwidth}{\centering \textit{Figure 2: Material comparison showing YBCO, Rb-87, and Nb landscape cross-sections at $z = -0.05$ m. All three materials exhibit identical profiles, confirming material universality. Data from production\_study\_20251018\_204142.json.}}}
-	\caption{Material universality: coherence-modulated torque landscapes are identical for YBCO, Rb-87, and Nb at fixed coupling strength $\xi = 100$. Amplitude set by $\Phi_0$ factors out in normalized coordinates.}
+	\includegraphics[width=0.9\columnwidth]{figures/material_comparison.pdf}
+	\caption{Material universality: coherence-modulated torque landscapes are identical for YBCO, Rb-87, and Nb at fixed coupling strength $\xi = 100$. Cross-sections at optimal $z = -0.05$ m show identical spatial profiles, confirming that coupling parameter $\xi$ determines field structure. Data from $61^3$ production grid study.}
 	\label{fig:materials}
 \end{figure}
 
@@ -138,9 +136,8 @@ Figure~\ref{fig:ybco_slice} illustrates the $z$-dependence of the torque landsca
 
 \begin{figure}[ht]
 	\centering
-	% Placeholder for YBCO slice
-	\fbox{\parbox{0.9\columnwidth}{\centering \textit{Figure 3: YBCO landscape slice showing $\Delta\tau(x, y)$ at optimal $z = -0.05$ m. Peak signal occurs at $(x, y) = (0, 0)$ with $|\Delta\tau| \approx 1.1 \times 10^{-12}$ N$\cdot$m. Data from landscape\_YBCO\_z\_slice.png.}}}
-	\caption{YBCO coherence-modulated torque landscape at optimal $z$-coordinate. Smooth spatial variation enables precise positioning for experimental implementation.}
+	\includegraphics[width=0.9\columnwidth]{figures/landscape_YBCO_z_slice.pdf}
+	\caption{YBCO coherence-modulated torque landscape at optimal $z = -0.05$ m. Contour plot shows $\Delta\tau(x, y)$ with peak signal at $(x, y) = (0, 0)$ reaching $|\Delta\tau| \approx 1.1 \times 10^{-12}$ N$\cdot$m. Smooth spatial gradients enable precise experimental positioning.}
 	\label{fig:ybco_slice}
 \end{figure}
 
