@@ -315,7 +315,7 @@ where $`\tilde{T}_{\mu\nu} = T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{\Phi}`$ in
 | Constraint | Requirement | Status | Notes |
 |------------|-------------|--------|-------|
 | **Ghosts** | $1 + 2\xi\Phi_0^2 > 0$ | ✅ PASS | For $\xi > 0$ always satisfied |
-| **Tachyons** | $m^2 + 2\xi R > 0$ | ⚠️ CONDITIONAL | Need $m^2 \gg 2\xi|R|$ |
+| **Tachyons** | $m^2 + 2\xi R > 0$ | ⚠️ CONDITIONAL | Need $m^2 \gg 2\xi\|R\|$ |
 | **Causality** | $v_\phi \leq c$ | ✅ PASS | Subluminal for $\xi > 0$ |
 | **Conservation** | $\nabla^\mu T_{\mu\nu} = 0$ | ✅ PASS | Bianchi identity |
 | **PPN** | $\|\gamma - 1\| < 10^{-5}$ | ✅ PASS | If $\Phi_0 \sim 0$ in solar system |
