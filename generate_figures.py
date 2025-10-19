@@ -17,8 +17,7 @@ from scipy.optimize import curve_fit
 # Set publication-quality plotting defaults
 plt.rcParams['figure.dpi'] = 300
 plt.rcParams['font.size'] = 10
-plt.rcParams['font.family'] = 'serif'
-plt.rcParams['font.serif'] = ['Times New Roman']
+plt.rcParams['font.family'] = 'DejaVu Sans'
 plt.rcParams['mathtext.fontset'] = 'cm'
 plt.rcParams['axes.labelsize'] = 10
 plt.rcParams['axes.titlesize'] = 11
@@ -35,11 +34,17 @@ figures_dir.mkdir(exist_ok=True)
 def load_convergence_data():
     """Load convergence test results from JSON files."""
     # Load 61^3 and 81^3 data
-    with open(results_dir / 'convergence_test_20251018_193745.json') as f:
+    path_61_81 = results_dir / 'convergence_test_20251018_193745.json'
+    if not path_61_81.exists():
+        raise FileNotFoundError(f"Missing convergence file: {path_61_81}. Run convergence tests first.")
+    with open(path_61_81) as f:
         data_61_81 = json.load(f)
     
     # Load 101^3 data
-    with open(results_dir / 'convergence_test_101_20251018_193916.json') as f:
+    path_101 = results_dir / 'convergence_test_101_20251018_193916.json'
+    if not path_101.exists():
+        raise FileNotFoundError(f"Missing convergence file: {path_101}. Run convergence tests first.")
+    with open(path_101) as f:
         data_101 = json.load(f)
     
     # Extract delta_tau values with volume averaging
@@ -149,7 +154,7 @@ def generate_material_comparison():
         
         print(f"✓ Generated: {dest_png}")
     else:
-        print(f"✗ Warning: {source} not found. Run production_study.py first.")
+        raise FileNotFoundError(f"{source} not found. Run: python production_study.py --materials all --resolution 61 --grid-size 5 --jobs 4 --quick")
 
 def generate_ybco_slice():
     """Figure 3: YBCO landscape z-slice."""
@@ -168,7 +173,7 @@ def generate_ybco_slice():
         
         print(f"✓ Generated: {dest_png}")
     else:
-        print(f"✗ Warning: {source} not found. Run production_study.py first.")
+        raise FileNotFoundError(f"{source} not found. Run: python production_study.py --materials YBCO --resolution 61 --grid-size 5 --jobs 4 --quick")
 
 def main():
     """Generate all manuscript figures."""

@@ -8,6 +8,35 @@
 
 ---
 
+## Quick start
+
+```bash
+git clone https://github.com/arcticoder/coherence-gravity-coupling.git
+cd coherence-gravity-coupling
+
+# Create environment (choose one)
+conda env create -f environment.yml && conda activate cohgrav
+# or
+python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+
+pytest -q               # Smoke tests (~90s)
+python generate_figures.py  # Writes papers/figures/*.pdf,*.png
+
+cd papers
+pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
+   && pdflatex coherence_gravity_coupling.tex && pdflatex coherence_gravity_coupling.tex
+```
+
+Expected outputs:
+- `papers/figures/convergence_analysis.pdf` (Fig 1)
+- `papers/figures/material_comparison.pdf` (Fig 2)
+- `papers/figures/landscape_YBCO_z_slice.pdf` (Fig 3)
+- `papers/coherence_gravity_coupling.pdf` (5 pages)
+
+Runtime guidance (Intel i7-10700K, 32GB RAM): 41³ ~ 3–5s/solve; 61³ ~ 5–8s/solve; 81³ ~ 20–30s; 101³ ~ 1–2min. Full convergence (61/81/101) ~ 1–8 hours.
+
+---
+
 ## 🔬 Key Result Summary
 
 **CRITICAL DISCOVERY (Oct 2025)**: Poisson solver normalization correction reveals **physically realistic** experimental signatures:
@@ -1040,6 +1069,6 @@ MIT License
 
 ---
 
-**Current Status**: Repository initialized. Beginning Week 1 formalism development.
+**Current Status**: Convergence validated; manuscript compiled; figures generated. See REPRODUCIBILITY.md for exact commands and environment.
 
 **Next Steps**: Implement action principle, derive modified field equations, build weak-field solver.

@@ -4,7 +4,8 @@ This document provides explicit commands to reproduce all results reported in th
 
 ## Prerequisites
 
-- Python 3.13+ with NumPy 2.3.2, SciPy 1.16.1
+- Python 3.11 (pinned)
+- NumPy 1.26.4, SciPy 1.14.1, Matplotlib 3.9.4, PyAMG ≥ 4.2.0
 - 32 GB RAM recommended for 81³+ resolutions
 - 4+ CPU cores for parallelization (--jobs 4)
 
@@ -13,8 +14,17 @@ This document provides explicit commands to reproduce all results reported in th
 ```bash
 git clone https://github.com/arcticoder/coherence-gravity-coupling.git
 cd coherence-gravity-coupling
+
+# Option A: conda (recommended)
+conda env create -f environment.yml
+conda activate cohgrav
+
+# Option B: venv + pip
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-pytest tests/ -v  # Verify installation (23 tests, ~94s)
+
+pytest -q  # Verify installation (23 tests, ~94s)
 ```
 
 ## Key Manuscript Results
@@ -63,7 +73,7 @@ python run_geometric_cavendish.py --xi 100 --Phi0 3.65e6 --resolution 101 --use-
 
 **Manuscript Claim**: 5×5×5 grid search finds optimal at (0, 0, -0.05) m for all materials, |Δτ| ≈ 1.099 × 10⁻¹² N·m
 
-**Data File**: `results/production_study/production_study_20251018_204142.json`
+**Data File**: `results/production_study/production_study_20251018_204142.json` (included) or regenerate via command below
 
 **Reproduction Command**:
 ```bash
@@ -118,11 +128,10 @@ All manuscript results are traceable to the following data files:
 - `results/production_study/production_study_20251018_204142.json` - Complete 5³ grid × 3 materials at 61³
 - `LATEST_PRODUCTION_SUMMARY.md` - Human-readable summary with integration time estimates
 
-### Figures (PNG placeholders)
-- `results/production_study/landscape_YBCO_z_slice.png` - Figure 3 source
-- `results/production_study/landscape_Rb87_z_slice.png` - Material comparison
-- `results/production_study/landscape_Nb_z_slice.png` - Material comparison
-- `results/convergence_analysis.png` - Figure 1 source (convergence plot)
+### Figures
+- `papers/figures/convergence_analysis.pdf|png` - Figure 1 (generated)
+- `papers/figures/material_comparison.pdf|png` - Figure 2 (copied from results)
+- `papers/figures/landscape_YBCO_z_slice.pdf|png` - Figure 3 (copied from results)
 
 ## Numerical Consistency Checks
 
@@ -183,8 +192,8 @@ All variations should be within expected numerical precision. If discrepancies e
 ## Contact
 
 For reproducibility issues or questions:
-- **GitHub Issues**: https://github.com/arcticoder/coherence-gravity-coupling/issues
-- **Email**: See `docs/manuscript/author_config.tex` for contact information
+- GitHub Issues: https://github.com/arcticoder/coherence-gravity-coupling/issues
+- Email: Contact details are provided in the PDF uploaded to Zenodo (author list and corresponding email). The repository includes `papers/author_config.tex` used during LaTeX compilation.
 
 ---
 
