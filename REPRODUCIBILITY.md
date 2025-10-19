@@ -33,7 +33,7 @@ pytest -q  # Verify installation (23 tests, ~94s)
 
 **Manuscript Claim**: τ_coh = 1.4 ± 0.2 × 10⁻¹² N·m at position (0.0012, 0.0182, 0.0659) m
 
-**Data File**: `results/validation/validate_61_Rb87_ξ100_powell.json`
+**Data File**: Generated on demand; see command below. Artifacts are written under `results/optimization/`.
 
 **Reproduction Command**:
 ```bash
@@ -116,8 +116,7 @@ python optimize_geometry.py --xi 100 --Phi0 6.67e8 --resolution 61 --method Powe
 All manuscript results are traceable to the following data files:
 
 ### Validation Data
-- `results/validation/validate_61_Rb87_ξ100_powell.json` - Primary signal validation (Fig. 1 reference)
-- `results/validation/validate_61_Nb_ξ100_powell.json` - Material universality confirmation
+- `results/optimization/*powell*.json` - Primary signal validation runs
 
 ### Convergence Data
 - `CONVERGENCE_ANALYSIS.md` - Richardson extrapolation analysis
