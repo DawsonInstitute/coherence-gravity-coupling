@@ -359,10 +359,10 @@ where $`\tilde{T}_{\mu\nu} = T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{\Phi}`$ in
    **Output**: `examples/figures/optimized_vs_baseline.png` showing integration time improvements
 
 4. **Run geometric Cavendish simulation**:
-   ```bash
+```bash
    # Single configuration with volume-averaged force (recommended)
    python -c "
-import numpy as np
+   import numpy as np
    from examples.geometric_cavendish import sweep_coherent_position
    
    result = sweep_coherent_position(
@@ -375,10 +375,10 @@ import numpy as np
    print(f'\\nOptimal position: {result[\"optimal\"][\"position\"]}')
    print(f'Delta tau: {result[\"optimal\"][\"delta_tau\"]:.3e} N·m')
    "
-   ```
+```
 
 4. **Run convergence test**:
-   ```bash
+```bash
    python -c "
    from examples.geometric_cavendish import convergence_test
    
@@ -389,13 +389,13 @@ import numpy as np
        verbose=True
    )
    "
-   ```
+```
 
 5. **Run regression tests**:
-   ```bash
+```bash
    pytest tests/test_coherence_invariance.py -v
    pytest tests/test_newtonian_torque_scale.py -v
-   ```
+```
 
 ### Key Outputs
 
