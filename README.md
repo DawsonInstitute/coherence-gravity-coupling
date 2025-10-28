@@ -1,3 +1,5 @@
+Paper: https://zenodo.org/records/17393679
+
 # Coherence-Modulated Gravity Coupling (Phase D)
 
 **Status**: ✅ **CONVERGENCE VALIDATED** (Oct 18, 2025)  
