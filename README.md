@@ -71,6 +71,17 @@ Links:
 - Consolidated tables: `results/reports/` (Markdown + LaTeX tables)
 
 ---
+### Interpreting $\kappa_R$ Limits
+
+- These are upper bounds from null results: smaller is stronger (more constrained).
+- Scaling checks (sanity):
+   - $\kappa_R \propto \delta$ (tighter precision → stronger bound)
+   - $\kappa_R \propto 1/R$ (larger curvature → stronger bound)
+   - $\kappa_R \propto 1/B^2$ (stronger magnetic field → stronger bound via $F^2$)
+- Compare bounds only within the same model (do not compare κ across different theories).
+- For manuscript inclusion, use `results/reports/analysis_tables.tex` or cite CSVs for data availability.
+
+---
 
 ## 🔬 Key Result Summary
 
