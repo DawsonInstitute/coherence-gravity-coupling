@@ -12,7 +12,7 @@
 \usepackage{textcomp}
 % \usepackage{siunitx}  % Optional: uncomment if siunitx is available
 
-	itle{\Large\bfseries Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
+  itle{\Large\bfseries Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
 
 % Load author config (parity with coherence\_gravity\_coupling.tex)
 \IfFileExists{author_config.tex}{%
@@ -44,7 +44,7 @@
 We present null results from a configuration-driven numerical study of non-minimal couplings between a coherence field and gravity ($\xi$ coupling), and between spacetime curvature and electromagnetism ($\kappa_R\, R\, F_{\mu\nu}F^{\mu\nu}$). Parameter sweeps over coupling strengths ($\xi \in \{50,100\}$), materials (Rb-87 BEC, Nb cavity, YBCO cuprate), and electromagnetic field configurations ($B \in [0.5,10]$~T) yield no detectable signal beyond numerical baselines ($\lvert\Delta\tau\rvert \approx 5\times10^{-13}$~N\,m, consistent across all configurations). From these nulls, we derive exclusion limits on the curvature--electromagnetism coupling parameter $\kappa_R$ across laboratory-relevant magnetic field strengths and terrestrial Ricci curvature scales. For $B=10$~T and $R=10^{-26}\,\mathrm{m^{-2}}$, we constrain $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$. This work establishes a validated computational framework for systematic exploration of beyond-GR physics through precision null measurements.
 \end{abstract}
 
-	extbf{Index Terms}---Modified gravity, non-minimal coupling, coherence field, curvature--EM coupling, exclusion limits, null results, precision gravimetry.
+  extbf{Index Terms}---Modified gravity, non-minimal coupling, coherence field, curvature--EM coupling, exclusion limits, null results, precision gravimetry.
 
 \section{Introduction}
 \subsection{Motivation}
@@ -104,6 +104,28 @@ Using $\delta=10^{-6}$ and $R=10^{-26}\,\mathrm{m^{-2}}$, the exclusion limits o
   \end{tabular}
 \end{table}
 
+% Figures (optional): include generated plots if present
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\columnwidth]{../results/analysis/xi_sweep_20251018_160934_plot.png}
+  \caption{Ξ sweep results at $41^3$: $|\Delta\tau|$ vs. $\xi$ and compute time (cache indicated).}
+  \label{fig:xi_sweep}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\columnwidth]{../results/analysis/material_comparison_20251031_203905_plot.png}
+  \caption{Material comparison (Rb-87, Nb, YBCO): $|\Delta\tau|$ insensitive to material at fixed $\xi$ and geometry.}
+  \label{fig:materials}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\columnwidth]{../results/analysis/curvature_limits_20251031_204828_plot.png}
+  \caption{Curvature--EM exclusion limits $\kappa_R$ vs. magnetic field $B$ (log--log), scaling $\propto 1/B^2$.}
+  \label{fig:kappa_vs_B}
+\end{figure}
+
 \subsection{Performance Metrics}
 Cache hits provide $\sim$250$\times$ speedups for $41^3$ solves (5.3~s $\rightarrow$ 0.02~s). Curvature limits are analytical and near-instantaneous; PDE solves dominate runtime otherwise.
 
@@ -124,17 +146,28 @@ Code, data, and analysis pipelines are MIT-licensed at\: \url{https://github.com
 We thank the NumPy/SciPy/Matplotlib communities. Computational resources: Intel i7-10700K, 32~GB RAM. No external funding.
 
 \section*{References}
-\noindent\textit{Non-minimal coupling and scalar-tensor theories:} Fujii \\ Maeda (2003); Callan\,\textit{et~al.} (1970); Will (2014).\\
-\noindent\textit{Curvature--EM coupling and EFT:} Drummond \\ Hathrell (1980); Shore (2003); Bastero-Gil\,\textit{et~al.} (2013).\\
-\noindent\textit{Precision tests of gravity:} Schlamminger\,\textit{et~al.} (2008); Adelberger\,\textit{et~al.} (2003); Kramer\,\textit{et~al.} (2006).\\
-\noindent\textit{Coherent quantum systems:} Cornell \\ Wieman (2002); Tinkham (2004); Annett (2004).\\
-\noindent\textit{Astrophysical constraints:} Kaspi \\ Beloborodov (2017); Abbott\,\textit{et~al.} (2016); Stairs (2003).\\
-\noindent\textit{Null-result methodology:} Popper (1959); Simmons\,\textit{et~al.} (2011); Nosek\,\textit{et~al.} (2015).
+\begin{thebibliography}{9}
+\bibitem{will2014} C. M. Will, ``The Confrontation between General Relativity and Experiment,'' Living Rev. Relativity 17, 4 (2014).
+\bibitem{drummond1980} I. T. Drummond and S. J. Hathrell, ``QED vacuum polarization in a background gravitational field and its effect on the velocity of photons,'' Phys. Rev. D 22, 343 (1980).
+\bibitem{shore2003} G. M. Shore, ``Superluminality and UV completion,'' Nucl. Phys. B 633, 271--286 (2003).
+\bibitem{tinkham2004} M. Tinkham, Introduction to Superconductivity, 2nd ed. (Dover, 2004).
+\bibitem{cornell2002} E. A. Cornell and C. E. Wieman, ``Nobel Lecture: Bose--Einstein condensation in a dilute gas,'' Rev. Mod. Phys. 74, 875 (2002).
+\bibitem{schlamminger2008} S. Schlamminger et al., ``Test of the equivalence principle using a rotating torsion balance,'' Phys. Rev. Lett. 100, 041101 (2008).
+\end{thebibliography}
 
 \paragraph{Duplication note.} Portions of the numerical methods text overlap with and are adapted for consistency from the companion manuscript \emph{Coherence-Modulated Gravity: Validation and Tabletop Feasibility} (same repository); duplicated sections are minimized and referenced to avoid redundancy.
 
 \appendix
 \section{Curvature--EM Tables and Error Budget}
-Summaries for $\kappa_R$ limits across $B$, $R$, and precision $\delta$ are provided in Table~\ref{tab:kappaB} and extended tables in the project reports (\texttt{results/reports/analysis\_tables.tex}). The error budget includes torque readout noise (folded into $\delta$), magnetic systematics (field reversal/shielding), gravitational gradients/alignment (Newtonian nulling), field calibration (Hall/NMR), and curvature proxy modeling.
+Summaries for $\kappa_R$ limits across $B$, $R$, and precision $\delta$ are provided in Table~\ref{tab:kappaB} and extended tables below. The error budget includes torque readout noise (folded into $\delta$), magnetic systematics (field reversal/shielding), gravitational gradients/alignment (Newtonian nulling), field calibration (Hall/NMR), and curvature proxy modeling.
+
+% Include consolidated LaTeX tables if available
+\IfFileExists{../results/reports/analysis_tables.tex}{\input{../results/reports/analysis_tables.tex}}{}
+
+\section{Limitations and Future Work}
+Primary limitations are numerical resolution ($41^3$ not converged), small terrestrial curvature limiting laboratory $\kappa_R$ bounds, and simplified coherence modeling (static, uniform $\Phi_0$). Future work: $\ge 61^3$ production runs, geometry optimization for sensitivity, and time-dependent coherence and decoherence modeling.
+
+\section{Conclusion and Summary of Findings}
+We presented a validated pipeline yielding consistent null results across $\xi$ and materials, and exclusion limits $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$ at $B=10$~T, $R=10^{-26}\,\mathrm{m^{-2}}$, $\delta=10^{-6}$. Figures~\ref{fig:xi_sweep}--\ref{fig:kappa_vs_B} summarize key analyses. The framework provides a reproducible baseline for improved constraints via higher curvature environments or precision.
 
 \end{document}
