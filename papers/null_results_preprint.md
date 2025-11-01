@@ -551,6 +551,46 @@ We thank the developers of NumPy, SciPy, and Matplotlib for foundational scienti
 
 ---
 
+## Appendix: Curvature–EM Coupling Tables and Error Budget
+
+This appendix summarizes exclusion limits for the curvature–EM coupling $\kappa_R$ derived by the analysis CLI, and a concise error budget used in the interpretation of null results. These tables are generated directly from the JSON outputs under `results/analysis/` and consolidated via `generate_report.py`.
+
+### Error budget (summary)
+
+- Torque readout noise (thermal + sensor): folded into fractional precision $\delta$; scales with $\sqrt{T/(Q\,\tau_{\rm int})}$.
+- Magnetic systematics: mitigated by field reversal and shielding; residual enters $\delta$.
+- Gravitational gradients / alignment: controlled via Newtonian nulling and mass swaps; residual enters $\delta$.
+- Field calibration (B): Hall probe and/or NMR calibration; uncertainty propagated to $F^2$.
+- Curvature proxy modeling (R): finite-element model with geometry metrology; propagated to R.
+
+### Exclusion limits vs. magnetic field (R = 1e-26 m⁻², δ = 1e-6)
+
+| B [T] | R [m⁻²] | Precision | κ_R limit [m²] | F² [T²] |
+|-------|---------|-----------|-----------------|---------|
+| 0.5 | 1.00e-26 | 1.0e-06 | 2.00e+20 | 0.5 |
+| 1.0 | 1.00e-26 | 1.0e-06 | 5.00e+19 | 2.0 |
+| 3.0 | 1.00e-26 | 1.0e-06 | 5.56e+18 | 18.0 |
+| 10.0 | 1.00e-26 | 1.0e-06 | 5.00e+17 | 200.0 |
+
+### Exclusion limits vs. Ricci scalar (B = 1 T, δ = 1e-6)
+
+| R [m⁻²] | B [T] | Precision | κ_R limit [m²] | F² [T²] |
+|---------|-------|-----------|-----------------|---------|
+| 1.00e-30 | 1.0 | 1.0e-06 | 5.00e+23 | 2.0 |
+| 1.00e-26 | 1.0 | 1.0e-06 | 5.00e+19 | 2.0 |
+| 1.00e-22 | 1.0 | 1.0e-06 | 5.00e+15 | 2.0 |
+
+### Exclusion limits vs. experimental precision (B = 1 T, R = 1e-26 m⁻²)
+
+| Precision | B [T] | R [m⁻²] | κ_R limit [m²] | F² [T²] |
+|-----------|-------|---------|-----------------|---------|
+| 1.0e-04 | 1.0 | 1.00e-26 | 5.00e+21 | 2.0 |
+| 1.0e-06 | 1.0 | 1.00e-26 | 5.00e+19 | 2.0 |
+| 1.0e-08 | 1.0 | 1.00e-26 | 5.00e+17 | 2.0 |
+| 1.0e-10 | 1.0 | 1.00e-26 | 5.00e+15 | 2.0 |
+
+For manuscript inclusion, you can import the LaTeX tables bundle at `results/reports/analysis_tables.tex`. The corresponding CSV files are in `results/reports/csv/` and carry the same numerical values for reproducibility.
+
 **End of Preprint**
 
 *Draft version: October 31, 2025*  
