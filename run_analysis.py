@@ -21,6 +21,7 @@ License: MIT
 """
 
 import argparse
+import numpy as np
 import json
 import time
 from datetime import datetime
@@ -34,7 +35,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from examples.geometric_cavendish import run_geometric_cavendish
 from src.utils.result_cache import ResultCache
 from src.visualization.plot_utils import (
-    plot_parameter_sweep, plot_material_comparison, save_figure
+    plot_parameter_sweep, plot_material_comparison, save_figure, plot_exclusion_limits
+)
+from src.field_equations.curvature_coupling import (
+    CurvatureCouplingCalculator, compute_exclusion_limits
 )
 
 
@@ -158,6 +162,66 @@ def sweep_materials(
     return results
 
 
+def sweep_curvature_limits(
+    B_values: List[float],
+    R_value: float,
+    precision: float = 1e-6,
+    E_value: float = 0.0,
+    verbose: bool = False
+) -> Dict:
+    """Sweep exclusion limits vs magnetic field strength for fixed Ricci scale.
+
+    Args:
+        B_values: List of magnetic field magnitudes [T]
+        R_value: Ricci scalar [m^-2]
+        precision: Experimental relative precision (e.g., 1e-6)
+        E_value: Electric field magnitude [V/m]
+        verbose: Print details
+
+    Returns:
+        Dict keyed by B value labels with kappa limits and inputs
+    """
+    print(f"\n{'='*70}")
+    print("CURVATURE COUPLING EXCLUSION LIMITS (κ_R)")
+    print(f"{'='*70}")
+    print(f"B values [T]: {B_values}")
+    print(f"Ricci scalar R: {R_value:.2e} m⁻²")
+    print(f"Precision: {precision:.2e}\n")
+
+    results: Dict[str, Dict] = {}
+    calc = CurvatureCouplingCalculator(
+        # Parameters not used for limits directly; using calculator for invariants
+        params=None  # type: ignore
+    )
+
+    for i, B in enumerate(B_values):
+        print(f"[{i+1}/{len(B_values)}] Evaluating B = {B} T...")
+        E_vec = np.array([E_value, 0.0, 0.0])
+        B_vec = np.array([0.0, B, 0.0])
+
+        invariants = calc.electromagnetic_invariants(E_vec, B_vec)
+        F_sq = invariants['F_squared']
+
+        limits = compute_exclusion_limits(
+            experimental_precision=precision,
+            ricci_scale=R_value,
+            field_strength=F_sq
+        )
+
+        results[f"B_{B}"] = {
+            'B': B,
+            'E': E_value,
+            'R': R_value,
+            'precision': precision,
+            'kappa_limit': limits['kappa_ricci_em_limit'],
+            'F_squared': F_sq
+        }
+
+        print(f"   κ_R limit < {limits['kappa_ricci_em_limit']:.2e} m²\n")
+
+    return results
+
+
 # Standard material configurations
 STANDARD_MATERIALS = [
     {"name": "rb87_bec", "Phi0": 3.65e6, "geom_params": {"coherent_position": [0.0, 0.0, -0.08]}},
@@ -186,6 +250,14 @@ def main():
     
     # Materials sweep
     parser_mat = subparsers.add_parser('sweep-materials', help='Compare materials')
+    # Curvature coupling exclusion limits
+    parser_curv = subparsers.add_parser('sweep-curvature', help='Exclusion limits vs magnetic field')
+    parser_curv.add_argument('--B', nargs='+', type=float, default=[0.5, 1.0, 3.0, 10.0], help='Magnetic field strengths [T]')
+    parser_curv.add_argument('--R', type=float, default=1e-26, help='Ricci scalar [m^-2]')
+    parser_curv.add_argument('--precision', type=float, default=1e-6, help='Experimental relative precision')
+    parser_curv.add_argument('--E', type=float, default=0.0, help='Electric field magnitude [V/m]')
+    parser_curv.add_argument('--plot', action='store_true', help='Generate plots')
+    parser_curv.add_argument('--verbose', action='store_true')
     parser_mat.add_argument('--xi', type=float, default=100.0)
     parser_mat.add_argument('--resolution', type=int, default=41)
     parser_mat.add_argument('--cache', action='store_true')
@@ -242,12 +314,34 @@ def main():
             plot_data = []
             for key, val in results.items():
                 plot_data.append({
-                    'material': val['material'],
+                    'material': val['name'],
                     'delta_tau': val['delta_tau'],
                     'config': val
                 })
             output_path = filepath.parent / f"{filepath.stem}_plot"
             plot_material_comparison(plot_data, output_path)
+
+    elif args.command == 'sweep-curvature':
+        results = sweep_curvature_limits(
+            B_values=args.B,
+            R_value=args.R,
+            precision=args.precision,
+            E_value=args.E,
+            verbose=args.verbose
+        )
+        filepath = save_results(results, "curvature_limits",
+                    f"Curvature limits: R={args.R:.2e}, precision={args.precision:.1e}")
+
+        if args.plot:
+            print("\n📊 Generating plots...")
+            plot_data = []
+            for key, val in results.items():
+                plot_data.append({
+                    'param_value': val['B'],
+                    'kappa_limit': val['kappa_limit']
+                })
+            output_path = filepath.parent / f"{filepath.stem}_plot"
+            plot_exclusion_limits(plot_data, output_path)
     
     print(f"\n✅ Analysis complete! Results: {RESULTS_DIR}")
 

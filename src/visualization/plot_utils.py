@@ -157,7 +157,7 @@ def plot_material_comparison(
     delta_tau = [r['delta_tau'] for r in results]
     
     # Create figure
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
     
     # Bar plot
     x = np.arange(len(materials))
@@ -170,18 +170,57 @@ def plot_material_comparison(
     ax.set_yscale('log')
     ax.grid(True, alpha=0.3, axis='y')
     
-    # Add value labels on bars
+    # Add value labels on bars (in data coordinates to avoid layout issues)
     for i, (bar, val) in enumerate(zip(bars, delta_tau)):
         height = bar.get_height()
-        ax.text(bar.get_x() + bar.get_width()/2., height*1.1,
+        # Place text in log space properly
+        ax.text(bar.get_x() + bar.get_width()/2., height,
                 f'{np.abs(val):.2e}',
                 ha='center', va='bottom', fontsize=8, rotation=0)
     
-    plt.tight_layout()
+    # Use subplots_adjust instead of tight_layout to avoid log scale issues
+    plt.subplots_adjust(bottom=0.15, left=0.12, right=0.95, top=0.92)
     
     if output_path:
         save_figure(fig, output_path)
     
+    return fig
+
+
+def plot_exclusion_limits(
+    results: List[Dict[str, Any]],
+    output_path: Optional[Path] = None,
+    param_label: str = 'B [T]'
+) -> plt.Figure:
+    """
+    Plot exclusion limits (κ) vs a swept parameter (e.g., magnetic field B).
+
+    Args:
+        results: List of dicts with keys: param_value, kappa_limit
+        output_path: Optional path to save figure
+        param_label: Label for x-axis
+
+    Returns:
+        Matplotlib figure
+    """
+    set_publication_style()
+
+    x_vals = [r['param_value'] for r in results]
+    kappa = [r['kappa_limit'] for r in results]
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(x_vals, kappa, 'o-', color='#2E86AB')
+    ax.set_xlabel(param_label)
+    ax.set_ylabel('κ_R limit [m²]')
+    ax.set_title('Exclusion Limits vs Field Strength')
+    ax.set_yscale('log')
+    ax.grid(True, which='both', axis='both', alpha=0.3)
+
+    plt.tight_layout()
+
+    if output_path:
+        save_figure(fig, output_path)
+
     return fig
 
 
