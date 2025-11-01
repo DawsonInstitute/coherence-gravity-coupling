@@ -39,6 +39,39 @@ Runtime guidance (Intel i7-10700K, 32GB RAM): 41³ ~ 3–5s/solve; 61³ ~ 5–8s
 
 ---
 
+## New: Curvature–EM Coupling (R·F²) Constraints
+
+This repo now includes a module and CLI to derive exclusion limits on a curvature–EM coupling of the form $\kappa_R\,R\,F_{\mu\nu}F^{\mu\nu}$ from null results.
+
+- Implementation: `src/field_equations/curvature_coupling.py`
+- Plots: `src/visualization/plot_utils.py::plot_exclusion_limits`
+- Preprint: `papers/null_results_preprint.md` (LaTeX wrapper at `papers/null_results_preprint.tex`)
+- Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python generate_report.py --all`
+
+### CLI examples
+
+```bash
+# Sweep vs magnetic field B at fixed R and precision δ
+python run_analysis.py sweep-curvature --B 0.5 1.0 3.0 10.0 --R 1e-26 --precision 1e-6 --plot
+
+# Sweep vs Ricci scalar R at fixed B
+python run_analysis.py sweep-curvature-R --R 1e-30 1e-26 1e-22 --B 1.0 --precision 1e-6 --plot
+
+# Sweep vs experimental precision δ at fixed (B, R)
+python run_analysis.py sweep-curvature-precision --precision 1e-4 1e-6 1e-8 1e-10 --B 1.0 --R 1e-26 --plot
+
+# Generate consolidated tables (CSV, Markdown, LaTeX)
+python generate_report.py --all
+```
+
+Outputs are timestamped under `results/analysis/` with companion plots (PNG/PDF). Consolidated tables live in `results/reports/` for publication.
+
+Links:
+- Preprint manuscript: `papers/null_results_preprint.md` (see also `papers/null_results_preprint.tex`)
+- Consolidated tables: `results/reports/` (Markdown + LaTeX tables)
+
+---
+
 ## 🔬 Key Result Summary
 
 **CRITICAL DISCOVERY (Oct 2025)**: Poisson solver normalization correction reveals **physically realistic** experimental signatures:
