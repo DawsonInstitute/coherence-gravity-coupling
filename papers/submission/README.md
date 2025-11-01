@@ -4,18 +4,15 @@ This folder describes what to include for submission.
 
 ## arXiv
 Include:
-- `../final_preprint.tex` (or `../null_results.tex`)
-- `../null_results.md` (if using the markdown package)
+- `../null_results.tex` (standalone LaTeX manuscript)
 - Figures referenced (if any) from `../../results/analysis/` and `../../results/reports/`
-- `../references.bib` (if bibliography enabled)
+- `../references.bib` (optional; if switching to BibTeX)
 
 Build locally to verify:
 ```bash
 cd papers
-pdflatex final_preprint.tex
-# bibtex references  # uncomment if using bibliography
-pdflatex final_preprint.tex
-pdflatex final_preprint.tex
+pdflatex null_results.tex
+pdflatex null_results.tex  # repeat as needed
 ```
 
 ## Zenodo (Data DOI)
