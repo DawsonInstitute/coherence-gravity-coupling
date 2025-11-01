@@ -10,7 +10,7 @@
 \usepackage{microtype}
 \usepackage{url}
 \usepackage{textcomp}
-\usepackage{siunitx}
+% \usepackage{siunitx}  % Optional: uncomment if siunitx is available
 
 	itle{\Large\bfseries Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
 
@@ -92,9 +92,8 @@ Using $\delta=10^{-6}$ and $R=10^{-26}\,\mathrm{m^{-2}}$, the exclusion limits o
   \centering
   \caption{Curvature--EM exclusion limits vs. magnetic field ($R=10^{-26}\,\mathrm{m^{-2}}$, $\delta=10^{-6}$).}
   \label{tab:kappaB}
-  \sisetup{scientific-notation=true,round-mode=places,round-precision=2}
-  \begin{tabular}{@{}lrrrr@{}}
-    	oprule
+  \begin{tabular}{@{}lrr@{}}
+    \toprule
     $B$ [T] & $F^2$ [T$^2$] & $\kappa_R$ limit [m$^2$] \\
     \midrule
     0.5  &  0.5  & $2.00\times10^{20}$ \\
