@@ -45,7 +45,7 @@ This repo now includes a module and CLI to derive exclusion limits on a curvatur
 
 - Implementation: `src/field_equations/curvature_coupling.py`
 - Plots: `src/visualization/plot_utils.py::plot_exclusion_limits`
-- Preprint: `papers/null_results_preprint.md` (LaTeX wrapper at `papers/null_results_preprint.tex`)
+- Preprint: `papers/null_results.md` (LaTeX wrapper at `papers/null_results.tex`)
 - Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python generate_report.py --all`
 
 ### CLI examples
@@ -67,7 +67,7 @@ python generate_report.py --all
 Outputs are timestamped under `results/analysis/` with companion plots (PNG/PDF). Consolidated tables live in `results/reports/` for publication.
 
 Links:
-- Preprint manuscript: `papers/null_results_preprint.md` (see also `papers/null_results_preprint.tex`)
+- Preprint manuscript: `papers/null_results.md` (see also `papers/null_results.tex`)
 - Consolidated tables: `results/reports/` (Markdown + LaTeX tables)
 
 ---

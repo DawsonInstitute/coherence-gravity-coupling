@@ -4,8 +4,8 @@ This folder describes what to include for submission.
 
 ## arXiv
 Include:
-- `../final_preprint.tex` (or `../null_results_preprint.tex`)
-- `../null_results_preprint.md` (if using the markdown package)
+- `../final_preprint.tex` (or `../null_results.tex`)
+- `../null_results.md` (if using the markdown package)
 - Figures referenced (if any) from `../../results/analysis/` and `../../results/reports/`
 - `../references.bib` (if bibliography enabled)
 

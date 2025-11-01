@@ -57,4 +57,4 @@ Tighten laboratory bounds on curvature–EM anomalous coupling $\kappa_R$ using 
 - Budget: $150–$300k (torsion balance, cryostat, isolation, magnet)
 
 ## 10. References
-- See `papers/null_results_preprint.md` and `results/reports/` for current pipeline outputs and tables.
+- See `papers/null_results.md` and `results/reports/` for current pipeline outputs and tables.
