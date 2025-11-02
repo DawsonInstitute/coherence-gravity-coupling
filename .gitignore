@@ -24,3 +24,4 @@ papers/**/*Zone.Identifier
 papers/**/author_config.tex
 
 docs/reference/**/*
+docs/related_papers/source/**/*
