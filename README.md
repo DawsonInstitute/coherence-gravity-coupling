@@ -53,7 +53,7 @@ make cache-info    # Show cache statistics
 make cache-clean   # Clear all cached results
 ```
 
-**Note:** `setup.py` exists for historical reasons but is deprecated. Use the Makefile or direct script invocation (`python scripts/<script>.py`) instead. Scripts have been moved to `scripts/` directory for better organization.
+**Note:** `setup.py` has been removed. Use the Makefile or direct script invocation (`python scripts/<script>.py`) instead. Scripts live under `scripts/` for organization.
 
 
 ## New: Curvature–EM Coupling (R·F²) Constraints
@@ -69,16 +69,16 @@ This repo now includes a module and CLI to derive exclusion limits on a curvatur
 
 ```bash
 # Sweep vs magnetic field B at fixed R and precision δ
-python run_analysis.py sweep-curvature --B 0.5 1.0 3.0 10.0 --R 1e-26 --precision 1e-6 --plot
+python scripts/run_analysis.py sweep-curvature --B 0.5 1.0 3.0 10.0 --R 1e-26 --precision 1e-6 --plot
 
 # Sweep vs Ricci scalar R at fixed B
-python run_analysis.py sweep-curvature-R --R 1e-30 1e-26 1e-22 --B 1.0 --precision 1e-6 --plot
+python scripts/run_analysis.py sweep-curvature-R --R 1e-30 1e-26 1e-22 --B 1.0 --precision 1e-6 --plot
 
 # Sweep vs experimental precision δ at fixed (B, R)
-python run_analysis.py sweep-curvature-precision --precision 1e-4 1e-6 1e-8 1e-10 --B 1.0 --R 1e-26 --plot
+python scripts/run_analysis.py sweep-curvature-precision --precision 1e-4 1e-6 1e-8 1e-10 --B 1.0 --R 1e-26 --plot
 
 # Generate consolidated tables (CSV, Markdown, LaTeX)
-python generate_report.py --all
+python scripts/generate_report.py --all
 ```
 
 Outputs are timestamped under `results/analysis/` with companion plots (PNG/PDF). Consolidated tables live in `results/reports/` for publication.

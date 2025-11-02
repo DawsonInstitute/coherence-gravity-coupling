@@ -42,8 +42,9 @@ from src.field_equations.curvature_coupling import (
 )
 
 
-# Output directory
-RESULTS_DIR = Path("results/analysis")
+# Output directory (normalized to repo root regardless of CWD)
+ROOT = Path(__file__).resolve().parents[1]
+RESULTS_DIR = ROOT / "results" / "analysis"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 

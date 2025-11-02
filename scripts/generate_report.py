@@ -309,7 +309,12 @@ def main():
         parser.print_help()
         return
     
+    # Normalize to repo root regardless of CWD
+    ROOT = Path(__file__).resolve().parents[1]
+    default_rel = Path('results/analysis')
     results_dir = args.results_dir
+    if results_dir == default_rel:
+        results_dir = ROOT / default_rel
     if not results_dir.exists():
         print(f"❌ Results directory not found: {results_dir}")
         return
@@ -327,7 +332,7 @@ def main():
     for fmt in formats:
         if fmt == 'csv':
             # Generate CSV files
-            csv_dir = Path('results/reports/csv')
+            csv_dir = ROOT / 'results' / 'reports' / 'csv'
             csv_dir.mkdir(parents=True, exist_ok=True)
             
             generate_csv_xi_sweep(xi_results, csv_dir / 'xi_sweep.csv')
@@ -340,7 +345,7 @@ def main():
         
         elif fmt == 'markdown':
             # Generate Markdown report
-            md_path = args.output or Path('results/reports/analysis_report.md')
+            md_path = args.output or (ROOT / 'results' / 'reports' / 'analysis_report.md')
             md_path.parent.mkdir(parents=True, exist_ok=True)
             
             with open(md_path, 'w') as f:
@@ -374,7 +379,7 @@ def main():
         
         elif fmt == 'latex':
             # Generate LaTeX tables
-            tex_path = args.output or Path('results/reports/analysis_tables.tex')
+            tex_path = args.output or (ROOT / 'results' / 'reports' / 'analysis_tables.tex')
             tex_path.parent.mkdir(parents=True, exist_ok=True)
             
             with open(tex_path, 'w') as f:
