@@ -1,8 +1,4 @@
 # Solver Performance Improvements
-
-**Author**: GitHub Copilot (Claude Sonnet 4.5)  
-**Date**: January 2025
-
 ## Summary
 
 Implemented significant performance improvements to the 3D Poisson solver through:

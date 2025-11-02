@@ -59,7 +59,7 @@ This repo now includes a module and CLI to derive exclusion limits on a curvatur
 
 - Implementation: `src/field_equations/curvature_coupling.py`
 - Plots: `src/visualization/plot_utils.py::plot_exclusion_limits`
-- Preprint: `papers/null_results.md` (LaTeX wrapper at `papers/null_results.tex`)
+- Preprint: `papers/null_results.tex`
 - Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python generate_report.py --all`
 
 ### CLI examples
@@ -81,7 +81,7 @@ python scripts/generate_report.py --all
 Outputs are timestamped under `results/analysis/` with companion plots (PNG/PDF). Consolidated tables live in `results/reports/` for publication.
 
 Links:
-- Preprint manuscript: `papers/null_results.md` (see also `papers/null_results.tex`)
+- Preprint manuscript: `papers/null_results.tex`
 - Consolidated tables: `results/reports/` (Markdown + LaTeX tables)
 
 ---
@@ -468,16 +468,16 @@ where $`\tilde{T}_{\mu\nu} = T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{\Phi}`$ in
 
 4. **Run convergence test**:
 ```bash
-   python -c "
-   from examples.geometric_cavendish import convergence_test
-   
-   convergence_test(
-       grid_resolutions=[41, 61],
-       xi=100.0,
-       Phi0=6.67e8,
-       verbose=True
-   )
-   "
+python -c "
+from examples.geometric_cavendish import convergence_test
+
+convergence_test(
+      grid_resolutions=[41, 61],
+      xi=100.0,
+      Phi0=6.67e8,
+      verbose=True
+)
+"
 ```
 
 5. **Run regression tests**:
