@@ -36,10 +36,10 @@ test:
 	pytest -v
 
 quick-bench:
-	python benchmark_solver.py --resolution 41 --runs 2 --materials rb87_bec --xi 100
+	python scripts/benchmark_solver.py --resolution 41 --runs 2 --materials rb87_bec --xi 100
 
 bench:
-	python benchmark_solver.py --resolution 61 --runs 3 --materials rb87_bec nb_cavity --xi 100
+	python scripts/benchmark_solver.py --resolution 61 --runs 3 --materials rb87_bec nb_cavity --xi 100
 
 domain-sweep:
 	python examples/domain_bc_sweep.py --resolution 41 --padding 1.2 1.5 2.0 2.5
@@ -71,10 +71,10 @@ cache-clean:
 	@python -c "from src.utils.result_cache import get_cache; get_cache().clear(); print('✅ Cache cleared')"
 
 analysis:
-	@python run_analysis.py
+	@python scripts/run_analysis.py
 
 optimize:
-	@python optimize_geometry.py --resolution 41 --method Nelder-Mead
+	@python scripts/optimize_geometry.py --resolution 41 --method Nelder-Mead
 
 install-dev:
 	pip install -e .
@@ -86,7 +86,7 @@ env:
 	@echo "Activate with: conda activate cohgrav"
 
 figures:
-	python generate_figures.py
+	python scripts/generate_figures.py
 
 paper:
 	cd papers && pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \

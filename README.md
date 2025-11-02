@@ -22,7 +22,7 @@ conda env create -f environment.yml && conda activate cohgrav
 python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 
 pytest -q               # Smoke tests (~90s)
-python generate_figures.py  # Writes papers/figures/*.pdf,*.png
+python scripts/generate_figures.py  # Writes papers/figures/*.pdf,*.png
 
 cd papers
 pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
@@ -37,7 +37,24 @@ Expected outputs:
 
 Runtime guidance (Intel i7-10700K, 32GB RAM): 41³ ~ 3–5s/solve; 61³ ~ 5–8s/solve; 81³ ~ 20–30s; 101³ ~ 1–2min. Full convergence (61/81/101) ~ 1–8 hours.
 
----
+### Using Make (recommended)
+
+For convenience, common tasks are available via the Makefile:
+
+```bash
+make help          # Show all available targets
+make test          # Run full test suite (23 tests, ~90s)
+make quick-bench   # Quick benchmark at 41³ (~30s)
+make figures       # Generate manuscript figures
+make paper         # Build coherence_gravity_coupling.pdf
+make analysis      # Interactive analysis menu
+make optimize      # Run geometry optimization
+make cache-info    # Show cache statistics
+make cache-clean   # Clear all cached results
+```
+
+**Note:** `setup.py` exists for historical reasons but is deprecated. Use the Makefile or direct script invocation (`python scripts/<script>.py`) instead. Scripts have been moved to `scripts/` directory for better organization.
+
 
 ## New: Curvature–EM Coupling (R·F²) Constraints
 

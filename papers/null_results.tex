@@ -56,6 +56,8 @@ Rather than seek positive signals, we adopt a null-result-driven strategy: defin
 \subsection{Contributions}
 Our contributions include: (i) a validated numerical framework for coherence--gravity coupling (41 tests passing), (ii) systematic sweeps with caching, (iii) quantitative exclusion limits on $\kappa_R$ vs. magnetic field strength, and (iv) publication-ready figures and tables with open-source pipelines.
 
+	extbf{Relationship to companion paper:} This work reports \emph{null results} from the numerical framework developed in the companion manuscript ``Coherence-Modulated Gravity: Validation and Tabletop Feasibility'' (same repository). While the companion paper explores the theoretical framework and experimental feasibility of detecting coherence--gravity coupling ($\xi R\Phi^2$), this paper focuses on systematic null measurements that constrain alternative couplings, particularly curvature--electromagnetism interactions ($\kappa_R R F^2$).
+
 \section{Methods}
 \subsection{Coherence--Gravity Framework}
 We work in the weak-field limit with action
@@ -168,7 +170,9 @@ Experimental feasibility: cryogenic torsion balance with active isolation remain
 Null laboratory results at terrestrial $R$ primarily constrain large \(\kappa_R\) regimes and models predicting coherence-enhanced couplings in weak curvature. Stronger astrophysical constraints may arise in high-$R$, high-$B$ environments (e.g., magnetars). For non-minimal scalar coupling ($\xi R\Phi^2$), localized coherence with $\xi\sim10^2$ remains theoretically consistent (ghost-free, causal) provided $m^2\!\gg\!2\xi|R|$. Laboratory nulls therefore serve as complementary probes that (i) benchmark numerical predictions, (ii) calibrate systematic control for future tabletop searches, and (iii) provide publishable upper bounds that can be reinterpreted across model variants.
 
 \section{Data and Code Availability}
-Code, data, and analysis pipelines are MIT-licensed at\: \url{https://github.com/DawsonInstitute/coherence-gravity-coupling}. Results (JSON), plots (PNG/PDF), and tables (CSV/LaTeX) are under \texttt{results/}. 
+Code, data, and analysis pipelines are MIT-licensed at\: \url{https://github.com/DawsonInstitute/coherence-gravity-coupling}. 
+
+	extbf{Null results data:} Parameter sweep results (JSON), plots (PNG/PDF), and tables (CSV/LaTeX) specific to this manuscript are under \texttt{results/analysis/} and \texttt{results/reports/}. Timestamped filenames indicate generation date (YYYYMMDD\_HHMMSS format). Coherence--gravity coupling validation data (for the companion paper) is under \texttt{results/production\_study/} and \texttt{results/convergence\_*}.
 
 \section*{Acknowledgments}
 We thank the NumPy/SciPy/Matplotlib communities. Computational resources: Intel i7-10700K, 32~GB RAM. No external funding.
@@ -176,8 +180,6 @@ We thank the NumPy/SciPy/Matplotlib communities. Computational resources: Intel 
 \section*{References}
 \begin{thebibliography}{9}
 \bibitem{will2014} C. M. Will, ``The Confrontation between General Relativity and Experiment,'' Living Rev. Relativity 17, 4 (2014).
-\bibitem{drummond1980} I. T. Drummond and S. J. Hathrell, ``QED vacuum polarization in a background gravitational field and its effect on the velocity of photons,'' Phys. Rev. D 22, 343 (1980).
-\bibitem{shore2003} G. M. Shore, ``Superluminality and UV completion,'' Nucl. Phys. B 633, 271--286 (2003).
 \bibitem{tinkham2004} M. Tinkham, Introduction to Superconductivity, 2nd ed. (Dover, 2004).
 \bibitem{cornell2002} E. A. Cornell and C. E. Wieman, ``Nobel Lecture: Bose--Einstein condensation in a dilute gas,'' Rev. Mod. Phys. 74, 875 (2002).
 \bibitem{schlamminger2008} S. Schlamminger et al., ``Test of the equivalence principle using a rotating torsion balance,'' Phys. Rev. Lett. 100, 041101 (2008).
