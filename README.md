@@ -31,7 +31,6 @@ pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
 
 ```bash
 # Also build the null-results paper (curvature–EM coupling constraints)
-cd papers
 pdflatex null_results.tex && bibtex null_results \
    && pdflatex null_results.tex && pdflatex null_results.tex
 ```
