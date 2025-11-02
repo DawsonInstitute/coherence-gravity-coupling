@@ -94,11 +94,15 @@ def run_geometric_cavendish(
 Created `benchmark_solver.py` to systematically test performance:
 
 ```bash
-# Test at 61³ resolution
-python benchmark_solver.py --resolution 61 --runs 3 --materials rb87_bec --xi 100
+# Test at 61³ resolution (from repo root)
+python scripts/benchmark_solver.py --resolution 61 --runs 3 --materials rb87_bec --xi 100
 
 # Test multiple materials
-python benchmark_solver.py --resolution 81 --runs 2 --materials rb87_bec nb_cavity al_film
+python scripts/benchmark_solver.py --resolution 81 --runs 2 --materials rb87_bec nb_cavity al_film
+
+# Or use the Makefile presets
+make quick-bench   # 41³, fast sanity check
+make bench         # 61³, standard benchmark
 ```
 
 Output includes:
@@ -253,15 +257,19 @@ COO format advantages:
 Run benchmarks:
 ```bash
 # Quick test (41³)
-python benchmark_solver.py --resolution 41 --runs 2
+python scripts/benchmark_solver.py --resolution 41 --runs 2
 
 # Standard test (61³)
-python benchmark_solver.py --resolution 61 --runs 3
+python scripts/benchmark_solver.py --resolution 61 --runs 3
 
 # Comprehensive test (multiple resolutions)
 for res in 41 61 81; do
-    python benchmark_solver.py --resolution $res --runs 3 --output benchmark_${res}.json
+    python scripts/benchmark_solver.py --resolution $res --runs 3 --output benchmark_${res}.json
 done
+
+# Makefile alternatives
+make quick-bench
+make bench
 ```
 
 Verify correctness:

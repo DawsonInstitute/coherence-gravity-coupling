@@ -35,6 +35,11 @@ import sys
 import subprocess
 from importlib import metadata as _metadata
 
+# Ensure repository root on sys.path so `examples`/`src` are importable when run via Makefile
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from examples.geometric_cavendish import run_geometric_cavendish
 
 # Output directory

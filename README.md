@@ -29,13 +29,22 @@ pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
    && pdflatex coherence_gravity_coupling.tex && pdflatex coherence_gravity_coupling.tex
 ```
 
+```bash
+# Also build the null-results paper (curvature–EM coupling constraints)
+cd papers
+pdflatex null_results.tex && bibtex null_results \
+   && pdflatex null_results.tex && pdflatex null_results.tex
+```
+
+Why multiple pdflatex runs? LaTeX generally requires 2–3 passes to resolve cross-references, citations, and the bibliography. The sequence above (pdflatex → bibtex → pdflatex → pdflatex) is the standard pattern to ensure all references are correct for both papers.
+
 Expected outputs:
 - `papers/figures/convergence_analysis.pdf` (Fig 1)
 - `papers/figures/material_comparison.pdf` (Fig 2)
 - `papers/figures/landscape_YBCO_z_slice.pdf` (Fig 3)
 - `papers/coherence_gravity_coupling.pdf` (5 pages)
 
-Runtime guidance (Intel i7-10700K, 32GB RAM): 41³ ~ 3–5s/solve; 61³ ~ 5–8s/solve; 81³ ~ 20–30s; 101³ ~ 1–2min. Full convergence (61/81/101) ~ 1–8 hours.
+Runtime guidance (Intel i7-10700K, 32GB RAM): 41³ ~ 3–5s/solve; 61³ ~ 5–8s/solve; 81³ ~ 20–30s; 101³ ~ 1–2min. Full convergence (61/81/101) ~ 1–8 hours. Note: These timings apply to the 3D solver runs (examples/analysis). pdflatex and figure generation complete in seconds.
 
 ### Using Make (recommended)
 
@@ -47,7 +56,7 @@ make test          # Run full test suite (23 tests, ~90s)
 make quick-bench   # Quick benchmark at 41³ (~30s)
 make figures       # Generate manuscript figures
 make paper         # Build coherence_gravity_coupling.pdf
-make analysis      # Interactive analysis menu
+make analysis      # Analysis CLI (prints usage; see --help for subcommands)
 make optimize      # Run geometry optimization
 make cache-info    # Show cache statistics
 make cache-clean   # Clear all cached results
@@ -60,7 +69,7 @@ This repo now includes a module and CLI to derive exclusion limits on a curvatur
 - Implementation: `src/field_equations/curvature_coupling.py`
 - Plots: `src/visualization/plot_utils.py::plot_exclusion_limits`
 - Preprint: `papers/null_results.tex`
-- Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python generate_report.py --all`
+- Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python scripts/generate_report.py --all` or `make report`
 
 ### CLI examples
 
@@ -449,21 +458,22 @@ where $`\tilde{T}_{\mu\nu} = T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{\Phi}`$ in
 
 4. **Run geometric Cavendish simulation**:
 ```bash
-   # Single configuration with volume-averaged force (recommended)
-   python -c "
-   import numpy as np
-   from examples.geometric_cavendish import sweep_coherent_position
-   
-   result = sweep_coherent_position(
-       y_range=np.linspace(0.0, 0.05, 3),
-       z_range=np.linspace(-0.12, -0.04, 3),
-       xi=100.0,
-       Phi0=6.67e8,  # YBCO
-       verbose=True
-   )
-   print(f'\\nOptimal position: {result[\"optimal\"][\"position\"]}')
-   print(f'Delta tau: {result[\"optimal\"][\"delta_tau\"]:.3e} N·m')
-   "
+# Single configuration with volume-averaged force (recommended)
+python -c "
+import numpy as np
+from examples.geometric_cavendish import sweep_coherent_position
+
+result = sweep_coherent_position(
+   y_range=np.linspace(0.0, 0.05, 3),
+   z_range=np.linspace(-0.12, -0.04, 3),
+   base_geom_params={},
+   xi=100.0,
+   Phi0=6.67e8,  # YBCO
+   verbose=True
+)
+print(f'\nOptimal position: {result[\"optimal\"][\"position\"]}')
+print(f'Delta tau: {result[\"optimal\"][\"delta_tau\"]:.3e} N·m')
+"
 ```
 
 4. **Run convergence test**:
@@ -472,10 +482,10 @@ python -c "
 from examples.geometric_cavendish import convergence_test
 
 convergence_test(
-      grid_resolutions=[41, 61],
-      xi=100.0,
-      Phi0=6.67e8,
-      verbose=True
+   grid_resolutions=[41, 61],
+   xi=100.0,
+   Phi0=6.67e8,
+   verbose=True
 )
 "
 ```
@@ -597,7 +607,7 @@ coherence-gravity-coupling/
 
 ### Solver Performance
 
-**Recent Improvements** (January 2025): Implemented performance optimizations for 3D Poisson solver:
+**Recent Improvements** (October 2025): Implemented performance optimizations for 3D Poisson solver:
 
 #### Key Features
 - **Diagonal (Jacobi) preconditioner**: Fast preconditioning with O(N) setup cost
@@ -641,7 +651,7 @@ For details, see [`SOLVER_PERFORMANCE_IMPROVEMENTS.md`](SOLVER_PERFORMANCE_IMPRO
 
 #### Result Caching
 
-**New Feature** (January 2025): Optional result caching for parameter sweeps.
+**New Feature** (October 2025): Optional result caching for parameter sweeps.
 
 ```python
 # Enable caching to skip repeated expensive calculations
@@ -669,7 +679,7 @@ make cache-clean  # Clear all cached results
 
 #### Domain Size and Boundary Conditions
 
-**Recommendation** (January 2025): Use `domain_size ≥ 2.5× minimum_enclosing_size`.
+**Recommendation** (October 2025): Use `domain_size ≥ 2.5× minimum_enclosing_size`.
 
 **Domain Study Results** (61³ resolution, xi=100, YBCO):
 - **Padding 2.0×**: 7.1% variation in Δτ
@@ -811,7 +821,7 @@ Improvement: 1.00× (already optimal)
 - ⏳ Energy cost of warp drops to laboratory scale (~MJ instead of Earth mass) (not yet validated for full warp metric)
 - ⏳ Path to engineering curvature becomes plausible (testable with proposed experiment)
 
-**Phase D Status:** 🎯 **BREAKTHROUGH ACHIEVED** - Experiment is **trivially feasible**
+**Phase D Status:** 🎯 **BREAKTHROUGH ACHIEVED** - Experiment is **feasible but challenging** (requires cryogenics and precision isolation)
 
 ### Latest Updates (Phase D+)
 
@@ -880,9 +890,11 @@ Improvement: 1.00× (already optimal)
 
 ### Grid Convergence
 - **41³ grid**: Fast (~3s/solve), sufficient for parameter scans
-- **61³ grid**: Moderate (~10s/solve), shows ~220% Δτ change from 41³ (not fully converged)
+- **61³ grid**: Moderate (~10s/solve), often shows O(10²%) Δτ change vs 41³ (not fully converged)
 - **81³+ grid**: Recommended for quantitative predictions; requires volume averaging for stability
 - **Volume averaging**: Reduces aliasing by integrating ∇φ over test mass volume; use for convergence studies
+
+Note: A message like "Not fully converged (>62.49% change)" on 41³→61³ is expected for point-sample torque. Enable volume averaging (use_volume_average=True) and/or include 81³ to see the relative change drop below ~1–5%.
 
 ### Experimental Challenges
 1. **Cryogenic operation required**: Room temperature noise floor too high (0/18 configs <24hr feasible)

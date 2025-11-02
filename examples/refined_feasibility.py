@@ -12,8 +12,13 @@ Incorporates:
 import numpy as np
 import json
 from pathlib import Path
+import sys
 import matplotlib.pyplot as plt
 from scipy.constants import k as k_B, hbar, c, G as G_newton
+# Ensure repository root is on sys.path so `import examples...` works when running this file directly
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 # Physical constants (baseline geometry)
 m_test_baseline = 10e-3  # Test mass 10 mg (typical for micro-torsion balance)

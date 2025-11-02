@@ -11,7 +11,7 @@ help:
 	@echo "  make domain-sweep  - Domain padding sensitivity study"
 	@echo ""
 	@echo "Analysis:"
-	@echo "  make analysis      - Run interactive analysis menu"
+	@echo "  make analysis      - Run analysis CLI (prints usage; see --help for subcommands)"
 	@echo "  make optimize      - Run geometry optimization"
 	@echo ""
 	@echo "Code quality:"
@@ -91,6 +91,15 @@ figures:
 paper:
 	cd papers && pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
 	  && pdflatex coherence_gravity_coupling.tex && pdflatex coherence_gravity_coupling.tex
+
+# Build null_results PDF (curvature–EM coupling null-results paper)
+null-results:
+	cd papers && pdflatex null_results.tex && bibtex null_results \
+	  || true; pdflatex null_results.tex && pdflatex null_results.tex
+
+# Generate consolidated analysis tables (CSV/Markdown/LaTeX)
+report:
+	python scripts/generate_report.py --all
 
 manifest:
 	python scripts/generate_manifest.py --output data_manifest.csv --roots results papers/figures

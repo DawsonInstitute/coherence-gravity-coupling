@@ -10,7 +10,11 @@ Author: GitHub Copilot (Claude Sonnet 4.5)
 
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
+
+# Ensure repository root is on sys.path so `examples` and `src` are importable
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from examples.geometric_cavendish import run_geometric_cavendish
 from src.analysis.phi_calibration import get_all_calibrations
@@ -41,6 +45,7 @@ def benchmark_configuration(
     print(f"\n   Testing: {solver_method} + {preconditioner} (n={n_runs})")
     
     for i in range(n_runs):
+        t0 = time.perf_counter()
         result = run_geometric_cavendish(
             xi=xi,
             Phi0=Phi0,
@@ -49,12 +54,11 @@ def benchmark_configuration(
             solver_method=solver_method,
             preconditioner=preconditioner
         )
-        
-        sys.path.insert(0, str(Path(__file__).parent.parent))
+        dt = time.perf_counter() - t0
+        times.append(dt)
         residuals.append(result.get('residual_coherent', 0.0))
         torques.append(result['tau_coherent'])
-        
-        print(f"      Run {i+1}: {times[-1]:.2f} s, residual: {residuals[-1]:.2e}")
+        print(f"      Run {i+1}: {dt:.2f} s, residual: {residuals[-1]:.2e}")
     
     return {
         'mean_time': float(np.mean(times)),
