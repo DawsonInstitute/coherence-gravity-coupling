@@ -204,7 +204,7 @@ def generate_latex_table(results: Dict, sweep_type: str) -> str:
         lines = [
             "\\begin{table}[ht]",
             "\\centering",
-            "\\caption{ξ Parameter Sweep Results}",
+            "\\caption{$\\xi$ Parameter Sweep Results}",
             "\\begin{tabular}{cccccc}",
             "\\hline",
             "$\\xi$ & $\\Delta\\tau$ [N·m] & $\\Delta G/G$ & $\\tau_{\\text{coh}}$ [N·m] & $\\tau_{\\text{newt}}$ [N·m] & Solve Time [s] \\\\",
@@ -222,7 +222,7 @@ def generate_latex_table(results: Dict, sweep_type: str) -> str:
         lines = [
             "\\begin{table}[ht]",
             "\\centering",
-            "\\caption{Material Comparison (ξ=100)}",
+            "\\caption{Material Comparison ($\\xi=100$)}",
             "\\begin{tabular}{lcccc}",
             "\\hline",
             "Material & $\\Phi_0$ [m$^{-1}$] & $\\Delta\\tau$ [N·m] & $\\Delta G/G$ & Time [s] \\\\",
@@ -386,7 +386,7 @@ def main():
                 f.write("% Coherence-Gravity Coupling Analysis Tables\n")
                 f.write(f"% Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
                 
-                f.write("% ξ Parameter Sweep\n")
+                f.write("% $\\xi$ Parameter Sweep\n")
                 f.write(generate_latex_table(xi_results, 'xi_sweep'))
                 f.write("\n")
                 
