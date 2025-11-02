@@ -50,7 +50,7 @@ def benchmark_configuration(
             preconditioner=preconditioner
         )
         
-        times.append(result['solve_time_coherent'])
+        sys.path.insert(0, str(Path(__file__).parent.parent))
         residuals.append(result.get('residual_coherent', 0.0))
         torques.append(result['tau_coherent'])
         

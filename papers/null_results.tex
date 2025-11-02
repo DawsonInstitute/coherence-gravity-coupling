@@ -12,7 +12,7 @@
 \usepackage{textcomp}
 % \usepackage{siunitx}  % Optional: uncomment if siunitx is available
 
-	itle{\Large\bfseries Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
+  itle{\Large\bfseries Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
 
 % Load author config (parity with coherence\_gravity\_coupling.tex)
 \IfFileExists{author_config.tex}{%
@@ -80,10 +80,10 @@ CLI entry-points support parameter sweeps (\texttt{run\_analysis.py}), cached re
 
 \section{Results}
 \subsection{$\xi$ Parameter Sweep}
-At $\xi\in\{50,100\}$ with a $41^3$ grid, we observe $\lvert\Delta\tau\rvert \approx 5\times10^{-13}$~N\,m with no monotonic dependence on $\xi$. Fractional changes $\Delta G/G$ are consistent with zero. This suggests we are at the numerical noise floor for this configuration.
+At $\xi\in\{50,100\}$ with a $41^3$ grid, we observe $\lvert\Delta\tau\rvert \approx 5\times10^{-13}$~N\,m with no monotonic dependence on $\xi$ (Table~\ref{tab:xi_sweep}). Fractional changes $\Delta G/G$ are consistent with zero. This suggests we are at the numerical noise floor for this configuration.
 
 \subsection{Material Comparison}
-For Rb-87 BEC, Nb, and YBCO configurations (spanning a $\sim$180$\times$ change in $\Phi_0$), the torques are identical within numerical precision, supporting insensitivity to material choice at fixed $\xi$ and geometry.
+For Rb-87 BEC, Nb, and YBCO configurations (spanning a $\sim$180$\times$ change in $\Phi_0$), the torques are identical within numerical precision (Table~\ref{tab:materials}), supporting insensitivity to material choice at fixed $\xi$ and geometry.
 
 \subsection{Curvature--EM Exclusion Limits}
 Using $\delta=10^{-6}$ and $R=10^{-26}\,\mathrm{m^{-2}}$, the exclusion limits obey $\kappa_R\propto 1/B^2$. Table~\ref{tab:kappaB} reports the values, with the strongest bound $\kappa_R<5\times10^{17}\,\mathrm{m^2}$ at $B=10$~T.
@@ -105,21 +105,21 @@ Using $\delta=10^{-6}$ and $R=10^{-26}\,\mathrm{m^{-2}}$, the exclusion limits o
 \end{table}
 
 % Figures (optional): include generated plots if present
-\begin{figure}[t]
+\begin{figure*}[t]
   \centering
-  \includegraphics[width=0.98\columnwidth]{../results/analysis/xi_sweep_20251018_160934_plot.png}
+  \includegraphics[width=0.98\textwidth]{../results/analysis/xi_sweep_20251018_160934_plot.png}
   \caption{Ξ sweep results at $41^3$: $|\Delta\tau|$ vs. $\xi$ and compute time (cache indicated).}
   \label{fig:xi_sweep}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[t]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.98\columnwidth]{../results/analysis/material_comparison_20251031_203905_plot.png}
   \caption{Material comparison (Rb-87, Nb, YBCO): $|\Delta\tau|$ insensitive to material at fixed $\xi$ and geometry.}
   \label{fig:materials}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.98\columnwidth]{../results/analysis/curvature_limits_20251031_204828_plot.png}
   \caption{Curvature--EM exclusion limits $\kappa_R$ vs. magnetic field $B$ (log--log), scaling $\propto 1/B^2$.}
@@ -138,6 +138,34 @@ Small terrestrial Ricci curvature ($R\sim10^{-26}\,\mathrm{m^{-2}}$) fundamental
 
 \subsection{Systematics and Error Budget}
 We account for discretization error ($\mathcal{O}(h^2)$), solver tolerance ($<10^{-8}$ residual), boundary effects (padding $\ge 2.5\times$), and interpolation aliasing (volume averaging). Physical uncertainties include mapping $\Phi_0$, spatial coherence extent, and decoherence (future time-dependent work).
+
+\section{Limitations and Future Work}
+Primary limitations are numerical resolution ($41^3$ not converged), small terrestrial curvature limiting laboratory $\kappa_R$ bounds, and simplified coherence modeling (static, uniform $\Phi_0$). Future work: $\ge 61^3$ production runs, geometry optimization for sensitivity, and time-dependent coherence and decoherence modeling.
+
+\section{Conclusion and Summary of Findings}
+We presented a validated pipeline yielding consistent null results across $\xi$ and materials, and exclusion limits $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$ at $B=10$~T, $R=10^{-26}\,\mathrm{m^{-2}}$, $\delta=10^{-6}$. Figures~\ref{fig:xi_sweep}--\ref{fig:kappa_vs_B} summarize key analyses. The framework provides a reproducible baseline for improved constraints via higher curvature environments or precision.
+
+\section{Experimental Roadmap}
+We outline a pragmatic roadmap to strengthen laboratory bounds and probe coherence--gravity effects:
+\begin{itemize}
+  \item \textbf{S1: Grid and Volume Averaging Upgrade} (1--2 weeks). Standardize \(\ge 61^3\) runs with volume-averaged torque and padding $\ge 2.5\times$. Automate Richardson extrapolation.
+  \item \textbf{S2: Geometry Optimization} (1--2 weeks). Optimize coherent system position/orientation; target Newtonian-null geometries to amplify sensitivity to coherence-only effects.
+  \item \textbf{S3: Precision Sweep} (2--4 weeks). Expand $\delta$ sweeps with realistic torsion-balance noise models (room, 77 K, 4 K; 1\,$\times$--100\,$\times$ isolation).
+  \item \textbf{S4: Field Strength Sweep} (2 weeks). Extend to \(B\in[0.1,20]\,\mathrm{T}\); include calibration and reversal protocols to suppress EM systematics.
+  \item \textbf{S5: Time-Dependent Coherence} (4--6 weeks). Add dynamical $\Phi(t)$ and decoherence channels; assess modulation and lock-in strategies.
+\end{itemize}
+
+\section{Timeline and Feasibility}
+Under modest resources (desktop-class compute, shared lab access):
+\begin{itemize}
+  \item \textbf{Month 1}: Complete S1--S2; regenerate figures/tables at \(61^3\). Deliver updated bounds and convergence appendix.
+  \item \textbf{Month 2}: Execute S3--S4; release comprehensive exclusion plots (\(\kappa_R\) vs. $B$, $R$, $\delta$) and robustness checks.
+  \item \textbf{Month 3}: Implement S5; evaluate feasibility of lock-in detection. Prepare submission with tightened error budget.
+\end{itemize}
+Experimental feasibility: cryogenic torsion balance with active isolation remains the recommended path (SNR=5 in hours for favorable configurations). Room temperature scenarios are non-viable within day-scale integrations given current noise models.
+
+\section{Theoretical Implications}
+Null laboratory results at terrestrial $R$ primarily constrain large \(\kappa_R\) regimes and models predicting coherence-enhanced couplings in weak curvature. Stronger astrophysical constraints may arise in high-$R$, high-$B$ environments (e.g., magnetars). For non-minimal scalar coupling ($\xi R\Phi^2$), localized coherence with $\xi\sim10^2$ remains theoretically consistent (ghost-free, causal) provided $m^2\!\gg\!2\xi|R|$. Laboratory nulls therefore serve as complementary probes that (i) benchmark numerical predictions, (ii) calibrate systematic control for future tabletop searches, and (iii) provide publishable upper bounds that can be reinterpreted across model variants.
 
 \section{Data and Code Availability}
 Code, data, and analysis pipelines are MIT-licensed at\: \url{https://github.com/DawsonInstitute/coherence-gravity-coupling}. Results (JSON), plots (PNG/PDF), and tables (CSV/LaTeX) are under \texttt{results/}. 
@@ -163,33 +191,5 @@ Summaries for $\kappa_R$ limits across $B$, $R$, and precision $\delta$ are prov
 
 % Include consolidated LaTeX tables if available
 \IfFileExists{../results/reports/analysis_tables.tex}{\input{../results/reports/analysis_tables.tex}}{}
-
-\section{Limitations and Future Work}
-Primary limitations are numerical resolution ($41^3$ not converged), small terrestrial curvature limiting laboratory $\kappa_R$ bounds, and simplified coherence modeling (static, uniform $\Phi_0$). Future work: $\ge 61^3$ production runs, geometry optimization for sensitivity, and time-dependent coherence and decoherence modeling.
-
-\section{Conclusion and Summary of Findings}
-We presented a validated pipeline yielding consistent null results across $\xi$ and materials, and exclusion limits $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$ at $B=10$~T, $R=10^{-26}\,\mathrm{m^{-2}}$, $\delta=10^{-6}$. Figures~\ref{fig:xi_sweep}--\ref{fig:kappa_vs_B} summarize key analyses. The framework provides a reproducible baseline for improved constraints via higher curvature environments or precision.
-
-\section{Experimental Roadmap (Concise)}
-We outline a pragmatic roadmap to strengthen laboratory bounds and probe coherence--gravity effects:
-\begin{itemize}
-  \item \textbf{S1: Grid and Volume Averaging Upgrade} (1--2 weeks). Standardize \(\ge 61^3\) runs with volume-averaged torque and padding $\ge 2.5\times$. Automate Richardson extrapolation.
-  \item \textbf{S2: Geometry Optimization} (1--2 weeks). Optimize coherent system position/orientation; target Newtonian-null geometries to amplify sensitivity to coherence-only effects.
-  \item \textbf{S3: Precision Sweep} (2--4 weeks). Expand $\delta$ sweeps with realistic torsion-balance noise models (room, 77 K, 4 K; 1\,$\times$--100\,$\times$ isolation).
-  \item \textbf{S4: Field Strength Sweep} (2 weeks). Extend to \(B\in[0.1,20]\,\mathrm{T}\); include calibration and reversal protocols to suppress EM systematics.
-  \item \textbf{S5: Time-Dependent Coherence} (4--6 weeks). Add dynamical $\Phi(t)$ and decoherence channels; assess modulation and lock-in strategies.
-\end{itemize}
-
-\section{Timeline and Feasibility}
-Under modest resources (desktop-class compute, shared lab access):
-\begin{itemize}
-  \item \textbf{Month 1}: Complete S1--S2; regenerate figures/tables at \(61^3\). Deliver updated bounds and convergence appendix.
-  \item \textbf{Month 2}: Execute S3--S4; release comprehensive exclusion plots (\(\kappa_R\) vs. $B$, $R$, $\delta$) and robustness checks.
-  \item \textbf{Month 3}: Implement S5; evaluate feasibility of lock-in detection. Prepare submission with tightened error budget.
-\end{itemize}
-Experimental feasibility: cryogenic torsion balance with active isolation remains the recommended path (SNR=5 in hours for favorable configurations). Room temperature scenarios are non-viable within day-scale integrations given current noise models.
-
-\section{Theoretical Implications}
-Null laboratory results at terrestrial $R$ primarily constrain large \(\kappa_R\) regimes and models predicting coherence-enhanced couplings in weak curvature. Stronger astrophysical constraints may arise in high-$R$, high-$B$ environments (e.g., magnetars). For non-minimal scalar coupling ($\xi R\Phi^2$), localized coherence with $\xi\sim10^2$ remains theoretically consistent (ghost-free, causal) provided $m^2\!\gg\!2\xi|R|$. Laboratory nulls therefore serve as complementary probes that (i) benchmark numerical predictions, (ii) calibrate systematic control for future tabletop searches, and (iii) provide publishable upper bounds that can be reinterpreted across model variants.
 
 \end{document}

@@ -996,22 +996,22 @@ The repository provides tools for automated analysis and optimization:
 
 ```bash
 # Parameter sweeps with caching
-python run_analysis.py sweep-xi --xi 50 100 200 --cache --plot
-python run_analysis.py sweep-materials --xi 100 --cache --plot
+python scripts/run_analysis.py sweep-xi --xi 50 100 200 --cache --plot
+python scripts/run_analysis.py sweep-materials --xi 100 --cache --plot
 
 # Geometry optimization
-python optimize_geometry.py --xi 100 --resolution 41 --method Nelder-Mead
-python optimize_geometry.py --grid-search --grid-range -0.1 0.1 --grid-steps 5
+python scripts/optimize_geometry.py --xi 100 --resolution 41 --method Nelder-Mead
+python scripts/optimize_geometry.py --grid-search --grid-range -0.1 0.1 --grid-steps 5
 
 # Production study (interactive, visible output)
 # Quick 3³ grid test at 41³
-python production_study.py --materials YBCO --grid-size 3 --resolution 41 --quick
+python scripts/production_study.py --materials YBCO --grid-size 3 --resolution 41 --quick
 
 # Full 5³ grid at 61³ for all materials (recommended for publication)
-python production_study.py --materials all --resolution 61 --grid-size 5 --jobs 4 --quick
+python scripts/production_study.py --materials all --resolution 61 --grid-size 5 --jobs 4 --quick
 
 # With refinement (DE + Powell polish)
-python production_study.py --materials Rb87 --resolution 61 --grid-size 5 --jobs 4
+python scripts/production_study.py --materials Rb87 --resolution 61 --grid-size 5 --jobs 4
 ```
 
 **Note**: All production runs execute in the foreground with visible progress bars. Use `--jobs N` to parallelize grid evaluations across N workers. Results are timestamped and saved to `results/production_study/`.

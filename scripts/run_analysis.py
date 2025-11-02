@@ -30,7 +30,7 @@ from typing import Dict, List
 import sys
 
 # Add src to path
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from examples.geometric_cavendish import run_geometric_cavendish
 from src.utils.result_cache import ResultCache

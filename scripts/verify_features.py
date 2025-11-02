@@ -36,7 +36,7 @@ def verify_geometry_refactor():
         verbose=False
     )
     
-    # Verify parameters were applied
+    sys.path.insert(0, str(Path(__file__).parent.parent))
     geom = result['geom_params']
     assert abs(geom['m_test'] - 0.020) < 1e-9, "m_test not set correctly"
     assert abs(geom['M_source'] - 2.0) < 1e-9, "M_source not set correctly"

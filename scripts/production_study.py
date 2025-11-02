@@ -32,6 +32,9 @@ import subprocess
 import numpy as np
 from importlib import metadata as _metadata
 
+# Add parent to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from optimize_geometry import GeometryOptimizer, save_optimization_results
 from src.visualization.plot_utils import (
     plot_landscape_slice, plot_landscape_3d, plot_material_comparison, save_figure
