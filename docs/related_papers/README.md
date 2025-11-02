@@ -14,10 +14,10 @@ Each analysis document provides:
 
 | Paper | Status | Primary Relevance | Last Updated |
 |-------|--------|-------------------|--------------|
-| [Bahamonde et al. (2025)](Bahamonde_2025.md) | Draft | Modified gravity frameworks | Nov 1, 2025 |
-| [Gorkavenko et al. (2025)](Gorkavenko_2025.md) | Draft | Quantum coherence in gravity | Nov 1, 2025 |
-| [Hell et al. (2025)](Hell_2025.md) | Draft | Curvature-matter couplings | Nov 1, 2025 |
-| [Karimabadi et al. (2025)](Karimabadi_2025.md) | Draft | Collective effects/plasma physics | Nov 1, 2025 |
+| [Bahamonde et al. (2025)](arxiv.2507.02362.md) | Complete | Torsion–EM coupling, spin-charge black holes | Nov 2, 2025 |
+| [Gorkavenko et al. (2025)](arxiv.2509.06815.md) | Complete | Flat-space $\xi$ sensitivity via Robin BCs | Nov 2, 2025 |
+| [Hell & Lüst (2025)](arxiv.2509.20217.md) | Complete | Power-law curvature, DOF structure | Nov 2, 2025 |
+| [Karimabadi et al. (2025)](arxiv.2508.13820.md) | Complete | QNMs in NC-Sch with curvature couplings | Nov 2, 2025 |
 
 ## Usage
 
