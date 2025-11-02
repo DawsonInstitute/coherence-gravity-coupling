@@ -53,9 +53,6 @@ make cache-info    # Show cache statistics
 make cache-clean   # Clear all cached results
 ```
 
-**Note:** `setup.py` has been removed. Use the Makefile or direct script invocation (`python scripts/<script>.py`) instead. Scripts live under `scripts/` for organization.
-
-
 ## New: Curvature–EM Coupling (R·F²) Constraints
 
 This repo now includes a module and CLI to derive exclusion limits on a curvature–EM coupling of the form $\kappa_R\,R\,F_{\mu\nu}F^{\mu\nu}$ from null results.
