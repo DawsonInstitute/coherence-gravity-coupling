@@ -26,11 +26,11 @@ Our null_results.tex derives $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$ at $B=10$
 - **Instability windows:** Their instability onset at large $\theta/\zeta$ guides parameter-space exclusions; cross-check whether our coherence $\Phi$ or EM configurations approach analogous thresholds.
 
 ## Actionable follow-ups
-- [ ] Add `dominant_frequency(h_t, dt)` utility to EFQS gravitational_coupling.py; output peak $f$, amplitude, −3 dB bandwidth per Karimabadi's Sec. 4.
-- [ ] Notebook: map our $\kappa_R < 5\times10^{17}$ to BH QNM constraints assuming $R \sim (2M)^{-2}$, $B \sim 10^8$~T; estimate detectable frequency shift $\Delta \omega/\omega$ for LIGO-band sources.
-- [ ] Reproduce Karimabadi's Fig. 3 (time-domain ringdown) for toy NC-Sch potential in flat-space limit; validate our spectral_derivative and damping fits.
-- [ ] Explore "laboratory QNMs": can engineered potentials (superconducting cavities, BEC traps) mimic NC-Sch effective potentials to test coupling scalings in tabletop?
+- [✅] Add `dominant_frequency(h_t, dt)` utility to EFQS gravitational_coupling.py; output peak $f$, amplitude, −3 dB bandwidth per Karimabadi's Sec. 4.
+- [✅] Notebook: map our $\kappa_R < 5\times10^{17}$ to BH QNM constraints assuming $R \sim (2M)^{-2}$, $B \sim 10^8$~T; estimate detectable frequency shift $\Delta \omega/\omega$ for LIGO-band sources.
+- [⏳] Reproduce Karimabadi's Fig. 3 (time-domain ringdown) for toy NC-Sch potential in flat-space limit; validate our spectral_derivative and damping fits.
+- [⏳] Explore "laboratory QNMs": can engineered potentials (superconducting cavities, BEC traps) mimic NC-Sch effective potentials to test coupling scalings in tabletop?
 
 ## Notes for EFQS integration
-- Implement WKB effective-potential diagnostics: given $V_{\mathrm{eff}}(r; \theta, \xi, \zeta)$, compute QNM estimates and compare to time-domain runs.
-- Add "astrophysical recast mode": user inputs $M_{\mathrm{BH}}$, $B_{\mathrm{BH}}$; code scales lab $\kappa_R$ bounds and predicts $\Delta f$ in GW ringdown.
+- [⏳] Implement WKB effective-potential diagnostics: given $V_{\mathrm{eff}}(r; \theta, \xi, \zeta)$, compute QNM estimates and compare to time-domain runs.
+- [✅] Add "astrophysical recast mode": user inputs $M_{\mathrm{BH}}$, $B_{\mathrm{BH}}$; code scales lab $\kappa_R$ bounds and predicts $\Delta f$ in GW ringdown.

@@ -25,11 +25,11 @@ Our null_results.tex observes **no detectable signal** from $\xi$ variation ($\x
 - **Dynamical transitions:** When extending to time-dependent $\Phi(t)$ or varying $R(t)$ (e.g., cosmological simulations), monitor for crossing singular points where DOF structure changes; implement diagnostics (condition number, residual stability) to detect mode activation/deactivation.
 
 ## Actionable follow-ups
-- [ ] Tabulate DOF predictions from Hell & Lüst for standard power-law extensions of our $\xi R\Phi^2$ model; map to expected torque signal scalings.
-- [ ] Implement numerical health checks: flag runs approaching singular points (e.g., $R \to 0$, parameter-dependent loci); output warnings if DOF structure is ambiguous.
-- [ ] Document our Jordan vs. Einstein frame conventions; cross-reference Hell & Lüst's Table 1–3 classifications to ensure consistency in reporting constraints.
-- [ ] Extend convergence study to include $R$-dependent mesh refinement near singular points; verify stability of nulls under resolution changes.
+- [⏳] Tabulate DOF predictions from Hell & Lüst for standard power-law extensions of our $\xi R\Phi^2$ model; map to expected torque signal scalings.
+- [⏳] Implement numerical health checks: flag runs approaching singular points (e.g., $R \to 0$, parameter-dependent loci); output warnings if DOF structure is ambiguous.
+- [⏳] Document our Jordan vs. Einstein frame conventions; cross-reference Hell & Lüst's Table 1–3 classifications to ensure consistency in reporting constraints.
+- [⏳] Extend convergence study to include $R$-dependent mesh refinement near singular points; verify stability of nulls under resolution changes.
 
 ## Notes for EFQS integration
-- Add a "DOF mode" selector: users specify $(\ell, m, n)$ for power-law curvature terms; EFQS warns if chosen parameters place simulation near singular point or imply decoupled scalars.
-- Cross-validate: reproduce Hell & Lüst's flat-FLRW mode counts numerically for toy models; ensure our stress–energy → quadrupole pipeline respects frame transformations.
+- [⏳] Add a "DOF mode" selector: users specify $(\ell, m, n)$ for power-law curvature terms; EFQS warns if chosen parameters place simulation near singular point or imply decoupled scalars.
+- [⏳] Cross-validate: reproduce Hell & Lüst's flat-FLRW mode counts numerically for toy models; ensure our stress–energy → quadrupole pipeline respects frame transformations.
