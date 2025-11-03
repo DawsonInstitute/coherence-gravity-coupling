@@ -3,6 +3,7 @@
 **Papers**:  
 - [Coherence-Modulated Gravity (Zenodo 17393679)](https://zenodo.org/records/17393679)  
 - [Null Results and Exclusion Limits (Zenodo 17504852)](https://zenodo.org/records/17504852)
+- [From Curvature-EM Coupling to BSM Parameter Space](papers/kappaR_to_BSM/) - Maps κ_R bounds to dark photon and axion benchmarks
 
 # Coherence-Modulated Gravity Coupling (Phase D)
 
@@ -37,6 +38,11 @@ pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
 # Also build the null-results paper (curvature–EM coupling constraints)
 pdflatex null_results.tex && bibtex null_results \
    && pdflatex null_results.tex && pdflatex null_results.tex
+
+# And the BSM parameter space paper (κ_R to dark photon/axion)
+cd kappaR_to_BSM
+pdflatex curvature_em_to_bsm.tex && pdflatex curvature_em_to_bsm.tex
+cd ..
 ```
 
 Why multiple pdflatex runs? LaTeX generally requires 2–3 passes to resolve cross-references, citations, and the bibliography. The sequence above (pdflatex → bibtex → pdflatex → pdflatex) is the standard pattern to ensure all references are correct for both papers.
@@ -72,7 +78,22 @@ This repo now includes a module and CLI to derive exclusion limits on a curvatur
 - Implementation: `src/field_equations/curvature_coupling.py`
 - Plots: `src/visualization/plot_utils.py::plot_exclusion_limits`
 - Preprint: `papers/null_results.tex`
+- BSM bounds: `papers/kappaR_to_BSM/curvature_em_to_bsm.tex` - Maps κ_R to dark photon/axion parameter space
 - Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python scripts/generate_report.py --all` or `make report`
+
+### Advanced Features (Based on Hell & Lüst 2025)
+
+**R-Dependent Mesh Refinement** (`src/analysis/r_dependent_convergence.py`):
+- Adaptive mesh refinement based on local curvature R(x,y,z)
+- Singular point detection and grid enhancement near R→0 and R→∞
+- Convergence validation with refinement-dependent resolution
+- Null result stability verification under grid changes
+
+**DOF Mode Selector** (`src/field_equations/dof_mode_selector.py`):
+- Classifies degrees of freedom for power-law curvature models R^ℓ σ^n R^m
+- Users specify (ℓ, m, n) parameters; system warns if near singular points
+- Detects decoupled scalar modes in small-R laboratory regimes
+- Frame-dependent analysis (Jordan vs Einstein frame)
 
 ### Astrophysical Recast Tools
 

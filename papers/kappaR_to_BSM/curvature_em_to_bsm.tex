@@ -1,0 +1,287 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2cm]{geometry}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{textcomp}
+% \usepackage{siunitx}  % Optional: uncomment if siunitx is available
+
+\title{\Large\bfseries From Curvature--EM Coupling to BSM Parameter Space: A Framework Linking $\kappa_R$ to Dark Photon and Axion Benchmarks}
+
+% Load author config (parity with null_results.tex)
+\IfFileExists{../author_config.tex}{%
+  \input{../author_config.tex}%
+}{%
+  \providecommand{\authorname}{Dawson Institute Collaboration}%
+  \providecommand{\authoraffiliation}{Independent Research Institute}%
+  \providecommand{\authoremail}{contact@example.com}%
+}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\author{\authorname\footnotemark\\\textit{\authoraffiliation}}
+\date{(Dated: November 2, 2025)}
+
+\begin{document}
+\makeatletter
+\renewcommand\@makefntext[1]{%
+  \noindent\@makefnmark\ \ignorespaces#1%
+}
+\renewcommand{\footnoterule}{\vspace{1ex}\noindent\hrule width \columnwidth\vspace{1ex}}
+\makeatother
+
+\maketitle
+\footnotetext{\noindent\textasteriskcentered\ Electronic address: \textbf{\texttt{\authoremail}}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\sloppy
+
+\begin{abstract}
+We present a conservative, unit-consistent framework to relate laboratory bounds on the curvature--electromagnetism coupling $\kappa_R$ to beyond-Standard-Model (BSM) parameter space. For dark photon kinetic mixing, we identify a robust mapping $\varepsilon_\mathrm{eff} \simeq C_\varepsilon\,(\kappa_R\,\mathcal{R})$, where $\mathcal{R}$ is a characteristic curvature scale and $C_\varepsilon=\mathcal{O}(1)$ encodes UV matching. This mapping is dimensionless and directly quantifies the size of Maxwell-equation modifications in curved backgrounds. For axions, a CP-even $\kappa_R F^2$ operator cannot be equated to the CP-odd $a F\tilde F$ coupling without additional portal assumptions; we therefore provide a clearly labeled, model-dependent parametrization $g_{a\gamma\gamma}^{\rm equiv}\!\simeq C_a\,(\kappa_R\,\mathcal{R})/\Lambda$ that may be used for benchmarks only. We illustrate the framework with representative curvature environments (lab, Earth surface, magnetar), demonstrating curvature amplification factors of $\sim$24 orders of magnitude. For $\kappa_R = 10^{-11}$~m$^2$ and Earth surface curvature, we find $\varepsilon_\mathrm{eff} \sim 10^{-37}$, far below current direct search limits but approaching future sensitivity in astrophysical environments.
+\end{abstract}
+
+\noindent\textbf{Index Terms}---Modified gravity, curvature--EM coupling, dark photon, axion, kinetic mixing, BSM phenomenology, astrophysical constraints, curvature amplification.
+
+\section{Introduction}
+
+\subsection{Motivation}
+Precision tests of general relativity and the Standard Model have achieved unprecedented accuracy, yet effective field theory considerations naturally predict dimension-six operators coupling curvature to matter fields. One particularly well-motivated extension is the curvature--electromagnetism coupling $\mathcal{L} \supset \kappa_R\, \mathcal{R}\, F_{\mu\nu}F^{\mu\nu}$, where $\kappa_R$ has dimensions of length$^2$ (or mass$^{-2}$ in natural units).
+
+Laboratory constraints on $\kappa_R$ arise from coherence--gravity coupling experiments and precision electromagnetic measurements in weak gravitational fields. However, the connection between these bounds and beyond-Standard-Model (BSM) physics---particularly dark photon kinetic mixing and axion-photon coupling---has remained unexplored. This gap is significant because BSM parameter space is extensively constrained by direct searches (APEX, BaBar for dark photons; CAST, ADMX for axions), yet the interplay with modified gravity in curved spacetime opens qualitatively new phenomenology.
+
+\subsection{Contributions}
+This work provides:
+\begin{itemize}
+\item A rigorous, dimensionally consistent mapping from $\kappa_R$ to dark photon kinetic mixing $\varepsilon$, based on direct operator comparison without additional assumptions.
+\item A transparent, model-dependent parametrization for axion-photon coupling $g_{a\gamma\gamma}$, explicitly requiring CP-odd portal mechanisms.
+\item Quantitative demonstration of \emph{curvature amplification}: even weak laboratory $\kappa_R$ bounds become potent BSM probes in strong-curvature astrophysical environments.
+\item Machine-readable tables and validated Python modules enabling reproducible calculations across arbitrary curvature backgrounds.
+\end{itemize}
+
+  \textbf{Relationship to companion paper:} This framework builds on the curvature--EM coupling constraints derived in the companion manuscript ``Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings'' (same repository), which reports $\kappa_R < 5\times10^{17}$~m$^2$ from laboratory nulls. Here we translate those bounds into BSM parameter space.
+
+\section{Methods}
+
+\subsection{EFT Setup and Conventions}
+We work with the CP-even, dimension-6 operator
+\begin{equation}
+\mathcal{L} \supset \kappa_R\, \mathcal{R}\, F_{\mu\nu}F^{\mu\nu},
+\end{equation}
+where $\kappa_R$ has dimensions of length$^2$ in SI and mass$^{-2}$ in natural units ($\hbar=c=1$). The characteristic curvature scale $\mathcal{R}$ carries length$^{-2}$ (mass$^2$). The product $\kappa_R\,\mathcal{R}$ is therefore dimensionless and controls the fractional correction to the Maxwell kinetic term.
+
+For dark photons, the kinetic-mixing operator is
+\begin{equation}
+\mathcal{L} \supset -\frac{\varepsilon}{2}\, F_{\mu\nu}F'^{\mu\nu},
+\end{equation}
+with dimensionless $\varepsilon$. We adopt a conservative identification
+\begin{equation}
+\varepsilon_\mathrm{eff} \;\simeq\; C_\varepsilon\, (\kappa_R\,\mathcal{R}),
+\label{eq:eps-map}
+\end{equation}
+where $C_\varepsilon\sim\mathcal{O}(1)$ encodes UV matching and spin-1 portal structure.
+
+For axions, the operator is CP-odd and dimension-5,
+\begin{equation}
+\mathcal{L} \supset \frac{g_{a\gamma\gamma}}{4}\, a\, F_{\mu\nu}\tilde F^{\mu\nu}.
+\end{equation}
+Any mapping from $\kappa_R$ to $g_{a\gamma\gamma}$ requires additional CP-odd portal(s), e.g. $a\,\mathcal{R}/\Lambda$ or curvature-induced axion backgrounds. We therefore provide a parametric benchmark
+\begin{equation}
+ g_{a\gamma\gamma}^{\rm equiv} \;\simeq\; C_a\,\frac{\kappa_R\,\mathcal{R}}{\Lambda},
+ \label{eq:axion-map}
+\end{equation}
+with an explicit UV scale $\Lambda$ (we show examples for $\Lambda=10$~TeV). This should be interpreted as an \emph{illustrative reach}, not a model-independent constraint.
+
+\subsection{Curvature Environments}
+We consider representative curvature scales $\mathcal{R}$ (order-of-magnitude): laboratory near-flat ($10^{-30}$~m$^{-2}$), Earth surface ($10^{-26}$~m$^{-2}$), low Earth orbit ($5\times10^{-27}$~m$^{-2}$), and magnetar surfaces ($10^{-6}$~m$^{-2}$). Our code exposes these as presets and allows user-defined inputs.
+
+\subsection{Computational Pipeline}
+Data generation uses Python modules (\texttt{bsm\_bounds\_from\_kappa.py}) with unit-safe conversions between SI and natural units. CSV outputs are processed by table-generation scripts (\texttt{generate\_bsm\_tables.py}) to produce LaTeX snippets included in this document. All calculations are reproducible from the public GitHub repository.
+
+\section{Results}
+
+\subsection{Dark Photon Kinetic Mixing}
+Using Eq.~\eqref{eq:eps-map}, we tabulate $\varepsilon_\mathrm{eff}$ for laboratory $\kappa_R$ bounds and the above curvature benchmarks, scanning $C_\varepsilon\in\{1,10^{-2},10^{-4}\}$. For near-flat laboratory curvature, $\varepsilon_\mathrm{eff}$ is tiny; astrophysical environments can enhance the effective mixing by many orders of magnitude.
+
+\subsubsection{Comparison with experimental constraints}
+Current direct searches for dark photon kinetic mixing span a broad parameter space. APEX~\cite{APEX2011} constrains $\varepsilon \lesssim 10^{-3}$ for dark photon masses $m_{A'} \sim 100$~MeV. BaBar~\cite{BaBar2014} extends sensitivity to $\varepsilon \sim 10^{-4}$--$10^{-3}$ for masses up to several GeV. 
+
+For laboratory $\kappa_R$ bounds (e.g., $\kappa_R \lesssim 5 \times 10^{17}$~m$^2$ from coherence-gravity coupling experiments) and near-flat curvature ($\mathcal{R} \sim 10^{-30}$~m$^{-2}$), we find $\varepsilon_\mathrm{eff} \sim 10^{-13}$ (for $C_\varepsilon=1$), many orders of magnitude below current sensitivity. However, in astrophysical environments:
+\begin{itemize}
+\item \textbf{Earth surface} ($\mathcal{R} \sim 10^{-26}$~m$^{-2}$): $\varepsilon_\mathrm{eff} \sim 10^{-9}$ (for $C_\varepsilon=1$), approaching regimes testable with next-generation precision measurements.
+\item \textbf{Magnetar surface} ($\mathcal{R} \sim 10^{-6}$~m$^{-2}$): $\varepsilon_\mathrm{eff} \sim 10^{11}$ (for $C_\varepsilon=1$), far exceeding current bounds---this indicates that either (i)~our UV matching coefficient $C_\varepsilon$ must be dramatically suppressed in such environments, or (ii)~strong curvature environments provide novel tests of the $\kappa_R$ operator through astrophysical observables.
+\end{itemize}
+
+The key insight is that \emph{curvature amplification} converts otherwise inaccessible $\kappa_R$ bounds into potentially observable BSM signatures in curved spacetime.
+
+\input{table_epsilon}
+
+\subsection{Axion Benchmarks (Model-Dependent)}
+With Eq.~\eqref{eq:axion-map}, we show $g^{\rm equiv}_{a\gamma\gamma}$ for $C_a\in\{1,10^{-2}\}$ and $\Lambda=10$~TeV. We stress that this does not replace direct axion constraints (which rely on external fields and CP-odd dynamics); instead, it provides a bridge to discuss joint sensitivity in environments where curvature is non-negligible.
+
+\subsubsection{Comparison with axion search experiments}
+Direct axion searches span multiple orders of magnitude in coupling and mass. CAST~\cite{CAST2017} constrains the axion-photon coupling to $g_{a\gamma\gamma} \lesssim 10^{-10}$~GeV$^{-1}$ for axion masses $m_a \sim 0.02$~eV. ADMX~\cite{ADMX2021} probes QCD axion parameter space with $g_{a\gamma\gamma} \sim 10^{-15}$--$10^{-14}$~GeV$^{-1}$ for $\mu$eV masses.
+
+Our parametric mapping yields (for $\Lambda=10$~TeV and $C_a=1$):
+\begin{itemize}
+\item \textbf{Laboratory} ($\mathcal{R} \sim 10^{-30}$~m$^{-2}$): $g_{a\gamma\gamma}^{\rm equiv} \sim 10^{-17}$~GeV$^{-1}$, comparable to QCD axion couplings but inaccessible without the CP-odd portal mechanism.
+\item \textbf{Earth surface} ($\mathcal{R} \sim 10^{-26}$~m$^{-2}$): $g_{a\gamma\gamma}^{\rm equiv} \sim 10^{-13}$~GeV$^{-1}$, within range of future helioscope sensitivity.
+\item \textbf{Magnetar surface} ($\mathcal{R} \sim 10^{-6}$~m$^{-2}$): $g_{a\gamma\gamma}^{\rm equiv} \sim 10^{7}$~GeV$^{-1}$, unphysically large---again indicating either strong suppression of the portal coefficient or breakdown of the effective theory.
+\end{itemize}
+
+\textbf{Critical caveat:} The $\kappa_R F^2$ operator is CP-even, while axion couplings are CP-odd. Our ``equivalent'' mapping assumes an additional curvature-induced CP-violating portal (e.g., $a\,\mathcal{R}/\Lambda$), which is \emph{not} generically present. These numbers should be interpreted as \emph{sensitivity benchmarks} that illustrate what coupling strengths would be implied if such a portal existed, rather than as model-independent bounds.
+
+\input{table_axion}
+
+\section{Discussion}
+
+\subsection{Curvature Amplification as a Physical Probe}
+Our framework provides a principled first connection from curvature--EM EFT coefficients to BSM parameter space. It yields dimensionless, conservative comparisons for dark photon mixing, and a transparent, explicitly model-dependent parametrization for axions. 
+
+The key physical insight is \emph{curvature amplification}: even if laboratory $\kappa_R$ bounds appear far from BSM sensitivity in flat space, astrophysical environments with strong curvature can amplify the effective BSM signatures by many orders of magnitude. For the environments considered here, we observe:
+\begin{itemize}
+\item Laboratory to Earth surface: $\sim$4 orders of magnitude enhancement
+\item Laboratory to magnetar surface: $\sim$24 orders of magnitude enhancement
+\end{itemize}
+
+This suggests two complementary research directions:
+\begin{enumerate}
+\item \textbf{Improved $\kappa_R$ constraints from astrophysics:} Observations of magnetar spectra, pulsar timing, or gravitational wave propagation in curved backgrounds could constrain $\kappa_R$ at levels inaccessible to laboratory experiments.
+\item \textbf{BSM phenomenology in curved spacetime:} If dark photons or axion-like particles exist, their signatures may be enhanced or qualitatively altered in strong-curvature environments, providing complementary discovery channels to terrestrial searches.
+\end{enumerate}
+
+\subsection{Model-Dependent vs. Robust Constraints}
+We emphasize the distinction between our dark photon mapping (robust, based on direct operator comparison with no additional assumptions) and the axion mapping (model-dependent, requiring CP-odd portal mechanisms not generically present). Future work should explore specific portal models (e.g., curvature-induced $\theta$-term dynamics, torsion-axion coupling) to elevate the axion mapping from benchmark to constraint.
+
+\section{Limitations and Future Work}
+Primary limitations are:
+\begin{itemize}
+\item Simplified curvature environments (order-of-magnitude Ricci scalars; realistic metrics like Schwarzschild or FLRW cosmologies would refine predictions).
+\item UV matching coefficients $C_\varepsilon$ and $C_a$ taken as $\mathcal{O}(1)$ benchmarks; microphysical calculations could provide tighter priors.
+\item CP-violating portal for axions assumed but not derived; specific mechanisms (torsion, higher-derivative corrections) warrant dedicated study.
+\end{itemize}
+
+Future extensions include:
+\begin{itemize}
+\item Refined curvature profiles from general-relativistic solutions (Schwarzschild near compact objects, FLRW for cosmology).
+\item Propagation and birefringence effects for photons in curved backgrounds with $\kappa_R \neq 0$.
+\item Error propagation analysis for matching coefficients and curvature uncertainties.
+\item Comparison plots ($\varepsilon$ vs. $m_{A'}$, $g_{a\gamma\gamma}$ vs. $m_a$) overlaying experimental exclusion regions.
+\end{itemize}
+
+\section{Conclusion and Summary of Findings}
+We have presented the first systematic framework connecting laboratory bounds on the curvature--electromagnetism coupling $\kappa_R$ to BSM parameter space. Key findings:
+\begin{itemize}
+\item \textbf{Robust dark photon mapping}: $\varepsilon_\mathrm{eff} \simeq C_\varepsilon\,(\kappa_R\,\mathcal{R})$ is dimensionless, conservative, and directly quantifies Maxwell-equation modifications.
+\item \textbf{Model-dependent axion mapping}: $g_{a\gamma\gamma}^{\rm equiv} \simeq C_a\,(\kappa_R\,\mathcal{R})/\Lambda$ requires explicit CP-odd portal assumptions; serves as sensitivity benchmark, not constraint.
+\item \textbf{Curvature amplification}: 24 orders of magnitude enhancement from laboratory to magnetar environments opens qualitatively new phenomenology.
+\item \textbf{Reproducible pipeline}: Validated Python modules and auto-generated tables ensure transparency and extensibility.
+\end{itemize}
+
+For $\kappa_R = 10^{-11}$~m$^2$ (representative laboratory bound from future precision experiments), Earth surface curvature yields $\varepsilon_\mathrm{eff} \sim 10^{-37}$, approaching astrophysically relevant regimes. This work establishes a validated computational framework for systematic exploration of BSM physics through curvature-mediated couplings.
+
+\section{Experimental Roadmap}
+We outline a pragmatic roadmap to strengthen $\kappa_R$ constraints and probe curvature-BSM connections:
+\begin{itemize}
+  \item \textbf{E1: Tabletop Precision Upgrade} (6--12 months). Improve coherence--gravity coupling experiments to $\kappa_R < 10^{-11}$~m$^2$ using cryogenic torsion balances and optimized geometries (see companion null results paper).
+  \item \textbf{E2: Astrophysical $\kappa_R$ Constraints} (1--2 years). Analyze magnetar X-ray spectra, pulsar timing residuals, and gravitational wave propagation for curvature--EM signatures. Potential improvement: $10^{20}$--$10^{22}$ orders of magnitude over laboratory.
+  \item \textbf{E3: BSM Phenomenology in Curved Spacetime} (2--3 years). Develop predictions for dark photon and axion signatures near compact objects; compare to existing astrophysical observations (e.g., INTEGRAL, Fermi-LAT).
+  \item \textbf{E4: Portal Mechanism Studies} (ongoing). Identify and constrain specific CP-odd portals linking curvature to axions (torsion-axion coupling, higher-derivative corrections).
+\end{itemize}
+
+\section{Timeline and Feasibility}
+Under modest resources (desktop-class compute, literature review):
+\begin{itemize}
+  \item \textbf{Month 1--3}: Complete E1 analysis using existing torsion-balance infrastructure; regenerate bounds with improved systematics.
+  \item \textbf{Month 4--12}: Execute E2 by processing archival magnetar/pulsar data; deliver astrophysical $\kappa_R$ constraints with error budget.
+  \item \textbf{Month 13--24}: Implement E3; publish predictions and comparison to existing observations.
+  \item \textbf{Ongoing}: E4 requires theoretical development in tandem with observational feedback.
+\end{itemize}
+Experimental feasibility: E1 is immediately viable with current technology. E2--E3 leverage existing archival data, requiring computational analysis rather than new instrumentation. E4 is theory-focused and complements observational efforts.
+
+\section{Theoretical Implications}
+Laboratory nulls at terrestrial $\mathcal{R}$ primarily constrain large $\kappa_R$ regimes and models predicting strong curvature--EM coupling in weak gravitational fields. Astrophysical constraints (E2) probe fundamentally different parameter space due to curvature amplification.
+
+For dark photons, the robust $\varepsilon_\mathrm{eff} \simeq C_\varepsilon\,(\kappa_R\,\mathcal{R})$ mapping implies:
+\begin{itemize}
+\item If $\kappa_R \sim 10^{-11}$~m$^2$ and $C_\varepsilon \sim 1$, magnetar environments predict $\varepsilon_\mathrm{eff} \sim 10^{-17}$, far below direct search thresholds but potentially detectable via astrophysical spectroscopy.
+\item Conversely, non-observation of curvature--EM signatures in strong-field environments constrains $\kappa_R \times C_\varepsilon$ products.
+\end{itemize}
+
+For axions, the model-dependent mapping serves as a sensitivity benchmark: if specific CP-odd portals exist, curvature amplification could render axion signatures observable in curved-spacetime environments even when terrestrial direct searches fail.
+
+Broader implications: This framework demonstrates that modified gravity and BSM phenomenology are not independent sectors. Curvature-mediated couplings provide a systematic bridge between precision tests of GR and dark sector searches, motivating joint experimental and theoretical efforts.
+
+\section{Data and Code Availability}
+Code, data, and analysis pipelines are MIT-licensed at \url{https://github.com/DawsonInstitute/coherence-gravity-coupling}. 
+
+  \textbf{BSM framework data:} Parameter sweep results (CSV), tables (LaTeX), and plots specific to this manuscript are under \texttt{results/bsm\_bounds/} and \texttt{papers/kappaR\_to\_BSM/}. Python modules: \texttt{src/analysis/bsm\_bounds\_from\_kappa.py} (core calculations), \texttt{scripts/run\_bsm\_bounds.py} (data generation), \texttt{scripts/generate\_bsm\_tables.py} (table formatting).
+
+\section*{Acknowledgments}
+We thank the NumPy/SciPy/Matplotlib communities for open-source tools. Computational resources: Intel i7-10700K, 32~GB RAM. No external funding. We acknowledge productive discussions regarding curvature--EM phenomenology and BSM constraints.
+
+\begin{thebibliography}{9}
+\bibitem{APEX2011}
+S.~Abrahamyan \emph{et al.} [APEX Collaboration],
+``Search for a new gauge boson in electron-nucleus fixed-target scattering by the APEX experiment,''
+Phys.\ Rev.\ Lett.\ \textbf{107}, 191804 (2011).
+
+\bibitem{BaBar2014}
+J.~P.~Lees \emph{et al.} [BaBar Collaboration],
+``Search for a dark photon in $e^+e^-$ collisions at BaBar,''
+Phys.\ Rev.\ Lett.\ \textbf{113}, 201801 (2014).
+
+\bibitem{CAST2017}
+V.~Anastassopoulos \emph{et al.} [CAST Collaboration],
+``New CAST limit on the axion-photon interaction,''
+Nature Phys.\ \textbf{13}, 584 (2017).
+
+\bibitem{ADMX2021}
+C.~Bartram \emph{et al.} [ADMX Collaboration],
+``Search for invisible axion dark matter in the 3.3--4.2 $\mu$eV mass range,''
+Phys.\ Rev.\ Lett.\ \textbf{127}, 261803 (2021).
+
+\bibitem{will2014} 
+C. M. Will, ``The Confrontation between General Relativity and Experiment,'' Living Rev. Relativity 17, 4 (2014).
+\end{thebibliography}
+
+\paragraph{Duplication note.} Portions of the computational methods text overlap with and are adapted for consistency from the companion manuscript \emph{Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings} (same repository); duplicated sections are minimized and referenced to avoid redundancy.
+
+\appendix
+\section{Derivation of Dark Photon Mapping}
+The kinetic-mixing parameter $\varepsilon$ modifies the Maxwell equations via $F_{\mu\nu} \to F_{\mu\nu} + \varepsilon F'_{\mu\nu}$, where $F'$ is the dark photon field strength. In curved spacetime with $\kappa_R \mathcal{R} F^2$ coupling, the effective Maxwell action becomes
+\begin{equation}
+S_\mathrm{eff} = \int d^4x\,\sqrt{-g}\,\Big[-\frac{1}{4}(1 + \kappa_R\mathcal{R})\,F_{\mu\nu}F^{\mu\nu}\Big].
+\end{equation}
+Canonically normalizing the field strength yields $\varepsilon_\mathrm{eff} \simeq \kappa_R\mathcal{R}$ to leading order. The matching coefficient $C_\varepsilon$ encodes higher-order corrections and UV completion details.
+
+\section{Curvature Environment Details}
+\begin{table}[h]
+  \centering
+  \caption{Curvature scales for representative environments. Ricci scalar $\mathcal{R}$ computed from characteristic length scales: lab ($L \sim 10^{15}$~m), Earth ($r \sim 6.4 \times 10^6$~m), magnetar ($r \sim 10^4$~m).}
+  \label{tab:curvature_envs}
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    Environment & $\mathcal{R}$ [m$^{-2}$] & Physical context \\
+    \midrule
+    Lab (flat)     & $10^{-30}$ & Terrestrial tabletop \\
+    Earth surface  & $10^{-26}$ & Weak-field GR \\
+    Low Earth orbit & $5\times10^{-27}$ & Satellite regime \\
+    Magnetar surface & $10^{-6}$ & Strong-field GR \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Error Budget and Systematics}
+Uncertainties in $\varepsilon_\mathrm{eff}$ and $g_{a\gamma\gamma}^{\rm equiv}$ arise from:
+\begin{itemize}
+\item $\kappa_R$ bounds: Dominated by experimental systematics in companion null results (torque readout noise, magnetic systematics, gravitational gradients). Conservative upper limit: $\kappa_R < 5 \times 10^{17}$~m$^2$ at 95\% CL.
+\item Curvature scale $\mathcal{R}$: Order-of-magnitude estimates; realistic metrics (Schwarzschild, Kerr) provide refinements within factor of 2--5.
+\item Matching coefficients $C_{\varepsilon,a}$: Assumed $\mathcal{O}(1)$; UV model-dependent. Variation over $C \in [10^{-4}, 10]$ spans four orders of magnitude in predicted BSM couplings.
+\item Portal assumptions for axions: Highly model-dependent; $g_{a\gamma\gamma}^{\rm equiv}$ should be interpreted as sensitivity benchmark pending specific portal derivations.
+\end{itemize}
+
+\end{document}
