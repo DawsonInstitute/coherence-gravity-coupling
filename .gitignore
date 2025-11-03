@@ -26,3 +26,4 @@ papers/**/author_config.tex
 docs/reference/**/*
 docs/related_papers/source/**/*
 docs/discussion/2025/*.md
+docs/session_summaries/*.md
