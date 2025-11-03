@@ -15,11 +15,12 @@ This note translates the laboratory nulls into a concrete plan for the Extreme-F
   - `dominant_frequency(series, dt, component=None)`
   - `stress_energy_from_fields(E, B, include_qed=False)` (return `T00 = (ε0 E^2 + B^2/μ0)/2` with optional QED corrections)
 
-2) Frequency-domain diagnostics
+2) ✅ Frequency-domain diagnostics
 - Report peak frequency, amplitude at peak, and -3 dB bandwidth for selected strain components.
 
-3) Boundary-condition amplifier
-- Optional TT-projection direction and boundary-condition hooks to mimic Robin/impedance surfaces (see Gorkavenko et al. related paper).
+3) ✅ Boundary-condition amplifier
+- Optional TT-projection direction (via `line_of_sight` parameter in `strain_far_field`) implemented
+- Robin/impedance boundary-condition hooks: To be implemented as separate module (see tasks 10-15 for Gorkavenko et al. related implementation)
 
 ## Validation
 - Re-enable `scripts/simulate_gravity_coupling.py` quickstart; verify nonzero but tiny $h_\mathrm{rms}$ and sensible dominant frequency.

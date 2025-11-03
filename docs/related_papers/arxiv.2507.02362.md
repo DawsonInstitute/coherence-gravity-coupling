@@ -22,9 +22,9 @@ Our null_results.tex constrains curvature–EM coupling $\kappa_R < 5\times10^{1
 - Astrophysical recasts (magnetars, compact objects) with large $R$ and $B$ can tighten bounds orders of magnitude; Bahamonde's solutions provide concrete targets for QNM/ringdown phenomenology.
 
 ## Actionable follow-ups
-- [⏳] Explore whether our $\xi R\Phi^2$ framework can be extended to include torsion-like effective degrees of freedom via coherence gradients or decoherence channels.
-- [⏳] Map our $\kappa_R$ bounds to constraints on $k_3$ in Bahamonde's theory by reinterpreting $F^2 \tilde{R}$ vs. $F^2 R$ operators in a common EFT expansion.
+- [🚧] Explore whether our $\xi R\Phi^2$ framework can be extended to include torsion-like effective degrees of freedom via coherence gradients or decoherence channels. **Implementation**: `src/field_equations/torsion_dof.py`
+- [🚧] Map our $\kappa_R$ bounds to constraints on $k_3$ in Bahamonde's theory by reinterpreting $F^2 \tilde{R}$ vs. $F^2 R$ operators in a common EFT expansion. **Implementation**: `src/analysis/kappa_k3_mapping.py`
 - [⏳] Investigate duality-breaking observables: e.g., does our torque signal depend on sign of $q$ or differ for electric vs. magnetic configurations?
 
 ## Notes for EFQS integration
-- [⏳] Consider adding a "torsion proxy" mode where stress–energy sourcing includes asymmetric contributions mimicking $\tilde{R}_{[\mu\nu]}$ to explore duality violation numerically.
+- [🚧] Consider adding a "torsion proxy" mode where stress–energy sourcing includes asymmetric contributions mimicking $\tilde{R}_{[\mu\nu]}$ to explore duality violation numerically. **Implementation**: `src/field_equations/torsion_dof.py::torsion_proxy_stress_energy()`

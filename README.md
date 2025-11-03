@@ -1,4 +1,5 @@
-Paper: https://zenodo.org/records/17393679
+Paper: https://zenodo.org/records/17393679  
+Null Results Paper: https://zenodo.org/records/17504852
 
 # Coherence-Modulated Gravity Coupling (Phase D)
 
@@ -69,6 +70,36 @@ This repo now includes a module and CLI to derive exclusion limits on a curvatur
 - Plots: `src/visualization/plot_utils.py::plot_exclusion_limits`
 - Preprint: `papers/null_results.tex`
 - Reports: auto-generated CSV/Markdown/LaTeX in `results/reports/` via `python scripts/generate_report.py --all` or `make report`
+
+### Astrophysical Recast Tools
+
+**Map laboratory bounds to compact-object regimes** with strong fields and large curvature (magnetars, black holes):
+
+- **Python module**: `utils/astrophysical_recast.py`
+  - Functions: `recast_to_magnetar()`, `recast_to_black_hole()`, `recast_to_qnm_spectrum()`
+  - Scale laboratory κ_R bounds to astrophysical environments via amplification factors
+  - Example: Magnetar surface (B=10¹⁰ T, R~10⁻⁶ m⁻²) provides ~10¹⁹× amplification
+
+- **Interactive notebook**: `notebooks/astrophysical_recast_qnm.ipynb`
+  - Jupyter notebook demonstrating QNM spectroscopy applications
+  - Links laboratory κ_R bounds to black hole ringdown observables
+  - Implements Karimabadi et al. methodology for lab→astrophysical translation
+  - Outputs: QNM frequency shifts, damping time modifications, detectability forecasts
+
+**Usage**:
+```python
+from utils.astrophysical_recast import recast_to_magnetar, recast_to_black_hole
+
+# Magnetar surface constraints
+kappa_mag, amp_mag = recast_to_magnetar(B_surface=1e10)  # T
+print(f"Magnetar κ_R < {kappa_mag:.2e} m² (amplification: {amp_mag:.2e}×)")
+
+# Black hole horizon constraints
+kappa_bh, amp_bh = recast_to_black_hole(M_solar_masses=10, B_tesla=1e8)
+print(f"BH κ_R < {kappa_bh:.2e} m² (amplification: {amp_bh:.2e}×)")
+```
+
+See `notebooks/astrophysical_recast_qnm.ipynb` for detailed QNM analysis workflows.
 
 ### CLI examples
 

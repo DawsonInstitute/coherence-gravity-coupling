@@ -24,11 +24,11 @@ Our null_results.tex finds **no $\xi$ dependence** in torque measurements across
 - **Dimensional scaling:** Our $(3+1)$D nulls are consistent; explore whether lower-dimensional analogs (graphene-like $(2+1)$D systems with disclinations) enhance sensitivity as Gorkavenko predicts.
 
 ## Actionable follow-ups
-- [⏳] Implement Robin BC solver module with parameter $\theta \in [-\pi/2, \pi/2]$; validate against known Dirichlet ($\theta=0$) and Neumann ($\theta=-\pi/2$) limits.
+- [🚧] Implement Robin BC solver module with parameter $\theta \in [-\pi/2, \pi/2]$; validate against known Dirichlet ($\theta=0$) and Neumann ($\theta=-\pi/2$) limits. **Implementation**: `src/solvers/robin_bc_poisson.py`
 - [⏳] Parametric sweep: vary $mr_0 \in [10^{-3}, 1]$, $\theta$, $F$, $\xi \in [0, 1/2]$; produce contour plots of $|E_\xi|/|E_{\mathrm{can}}|$ to identify high-sensitivity regimes.
 - [⏳] Materials feasibility: identify coatings/surfaces realizing target $\theta$ values in cryogenic torsion balance or superconducting cavity geometries.
 - [⏳] Cross-check: reproduce Gorkavenko's Table 1 ($(3+1)$D, $mr_0=0.01$, $F=0.25$) numerically and extend to parameter ranges relevant to our experimental proposals.
 
 ## Notes for EFQS integration
-- [⏳] Add boundary-condition hooks: EFQS stress–energy sourcing should support Robin-impedance surfaces when computing quadrupole moments.
+- [🚧] Add boundary-condition hooks: EFQS stress–energy sourcing should support Robin-impedance surfaces when computing quadrupole moments. **Integration point**: `src/solvers/robin_bc_poisson.py` ready for EFQS coupling
 - [⏳] Test: verify $\xi$-independence recovers for $\theta = 0, -\pi/2$ (Dirichlet/Neumann).
