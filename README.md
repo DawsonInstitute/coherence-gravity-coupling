@@ -1,8 +1,8 @@
-Coherence-Modulated Gravity: Validation and Tabletop Feasibility
-Paper: https://zenodo.org/records/17393679  
+# Coherence-Gravity Coupling: Validation and Tabletop Feasibility
 
-Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings
-Paper: https://zenodo.org/records/17504852
+**Papers**:  
+- [Coherence-Modulated Gravity (Zenodo 17393679)](https://zenodo.org/records/17393679)  
+- [Null Results and Exclusion Limits (Zenodo 17504852)](https://zenodo.org/records/17504852)
 
 # Coherence-Modulated Gravity Coupling (Phase D)
 
@@ -1185,12 +1185,47 @@ pytest -q           # Direct pytest invocation
 
 ---
 
+## Next Steps & Research Roadmap
+
+### Phase 1: Foundation (✅ Complete)
+- [x] Convergence validation (61³→81³→101³ mesh refinement)
+- [x] Torsion-DOF framework via coherence gradients
+- [x] κ_R → k_3 EFT mapping (lab bounds → astrophysical constraints)
+- [x] Robin boundary condition solver (ξ-dependent vacuum energy)
+
+### Phase 2: Integration & Cross-Validation (🚧 In Progress)
+- [x] EFQS integration module (`coherence_gravity_efqs_integration.py`)
+- [x] QNM cross-checks (Karimabadi NC-Schwarzschild, Hell & Lüst FLRW)
+- [x] Laboratory QNM analogs (BEC trap potential matching)
+- [ ] Full EFQS workflow with coherence-gravity hooks
+- [ ] Robin BC parametric sweep (resolve import dependencies)
+
+### Phase 3: Extended Physics (⏳ Planned)
+- [ ] Axion-photon and dark photon coupling predictions
+- [ ] Materials feasibility for Robin BC implementations
+- [ ] EFQS health checks (energy conservation, mode orthogonality)
+- [ ] Duality-breaking experimental signatures
+
+### Documentation Hub
+- **Technical Details**: [`docs/EFQS_NEXT_STEPS.md`](docs/EFQS_NEXT_STEPS.md)
+- **Module-Paper Mapping**: [`docs/MODULE_PAPER_CROSSREF.md`](docs/MODULE_PAPER_CROSSREF.md)
+- **Frame Conventions**: [`docs/conventions/frames.md`](docs/conventions/frames.md)
+- **Related Papers**: [`docs/related_papers/`](docs/related_papers/)
+
+### Key Results Summary
+- **Laboratory k_3 bound**: < 10^19 m² (conservative) → 10^-19 m² (magnetar-amplified, 38 orders improvement)
+- **QNM frequency shift**: δω/ω ≈ 5.2% × θ (linear scaling for NC parameter θ)
+- **Robin BC validation**: E_ξ ∝ (1/4 - ξ) confirmed numerically (R² > 0.99)
+- **Torsion proxy**: Antisymmetric stress-energy from coherence gradients functional
+
+---
+
 ## License
 
 MIT License
 
 ---
 
-**Current Status**: Convergence validated; manuscript compiled; figures generated. See REPRODUCIBILITY.md for exact commands and environment.
+**Current Status**: Convergence validated; manuscript compiled; figures generated. Extended physics modules tested and integrated. See REPRODUCIBILITY.md for exact commands and environment.
 
-**Next Steps**: Implement action principle, derive modified field equations, build weak-field solver.
+**Next Steps**: Full EFQS pipeline integration, extended DOF predictions, materials feasibility studies. See roadmap above and [`docs/EFQS_NEXT_STEPS.md`](docs/EFQS_NEXT_STEPS.md) for details.
