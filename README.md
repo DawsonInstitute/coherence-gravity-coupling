@@ -1,5 +1,8 @@
+Coherence-Modulated Gravity: Validation and Tabletop Feasibility
 Paper: https://zenodo.org/records/17393679  
-Null Results Paper: https://zenodo.org/records/17504852
+
+Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings
+Paper: https://zenodo.org/records/17504852
 
 # Coherence-Modulated Gravity Coupling (Phase D)
 
