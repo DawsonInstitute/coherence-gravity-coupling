@@ -37,6 +37,12 @@ from __future__ import annotations
 import numpy as np
 from typing import Callable
 
+try:
+    from scipy.interpolate import RegularGridInterpolator
+    HAS_SCIPY = True
+except ImportError:
+    HAS_SCIPY = False
+
 # Physical constants
 G = 6.67430e-11  # m³/(kg·s²)
 c = 299792458.0  # m/s
@@ -97,20 +103,23 @@ def torsion_proxy_stress_energy(
     _, A_tensor = coherence_gradient_tensor(Phi, grid)
     
     # Interpolate A_tensor to position points
-    # (Simplified: use nearest neighbor for now; proper interpolation needed)
-    from scipy.interpolate import RegularGridInterpolator
-    
     T_eff = np.zeros((len(positions), 3, 3))
     
-    for i in range(3):
-        for j in range(3):
-            interp = RegularGridInterpolator(
-                (grid['x'], grid['y'], grid['z']),
-                A_tensor[..., i, j],
-                bounds_error=False,
-                fill_value=0.0
-            )
-            T_eff[:, i, j] = eta * interp(positions)
+    if not HAS_SCIPY:
+        # Fallback: use mean value if scipy unavailable
+        for i in range(3):
+            for j in range(3):
+                T_eff[:, i, j] = eta * np.mean(A_tensor[..., i, j])
+    else:
+        for i in range(3):
+            for j in range(3):
+                interp = RegularGridInterpolator(
+                    (grid['x'], grid['y'], grid['z']),
+                    A_tensor[..., i, j],
+                    bounds_error=False,
+                    fill_value=0.0
+                )
+                T_eff[:, i, j] = eta * interp(positions)
     
     return T_eff
 
@@ -148,16 +157,24 @@ def compute_torsion_proxy_torque(
     # Placeholder: integrate antisymmetric stress over volume
     # Real implementation needs Poisson equation with T_eff sourcing
     
-    antisymmetric_strength = np.mean(np.abs(T_eff - T_eff.swapaxes(-2, -1)))
+    antisymmetric_strength = float(np.mean(np.abs(T_eff - T_eff.swapaxes(-2, -1))))
     
     # Scale by geometric factors
     r_lever = np.linalg.norm(test_mass_vector)
-    volume = len(test_mass_positions) * np.prod([np.mean(np.diff(grid[k])) for k in ['x','y','z']])
+    dx = grid['x'][1] - grid['x'][0]
+    dy = grid['y'][1] - grid['y'][0]
+    dz = grid['z'][1] - grid['z'][0]
+    dV = dx * dy * dz
+    volume = len(test_mass_positions) * dV
     
     # Order-of-magnitude estimate (needs full field equation solution)
     tau = G * antisymmetric_strength * volume * r_lever / c**2
     
-    return tau
+    # Force scalar conversion
+    if isinstance(tau, np.ndarray):
+        tau = tau.item() if tau.size == 1 else tau.ravel()[0]
+    
+    return float(tau)
 
 
 def duality_breaking_observable(
@@ -233,7 +250,7 @@ if __name__ == "__main__":
         eta=1.0,
         xi=100.0
     )
-    print(f"  Torsion-proxy torque: {tau:.3e} N·m")
+    print(f"  Torsion-proxy torque: {float(tau):.3e} N·m")
     
     print("\n✅ Torsion-DOF exploration module functional")
     print("   Enables new physics discovery: coherence gradients as torsion proxy")

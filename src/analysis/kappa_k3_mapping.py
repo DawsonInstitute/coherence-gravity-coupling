@@ -120,8 +120,9 @@ def geometric_factor_correction(
         return 1.0
     
     # Torsion contribution scales as (torsion)² / R
-    # For weak torsion: R̃ ≈ R (1 + (T/R)²)
-    epsilon = (torsion_amplitude**2) / (abs(R_riemann) + 1e-30)
+    # For weak torsion: R̃ ≈ R (1 + (T²/|R|))
+    # Cap epsilon to avoid numerical overflow
+    epsilon = min((torsion_amplitude**2) / (abs(R_riemann) + 1e-30), 1e10)
     correction = 1.0 + epsilon
     
     return correction

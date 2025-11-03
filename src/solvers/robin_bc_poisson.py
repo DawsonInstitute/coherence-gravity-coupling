@@ -147,7 +147,7 @@ def solve_poisson_robin(
     if solver_method == 'direct':
         phi_flat = spsolve(A, b)
     elif solver_method == 'cg':
-        phi_flat, info = cg(A, b, M=M, tol=tol, maxiter=10000)
+        phi_flat, info = cg(A, b, M=M, rtol=tol, maxiter=10000)
         if info != 0:
             print(f"Warning: CG did not converge (info={info})")
     else:
