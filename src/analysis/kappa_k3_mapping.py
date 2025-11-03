@@ -45,6 +45,33 @@ References:
 from __future__ import annotations
 
 import numpy as np
+_BSM_AVAILABLE = False
+epsilon_equiv = None
+DEFAULT_ENVIRONMENTS = None
+axion_equiv_parametric = None
+try:
+    from src.analysis.bsm_bounds_from_kappa import (
+        epsilon_equiv as _eps,
+        DEFAULT_ENVIRONMENTS as _envs,
+        axion_equiv_parametric as _gax,
+    )
+    epsilon_equiv, DEFAULT_ENVIRONMENTS, axion_equiv_parametric = _eps, _envs, _gax
+    _BSM_AVAILABLE = True
+except Exception:
+    # Fallback: import by file path to be robust in scripts
+    try:
+        import importlib.util, os
+        here = os.path.dirname(os.path.abspath(__file__))
+        mod_path = os.path.join(here, 'bsm_bounds_from_kappa.py')
+        spec = importlib.util.spec_from_file_location('bsm_bounds_from_kappa', mod_path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)  # type: ignore[attr-defined]
+        epsilon_equiv = mod.epsilon_equiv
+        DEFAULT_ENVIRONMENTS = mod.DEFAULT_ENVIRONMENTS
+        axion_equiv_parametric = mod.axion_equiv_parametric
+        _BSM_AVAILABLE = True
+    except Exception:
+        _BSM_AVAILABLE = False
 from typing import Literal
 
 # Physical constants
@@ -253,23 +280,21 @@ if __name__ == "__main__":
     # NEW: Beyond-SM predictions
     print("\n" + "="*60)
     print("[Beyond-Standard-Model Particle Constraints]")
-    
-    # Axion-photon
-    hbar_c = 0.1973 * 1e-15  # GeV·m
-    g_aγγ = np.sqrt(KAPPA_R_LAB * 1e-4 * 1e-6) / (hbar_c**2)
-    f_a = 1 / (2 * np.pi * g_aγγ * 137) if g_aγγ > 0 else 0
-    m_a = (0.2**2 / f_a) * 1e9 if f_a > 0 else 0
-    
-    print(f"\nAxion-photon coupling:")
-    print(f"  g_aγγ < {g_aγγ:.2e} GeV⁻¹")
-    print(f"  f_a > {f_a:.2e} GeV (decay constant)")
-    print(f"  m_a < {m_a:.2e} eV (QCD axion mass)")
-    
-    # Dark photon
-    m_Pl = 1.22e19  # GeV
-    epsilon = np.sqrt(KAPPA_R_LAB / (hbar_c**2) * (m_Pl / 0.1)**2 * 1e-10)
-    
-    print(f"\nDark photon mixing:")
-    print(f"  ε < {epsilon:.2e} (for m_A' ~ 100 MeV)")
-    print(f"  (Compare to APEX limit: ε ~ 10⁻³ for m_A' ~ 100 MeV)")
+    if not _BSM_AVAILABLE:
+        print("  (BSM mapping module not available; skip)")
+    else:
+        # Dark photon mapping (robust): ε_eff ≈ Cε (κ_R·R)
+        print("\nDark photon (robust mapping): ε_eff ≈ Cε · (κ_R · R)")
+        for env_key in ["lab_flat", "earth_surface", "magnetar_surface"]:
+            R = DEFAULT_ENVIRONMENTS[env_key].R_m2
+            eps1 = epsilon_equiv(KAPPA_R_LAB, R, C_eps=1.0)
+            eps2 = epsilon_equiv(KAPPA_R_LAB, R, C_eps=1e-2)
+            print(f"  Env={env_key:17s}: ε(Cε=1) ≈ {eps1:.2e}   ε(Cε=1e-2) ≈ {eps2:.2e}")
+
+        # Axion (illustrative only): g_equiv ≈ Ca (κ_R·R)/Λ with Λ=10 TeV
+        print("\nAxion (illustrative, model-dependent): g_equiv ≈ Ca · (κ_R · R) / Λ (Λ=10 TeV)")
+        for env_key in ["lab_flat", "earth_surface", "magnetar_surface"]:
+            R = DEFAULT_ENVIRONMENTS[env_key].R_m2
+            g_eq = axion_equiv_parametric(KAPPA_R_LAB, R, C_a=1.0, Lambda_GeV=1e4)
+            print(f"  Env={env_key:17s}: g_equiv ≈ {g_eq:.2e} GeV⁻¹")
 

@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\title{From Curvature--EM Coupling to BSM Parameter Space: A Framework Linking $\kappa_R$ to Dark Photon and Axion Benchmarks}
+\author{Dawson Institute Collaboration}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a conservative, unit-consistent framework to relate laboratory bounds on the curvature--electromagnetism coupling $\kappa_R$ to beyond-Standard-Model (BSM) parameter space. For dark photon kinetic mixing, we identify a robust mapping $\varepsilon_\mathrm{eff} \simeq C_\varepsilon\,(\kappa_R\,\mathcal{R})$, where $\mathcal{R}$ is a characteristic curvature scale and $C_\varepsilon=\mathcal{O}(1)$ encodes UV matching. This mapping is dimensionless and directly quantifies the size of Maxwell-equation modifications in curved backgrounds. For axions, a CP-even $\kappa_R F^2$ operator cannot be equated to the CP-odd $a F\tilde F$ coupling without additional portal assumptions; we therefore provide a clearly labeled, model-dependent parametrization $g_{a\gamma\gamma}^{\rm equiv}\!\simeq C_a\,(\kappa_R\,\mathcal{R})/\Lambda$ that may be used for benchmarks only. We illustrate the framework with representative curvature environments (lab, Earth surface, magnetar), and provide tables/plots for $\varepsilon_\mathrm{eff}$ and $g_{a\gamma\gamma}^{\rm equiv}$ across $C_{\varepsilon,a}$.
+\end{abstract}
+
+\section{EFT setup and conventions}
+We work with the CP-even, dimension-6 operator
+\begin{equation}
+\mathcal{L} \supset \kappa_R\, \mathcal{R}\, F_{\mu\nu}F^{\mu\nu},
+\end{equation}
+where $\kappa_R$ has dimensions of length$^2$ in SI and mass$^{-2}$ in natural units ($\hbar=c=1$). The characteristic curvature scale $\mathcal{R}$ carries length$^{-2}$ (mass$^2$). The product $\kappa_R\,\mathcal{R}$ is therefore dimensionless and controls the fractional correction to the Maxwell kinetic term.
+
+For dark photons, the kinetic-mixing operator is
+\begin{equation}
+\mathcal{L} \supset -\frac{\varepsilon}{2}\, F_{\mu\nu}F'^{\mu\nu},
+\end{equation}
+with dimensionless $\varepsilon$. We adopt a conservative identification
+\begin{equation}
+\varepsilon_\mathrm{eff} \;\simeq\; C_\varepsilon\, (\kappa_R\,\mathcal{R}),
+\label{eq:eps-map}
+\end{equation}
+where $C_\varepsilon\sim\mathcal{O}(1)$ encodes UV matching and spin-1 portal structure.
+
+For axions, the operator is CP-odd and dimension-5,
+\begin{equation}
+\mathcal{L} \supset \frac{g_{a\gamma\gamma}}{4}\, a\, F_{\mu\nu}\tilde F^{\mu\nu}.
+\end{equation}
+Any mapping from $\kappa_R$ to $g_{a\gamma\gamma}$ requires additional CP-odd portal(s), e.g. $a\,\mathcal{R}/\Lambda$ or curvature-induced axion backgrounds. We therefore provide a~parametric benchmark
+\begin{equation}
+ g_{a\gamma\gamma}^{\rm equiv} \;\simeq\; C_a\,\frac{\kappa_R\,\mathcal{R}}{\Lambda},
+ \label{eq:axion-map}
+\end{equation}
+with an explicit UV scale $\Lambda$ (we show examples for $\Lambda=10$~TeV). This should be interpreted as an \\emph{illustrative reach}, not a model-independent constraint.
+
+\section{Curvature environments}
+We consider representative curvature scales $\mathcal{R}$ (order-of-magnitude): lab near-flat ($10^{-30}\,\mathrm{m}^{-2}$), Earth surface ($10^{-26}\,\mathrm{m}^{-2}$), and magnetar surfaces ($10^{-6}\,\mathrm{m}^{-2}$). Our code exposes these as presets and allows user-defined inputs.
+
+\section{Results: dark photon kinetic mixing}
+Using Eq.~\eqref{eq:eps-map}, we tabulate $\varepsilon_\mathrm{eff}$ for laboratory $\kappa_R$ bounds and the above curvature benchmarks, scanning $C_\varepsilon\in\{1,10^{-2},10^{-4}\}$. For near-flat laboratory curvature, $\varepsilon_\mathrm{eff}$ is tiny; astrophysical environments can enhance the effective mixing by many orders of magnitude. We provide machine-readable tables and optional plots.
+
+\section{Axion benchmarks (model-dependent)}
+With Eq.~\eqref{eq:axion-map}, we show $g^{\rm equiv}_{a\gamma\gamma}$ for $C_a\in\{1,10^{-2}\}$ and $\Lambda=10$~TeV. We stress that this does not replace direct axion constraints (which rely on external fields and CP-odd dynamics); instead, it provides a bridge to discuss joint sensitivity in environments where curvature is non-negligible.
+
+\section{Discussion and outlook}
+Our framework provides a principled first connection from curvature--EM EFT coefficients to BSM parameter space. It yields dimensionless, conservative comparisons for dark photon mixing, and a transparent, explicitly model-dependent parametrization for axions. Future work will refine the curvature presets with realistic geometries and incorporate propagation effects and birefringence. Code and data are available in the accompanying repository modules.
+
+\paragraph{Artifacts.} We include CSV tables in results/bsm\_bounds and optional figures under figures/bsm\_bounds.
+
+\end{document}
