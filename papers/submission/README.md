@@ -1,11 +1,38 @@
 # Submission Package (arXiv + Zenodo)
 
-This folder describes what to include for submission.
+This folder describes what to include for submission to arXiv and Zenodo for all three papers:
+1. **coherence_gravity_coupling.tex** - Main coherence-gravity coupling paper
+2. **null_results.tex** - Null results and exclusion limits
+3. **kappaR_to_BSM/curvature_em_to_bsm.tex** - BSM parameter space mapping
 
-## arXiv Submission
+---
 
-### Primary Classification
-**gr-qc** (General Relativity and Quantum Cosmology)
+## Paper 1: Coherence-Gravity Coupling (Main Paper)
+
+### arXiv Classification
+**Primary:** gr-qc (General Relativity and Quantum Cosmology)
+**Cross-list:** hep-th, physics.ins-det, quant-ph
+
+### Files to Include
+- `../coherence_gravity_coupling.tex`
+- Figures from `../../results/figures/`
+- `../references.bib` (if used)
+
+### Compilation
+```bash
+cd papers
+pdflatex coherence_gravity_coupling.tex
+bibtex coherence_gravity_coupling  # if using BibTeX
+pdflatex coherence_gravity_coupling.tex
+pdflatex coherence_gravity_coupling.tex
+```
+
+---
+
+## Paper 2: Null Results and Exclusion Limits
+
+### arXiv Classification
+**Primary:** gr-qc (General Relativity and Quantum Cosmology)
 
 ### Cross-List Categories
 - **hep-th** (High Energy Physics - Theory): For scalar-tensor theories and modified gravity frameworks
@@ -28,13 +55,62 @@ pdflatex null_results.tex
 pdflatex null_results.tex  # repeat for references and labels
 ```
 
+---
+
+## Paper 3: BSM Parameter Space (κ_R → Dark Photon/Axion)
+
+### arXiv Classification
+**Primary:** hep-ph (High Energy Physics - Phenomenology)
+
+### Cross-List Categories
+- **gr-qc** (General Relativity and Quantum Cosmology): For curvature–EM coupling framework
+- **hep-ex** (High Energy Physics - Experiment): For experimental bounds and detection prospects
+- **astro-ph.CO** (Cosmology and Nongalactic Astrophysics): For dark photon/axion dark matter connections
+
+### Files to Include
+- `../kappaR_to_BSM/curvature_em_to_bsm.tex` (main manuscript)
+- `../kappaR_to_BSM/table_epsilon.tex` (dark photon table)
+- `../kappaR_to_BSM/table_axion.tex` (axion coupling table)
+- `../kappaR_to_BSM/figures/epsilon_vs_curvature.pdf`
+- `../kappaR_to_BSM/figures/axion_vs_curvature.pdf`
+- `../kappaR_to_BSM/figures/curvature_amplification.pdf`
+- `../references.bib` (if used)
+
+### Compilation Instructions
+```bash
+cd papers/kappaR_to_BSM
+pdflatex curvature_em_to_bsm.tex
+bibtex curvature_em_to_bsm  # if using BibTeX
+pdflatex curvature_em_to_bsm.tex
+pdflatex curvature_em_to_bsm.tex
+```
+
+**Note:** Generate figures first using:
+```bash
+cd ../..  # back to repository root
+python scripts/generate_bsm_plots.py
+```
+
+### Suggested arXiv Abstract
+Use manuscript abstract emphasizing:
+- Mapping κ_R curvature–EM coupling to BSM parameter space (dark photon mixing ε, axion coupling g_aγγ)
+- Curvature amplification effect across environments (lab → magnetar)
+- Experimental detection prospects via existing BSM searches (APEX, CAST, etc.)
+- Laboratory constraints: κ_R < 5×10^17 m^2 (B=10T, R_earth=10^-26 m^-2)
+
+---
+
+## Common: Compilation Instructions
+
 ### Suggested arXiv Abstract (if different from manuscript)
 Use the manuscript abstract as-is, or condense to ~150 words emphasizing:
 - Null result strategy and parameter space coverage
 - Exclusion limits on $\kappa_R$ with representative values
 - Open-source framework and data availability
 
-## Zenodo (Data DOI)
+---
+
+## Common Zenodo Archive (Data DOI)
 Archive the following for reproducibility:
 - `results/analysis/*.json` (raw sweep outputs)
 - `results/analysis/*.{png,pdf}` (plots)
