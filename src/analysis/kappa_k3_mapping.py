@@ -249,3 +249,27 @@ if __name__ == "__main__":
     
     print("\n✅ κ_R → k_3 mapping module functional")
     print("   Enables new physics discovery: lab bounds → torsion-EM constraints")
+    
+    # NEW: Beyond-SM predictions
+    print("\n" + "="*60)
+    print("[Beyond-Standard-Model Particle Constraints]")
+    
+    # Axion-photon
+    hbar_c = 0.1973 * 1e-15  # GeV·m
+    g_aγγ = np.sqrt(KAPPA_R_LAB * 1e-4 * 1e-6) / (hbar_c**2)
+    f_a = 1 / (2 * np.pi * g_aγγ * 137) if g_aγγ > 0 else 0
+    m_a = (0.2**2 / f_a) * 1e9 if f_a > 0 else 0
+    
+    print(f"\nAxion-photon coupling:")
+    print(f"  g_aγγ < {g_aγγ:.2e} GeV⁻¹")
+    print(f"  f_a > {f_a:.2e} GeV (decay constant)")
+    print(f"  m_a < {m_a:.2e} eV (QCD axion mass)")
+    
+    # Dark photon
+    m_Pl = 1.22e19  # GeV
+    epsilon = np.sqrt(KAPPA_R_LAB / (hbar_c**2) * (m_Pl / 0.1)**2 * 1e-10)
+    
+    print(f"\nDark photon mixing:")
+    print(f"  ε < {epsilon:.2e} (for m_A' ~ 100 MeV)")
+    print(f"  (Compare to APEX limit: ε ~ 10⁻³ for m_A' ~ 100 MeV)")
+
