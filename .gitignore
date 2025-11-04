@@ -27,5 +27,5 @@ papers/**/author_config.tex
 docs/reference/**/*
 docs/related_papers/source/**/*
 docs/related_papers/kappaR_to_BSM/**/*
-docs/discussion/2025/*.md
+docs/discussion/2025/**/*.md
 docs/session_summaries/*.md
