@@ -171,6 +171,8 @@ Experimental feasibility: cryogenic torsion balance with active isolation remain
 \section{Theoretical Implications}
 Null laboratory results at terrestrial $R$ primarily constrain large \(\kappa_R\) regimes and models predicting coherence-enhanced couplings in weak curvature. Stronger astrophysical constraints may arise in high-$R$, high-$B$ environments (e.g., magnetars). For non-minimal scalar coupling ($\xi R\Phi^2$), localized coherence with $\xi\sim10^2$ remains theoretically consistent (ghost-free, causal) provided $m^2\!\gg\!2\xi|R|$. Laboratory nulls therefore serve as complementary probes that (i) benchmark numerical predictions, (ii) calibrate systematic control for future tabletop searches, and (iii) provide publishable upper bounds that can be reinterpreted across model variants.
 
+Our constraint $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$ at laboratory scales complements recent theoretical developments in non-minimal field-geometry couplings. \textit{Duality-breaking observables}: Bahamonde et al.~\cite{Bahamonde:2025torsion} study EM coupling to torsion ($F^{\mu\nu}\tilde{R}_{\mu\nu}$) in Riemann--Cartan geometry, finding spin-charge interactions that break electromagnetic duality. While our framework uses pseudo-Riemannian geometry (no torsion), their methodology guides future extensions where coherence $\Phi$ may couple asymmetrically to electric vs.~magnetic fields. Implemented duality-breaking diagnostics in \texttt{src/field\_equations/torsion\_dof.py} provide computational infrastructure for testing such scenarios. \textit{Chiral gravitational modes}: Karimabadi et al.~\cite{Karimabadi:2025qnm} compute quasi-normal modes (QNMs) for scalar fields with non-minimal curvature couplings in black hole spacetimes. Their WKB-6 and time-domain analysis shows QNM frequency shifts scale with coupling strength and curvature; astrophysical recast of our lab bound (using $R \sim (2M_\odot)^{-2} \sim 10^{10}\,\mathrm{m^{-2}}$, $B \sim 10^8$~T at magnetars) predicts $\sim 10^{22}$ amplification factor. Dominant-frequency extraction utilities added to \texttt{gravitational\_coupling.py} enable systematic mapping between tabletop nulls and LIGO/Virgo ringdown constraints.
+
 \section{Data and Code Availability}
 Code, data, and analysis pipelines are MIT-licensed at\: \url{https://github.com/DawsonInstitute/coherence-gravity-coupling}. 
 
@@ -182,6 +184,8 @@ We thank the NumPy/SciPy/Matplotlib communities. Computational resources: Intel 
 \begin{thebibliography}{9}
 \bibitem{will2014} C. M. Will, ``The Confrontation between General Relativity and Experiment,'' Living Rev. Relativity 17, 4 (2014).
 \bibitem{schlamminger2008} S. Schlamminger et al., ``Test of the equivalence principle using a rotating torsion balance,'' Phys. Rev. Lett. 100, 041101 (2008).
+\bibitem{Bahamonde:2025torsion} S. Bahamonde et al., ``Coupling Electromagnetism to Torsion: Black Holes and Spin-Charge Interactions,'' arXiv:2507.02362 (2025).
+\bibitem{Karimabadi:2025qnm} M. Karimabadi, N. Mahdavian Yekta, and S. A. Alavi, ``Effects of non-minimal scalar field couplings with curvature tensors on perturbations in non-commutative Schwarzschild spacetimes,'' arXiv:2508.13820 (2025).
 \end{thebibliography}
 
 \paragraph{Duplication note.} Portions of the numerical methods text overlap with and are adapted for consistency from the companion manuscript \emph{Coherence-Modulated Gravity: Validation and Tabletop Feasibility} (same repository); duplicated sections are minimized and referenced to avoid redundancy.

@@ -27,7 +27,7 @@ conda env create -f environment.yml && conda activate cohgrav
 python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 
 pytest -q               # Smoke tests (~90s)
-python scripts/generate_figures.py  # Writes papers/figures/*.pdf,*.png
+python scripts/generate_figures.py  # Main paper figures (coherence_gravity_coupling.tex) → papers/figures/*.pdf,*.png
 
 cd papers
 pdflatex coherence_gravity_coupling.tex && bibtex coherence_gravity_coupling \
@@ -63,10 +63,12 @@ For convenience, common tasks are available via the Makefile:
 make help          # Show all available targets
 make test          # Run full test suite (23 tests, ~90s)
 make quick-bench   # Quick benchmark at 41³ (~30s)
-make figures       # Generate manuscript figures
-make paper         # Build coherence_gravity_coupling.pdf
-make analysis      # Analysis CLI (prints usage; see --help for subcommands)
-make optimize      # Run geometry optimization
+make figures       # Generate figures for main paper (coherence_gravity_coupling.tex)
+make paper         # Build coherence_gravity_coupling.pdf (main paper)
+make null-results  # Build null_results.pdf (curvature-EM constraints paper)
+make bsm-paper     # Build curvature_em_to_bsm.pdf (BSM parameter space paper)
+make analysis      # Analysis CLI for null_results.tex (curvature-EM bounds)
+make optimize      # Run geometry optimization (for main paper experiments)
 make cache-info    # Show cache statistics
 make cache-clean   # Clear all cached results
 ```

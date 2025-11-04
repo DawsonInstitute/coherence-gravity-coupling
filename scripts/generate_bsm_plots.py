@@ -157,7 +157,7 @@ def generate_amplification_plot(output_dir: Path):
     # Calculate amplification factors relative to lab
     amplification = [eps / eps_values[0] for eps in eps_values]
     
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 10))  # Stack vertically instead of horizontally
     
     # Plot 1: ε_eff by environment
     bars1 = ax1.bar(range(len(env_names)), eps_values, color=['blue', 'green', 'orange', 'red'], alpha=0.7)
