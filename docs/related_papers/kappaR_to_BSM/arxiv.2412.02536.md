@@ -52,7 +52,7 @@ Jorge et al. focus on laboratory/collider regimes with negligible $`\mathcal{R}`
   - Space-based detectors (LISA, future GW observatories) where $`\mathcal{R}`$ varies along orbital trajectory.
 
 ### 2. **Mass-Dependent Coupling Mapping**
-Jorge et al. derive $`\varepsilon^2(M_U)`$ for massive dark photons. Our $`\kappa_R \to \varepsilon_{\rm eff}`$ formula is *mass-independent* (EFT operator scaling). Future work could:
+Jorge et al. derive $\varepsilon^2(M_U)$ for massive dark photons. Our $\kappa_R \to \varepsilon_{\rm eff}$ formula is *mass-independent* (EFT operator scaling). Future work could:
 - **Extend to massive case**: Modify $`\varepsilon_{\rm eff}`$ with $`M_U`$-dependent suppression (e.g., $`\varepsilon_{\rm eff}(M_U, \mathcal{R}) = C_\varepsilon(M_U) \kappa_R \mathcal{R}`$ where $`C_\varepsilon(M_U) \propto 1/(1 + M_U^2 \mathcal{R})`$).
 - **Cross-validate**: Use Jorge's $`\varepsilon^2(M_U)`$ limits + our $`\kappa_R`$ bounds → joint constraints in $`(M_U, \kappa_R, C_\varepsilon)`$ space.
 
@@ -79,7 +79,7 @@ Our `curvature_em_to_bsm.tex` provides:
 ## Actionable Follow-Ups
 
 ### Theoretical
-1. ✅ **Derive `$\varepsilon_{\rm eff}(M_U, \mathcal{R})$` mapping**: Extend massless `$\kappa_R \to \varepsilon$` formula to include dark photon mass dispersion relation in curved spacetime. *Implemented in `src/analysis/mass_dependent_dark_photon_mixing.py`*
+1. ✅ **Derive $\varepsilon_{\rm eff}(M_U, \mathcal{R})$ mapping**: Extend massless $\kappa_R \to \varepsilon$ formula to include dark photon mass dispersion relation in curved spacetime. *Implemented in `src/analysis/mass_dependent_dark_photon_mixing.py`*
 2. **Numerical validation**: Reproduce Jorge's Fig. 5 (mass-dependent $`\varepsilon^2`$ limits) and overlay our curvature-amplified predictions for $`\mathcal{R} = 10^{-26}, 10^{-10}, 10^{-6}\,\text{m}^{-2}`$.
 
 ### Experimental
@@ -88,10 +88,8 @@ Our `curvature_em_to_bsm.tex` provides:
    - Precision dilepton spectroscopy (target $`\varepsilon_{\rm eff} \sim 10^{-12}`$ from our lab $`\kappa_R`$ limits at $`\mathcal{R} \sim 10^{-26}\,\text{m}^{-2}`$).
    - Cross-check: $`\varepsilon_{\rm eff}`$ should scale linearly with $`\mathcal{R}`$ if $`\kappa_R \neq 0`$.
 
-4. **Astrophysical recast**: Use our `utils/astrophysical_recast.py` module to compute:
-   $$
-   \varepsilon_{\rm mag} = \sqrt{\varepsilon_{\rm collider}^2 + (C_\varepsilon \kappa_R \mathcal{R}_{\rm mag})^2}
-   $$
+4. **Astrophysical recast**: Use our `utils/astrophysical_recast.py` module to compute: $$\varepsilon_{\rm mag} = \sqrt{\varepsilon_{\rm collider}^2 + (C_\varepsilon \kappa_R \mathcal{R}_{\rm mag})^2}$$
+   
    Compare to magnetar X-ray spectroscopy limits on anomalous photon-axion conversion.
 
 ### Computational
