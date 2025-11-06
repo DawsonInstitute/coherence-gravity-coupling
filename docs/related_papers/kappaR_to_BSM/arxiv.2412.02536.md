@@ -41,10 +41,7 @@ where $`\kappa_R < 5 \times 10^{17}\,\text{m}^2`$ (lab, $`B=10\,\text{T}`$, $`\m
 
 ### 1. **Curvature-Enhanced Dark Photon Searches**
 Jorge et al. focus on laboratory/collider regimes with negligible $`\mathcal{R}`$. Our mapping predicts:
-- **Astrophysical amplification**: If $`\kappa_R \sim 10^{17}\,\text{m}^2`$ and $`\varepsilon_{\rm flat} \sim 10^{-6}`$ (Jorge's limit), then near a magnetar:
-  $$
-  \varepsilon_{\rm magnetar} \sim \varepsilon_{\rm flat} + C_\varepsilon \kappa_R \mathcal{R}_{\rm mag} \sim 10^{-6} + 10^{11} \gg \varepsilon_{\rm flat}
-  $$
+- **Astrophysical amplification**: If $`\kappa_R \sim 10^{17}\,\text{m}^2`$ and $`\varepsilon_{\rm flat} \sim 10^{-6}`$ (Jorge's limit), then near a magnetar: $`\varepsilon_{\rm magnetar} \sim \varepsilon_{\rm flat} + C_\varepsilon \kappa_R \mathcal{R}_{\rm mag} \sim 10^{-6} + 10^{11} \gg \varepsilon_{\rm flat}`$
   Dominant curvature-induced term → **new signatures in magnetar spectra**, pulsar timing, or black hole accretion disks.
 
 - **Experimental proposal**: Search for *curvature-dependent* dark photon mixing in:
