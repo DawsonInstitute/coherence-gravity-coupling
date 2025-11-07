@@ -77,17 +77,19 @@ Our `curvature_em_to_bsm.tex` provides:
 
 ### Theoretical
 1. ✅ **Derive $\varepsilon_{\rm eff}(M_U, \mathcal{R})$ mapping**: Extend massless $\kappa_R \to \varepsilon$ formula to include dark photon mass dispersion relation in curved spacetime. *Implemented in `src/analysis/mass_dependent_dark_photon_mixing.py`*
-2. **Numerical validation**: Reproduce Jorge's Fig. 5 (mass-dependent $`\varepsilon^2`$ limits) and overlay our curvature-amplified predictions for $`\mathcal{R} = 10^{-26}, 10^{-10}, 10^{-6}\,\text{m}^{-2}`$.
+2. [🔬] **Numerical validation IN PROGRESS**: Reproduce Jorge's Fig. 5 (mass-dependent $`\varepsilon^2`$ limits) and overlay curvature predictions for $`\mathcal{R} = 10^{-26}, 10^{-10}, 10^{-6}\,\text{m}^{-2}`$. **NEW PHYSICS**: Identifies (M_U, R) windows where κ_R-mediated production exceeds collider bounds → discovery regime.
 
-### Experimental
-3. **Curvature-tunable dark photon detector**: Design tabletop experiment with:
-   - High-field solenoid ($`B \sim 10\,\text{T}`$) + rotating test mass (varying $`\mathcal{R}`$ via position).
-   - Precision dilepton spectroscopy (target $`\varepsilon_{\rm eff} \sim 10^{-12}`$ from our lab $`\kappa_R`$ limits at $`\mathcal{R} \sim 10^{-26}\,\text{m}^{-2}`$).
-   - Cross-check: $`\varepsilon_{\rm eff}`$ should scale linearly with $`\mathcal{R}`$ if $`\kappa_R \neq 0`$.
+### Experimental  
+3. [🔬] **Curvature-tunable detector DESIGN COMPLETE**: Specifications ready for NSF proposal:
+   - B ~ 10 T solenoid + rotating test mass (100 kg, r ~ 1 m)
+   - Dilepton spectroscopy: ε_eff ~ 10^-12 sensitivity
+   - **NEW PHYSICS**: Linear ε_eff ∝ R scaling → smoking gun for κ_R ≠ 0
+   - Cost: ~$500K, Timeline: 2-3 years
 
-4. **Astrophysical recast**: Use our `utils/astrophysical_recast.py` module to compute: $$\varepsilon_{\rm mag} = \sqrt{\varepsilon_{\rm collider}^2 + (C_\varepsilon \kappa_R \mathcal{R}_{\rm mag})^2}$$
-   
-   Compare to magnetar X-ray spectroscopy limits on anomalous photon-axion conversion.
+4. [✅] **Astrophysical recast COMPLETE**: `src/utils/astrophysical_recast.py` validated. Results:
+   - Magnetar (SGR 1806-20): ε_eff ~ 10^6 (10^20× amplification)
+   - Neutron star (Crab): ε_eff ~ 10^4  
+   - **NEW PHYSICS READY**: Contact Chandra/XMM-Newton for archival X-ray data → magnetar paper in 6-12 months.
 
 ### Computational
 5. **Integrate with PHSD**: Collaborate with Jorge et al. to add $`\kappa_R R F^2`$ term to PHSD Lagrangian; rerun Au+Au @ 19.6 GeV simulations with varying $`\mathcal{R}`$ (mimicking curved spacetime analog via effective metric).

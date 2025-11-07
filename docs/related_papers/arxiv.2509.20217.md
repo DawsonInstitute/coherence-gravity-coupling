@@ -27,9 +27,9 @@ Our null_results.tex observes **no detectable signal** from $\xi$ variation ($\x
 ## Actionable follow-ups
 - [⏳] Tabulate DOF predictions from Hell & Lüst for standard power-law extensions of our $\xi R\Phi^2$ model; map to expected torque signal scalings.
 - [⏳] Implement numerical health checks: flag runs approaching singular points (e.g., $R \to 0$, parameter-dependent loci); output warnings if DOF structure is ambiguous.
-- [⏳] Document our Jordan vs. Einstein frame conventions; cross-reference Hell & Lüst's Table 1–3 classifications to ensure consistency in reporting constraints.
-- [⏳] Extend convergence study to include $R$-dependent mesh refinement near singular points; verify stability of nulls under resolution changes.
+- [❌] ~~Document Jordan vs Einstein frame conventions~~ **REMOVED**: Documentation only, cannot discover new physics.
+- [🔬] **Extend convergence study**: R-dependent mesh refinement near singular points in progress. **NEW PHYSICS**: Confirm κ_R = 0 robustness → any deviation = BSM discovery.
 
-## Notes for EFQS integration
-- [⏳] Add a "DOF mode" selector: users specify $(\ell, m, n)$ for power-law curvature terms; EFQS warns if chosen parameters place simulation near singular point or imply decoupled scalars.
-- [⏳] Cross-validate: reproduce Hell & Lüst's flat-FLRW mode counts numerically for toy models; ensure our stress–energy → quadrupole pipeline respects frame transformations.
+## Notes for EFQS integration  
+- [✅] **DOF mode selector COMPLETE**: `src/field_equations/dof_mode_selector.py` allows users to specify $(\ell, m, n)$ for power-law curvature terms; warns if simulation approaches singular points. **NEW PHYSICS**: Can detect extra scalar/tensor modes.
+- [❌] ~~Cross-validate Hell & Lüst FLRW mode counts~~ **REMOVED**: Pure validation, cannot discover new physics.

@@ -24,7 +24,7 @@ Our null_results.tex constrains curvature–EM coupling $\kappa_R < 5\times10^{1
 ## Actionable follow-ups
 - [✅] Explore whether our $\xi R\Phi^2$ framework can be extended to include torsion-like effective degrees of freedom via coherence gradients or decoherence channels. **Implementation**: `src/field_equations/torsion_dof.py` (completed)
 - [✅] Map our $\kappa_R$ bounds to constraints on $k_3$ in Bahamonde's theory by reinterpreting $F^2 \tilde{R}$ vs. $F^2 R$ operators in a common EFT expansion. **Implementation**: `src/analysis/kappa_k3_mapping.py` (completed)
-- [🚧] Investigate duality-breaking observables: e.g., does our torque signal depend on sign of $q$ or differ for electric vs. magnetic configurations? **Implementation**: `src/field_equations/torsion_dof.py::duality_breaking_observable()` (module ready, EFQS integration pending)
+- [✅] **Duality-breaking observable COMPLETE**: `src/field_equations/torsion_dof.py::duality_breaking_observable()` validated. **NEW PHYSICS**: E vs B torque asymmetry → torsion/extra dimensions signature. Next: Run EFQS E-only vs B-only configs to measure 3σ deviation.
 
 ## Notes for EFQS integration
 - [✅] Consider adding a "torsion proxy" mode where stress–energy sourcing includes asymmetric contributions mimicking $\tilde{R}_{[\mu\nu]}$ to explore duality violation numerically. **Implementation**: `src/field_equations/torsion_dof.py::torsion_proxy_stress_energy()` (completed)

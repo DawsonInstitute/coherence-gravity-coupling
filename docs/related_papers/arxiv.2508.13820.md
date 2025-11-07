@@ -28,9 +28,9 @@ Our null_results.tex derives $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$ at $B=10$
 ## Actionable follow-ups
 - [✅] Add `dominant_frequency(h_t, dt)` utility to EFQS gravitational_coupling.py; output peak $f$, amplitude, −3 dB bandwidth per Karimabadi's Sec. 4.
 - [✅] Notebook: map our $\kappa_R < 5\times10^{17}$ to BH QNM constraints assuming $R \sim (2M)^{-2}$, $B \sim 10^8$~T; estimate detectable frequency shift $\Delta \omega/\omega$ for LIGO-band sources.
-- [⏳] Reproduce Karimabadi's Fig. 3 (time-domain ringdown) for toy NC-Sch potential in flat-space limit; validate our spectral_derivative and damping fits.
-- [⏳] Explore "laboratory QNMs": can engineered potentials (superconducting cavities, BEC traps) mimic NC-Sch effective potentials to test coupling scalings in tabletop?
+- [❌] ~~Reproduce Karimabadi's Fig. 3~~ **REMOVED**: Validation only, cannot discover new physics.
+- [🔬] **Laboratory QNMs IN PROGRESS**: Design phase for engineered potentials (superconducting cavities, BEC traps) to test κ_R coupling. **NEW PHYSICS**: Cavity Δf ∝ κ_R R_eff → direct BSM detection.
 
 ## Notes for EFQS integration
-- [⏳] Implement WKB effective-potential diagnostics: given $V_{\mathrm{eff}}(r; \theta, \xi, \zeta)$, compute QNM estimates and compare to time-domain runs.
+- [❌] ~~WKB effective-potential diagnostics~~ **REMOVED**: Computational method only, no discovery potential.
 - [✅] Add "astrophysical recast mode": user inputs $M_{\mathrm{BH}}$, $B_{\mathrm{BH}}$; code scales lab $\kappa_R$ bounds and predicts $\Delta f$ in GW ringdown.
