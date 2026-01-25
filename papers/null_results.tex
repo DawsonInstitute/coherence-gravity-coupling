@@ -1,16 +1,15 @@
-\documentclass[10pt,twocolumn]{article}
+\documentclass[aps,prb,preprint,amsmath,amssymb]{revtex4-2}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath,amsfonts,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{hyperref}
-\usepackage[margin=2cm]{geometry}
 \usepackage{times}
 \usepackage{microtype}
 \usepackage{url}
 \usepackage{textcomp}
 % \usepackage{siunitx}  % Optional: uncomment if siunitx is available
+\usepackage{amsmath,amsfonts,amssymb}
 
 \title{\Large\bfseries Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
 
@@ -23,26 +22,21 @@
   \providecommand{\authoremail}{contact@example.com}%
 }
 
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\author{\authorname\footnotemark\\\textit{\authoraffiliation}}
-\date{(Dated: November 1, 2025)}
-
 \begin{document}
-\makeatletter
-\renewcommand\@makefntext[1]{%
-  \noindent\@makefnmark\ \ignorespaces#1%
-}
-\renewcommand{\footnoterule}{\vspace{1ex}\noindent\hrule width \columnwidth\vspace{1ex}}
-\makeatother
 
-\maketitle
-\footnotetext{\noindent\textasteriskcentered\ Electronic address: \textbf{\texttt{\authoremail}}}
-\renewcommand{\thefootnote}{\arabic{footnote}}
+% Front matter (title + author using REVTeX macros)
+\title{Null Results and Exclusion Limits for Coherence--Gravity and Curvature Couplings}
+\author{\authorname}
+\affiliation{\authoraffiliation}
+\email{\authoremail}
+\date{November 1, 2025}
 \sloppy
 
 \begin{abstract}
 We present null results from a configuration-driven numerical study of non-minimal couplings between a coherence field and gravity ($\xi$ coupling), and between spacetime curvature and electromagnetism ($\kappa_R\, R\, F_{\mu\nu}F^{\mu\nu}$). Parameter sweeps over coupling strengths ($\xi \in \{50,100\}$), materials (Rb-87 BEC, Nb cavity, YBCO cuprate), and electromagnetic field configurations ($B \in [0.5,10]$~T) yield no detectable signal beyond numerical baselines ($\lvert\Delta\tau\rvert \approx 5\times10^{-13}$~N\,m, consistent across all configurations). From these nulls, we derive exclusion limits on the curvature--electromagnetism coupling parameter $\kappa_R$ across laboratory-relevant magnetic field strengths and terrestrial Ricci curvature scales. For $B=10$~T and $R=10^{-26}\,\mathrm{m^{-2}}$, we constrain $\kappa_R < 5\times10^{17}\,\mathrm{m^2}$. This work establishes a validated computational framework for systematic exploration of beyond-GR physics through precision null measurements.
 \end{abstract}
+
+\maketitle
 
 \noindent\textbf{Index Terms}---Modified gravity, non-minimal coupling, coherence field, curvature--EM coupling, exclusion limits, null results, precision gravimetry.
 
@@ -181,7 +175,7 @@ Code, data, and analysis pipelines are MIT-licensed at\: \url{https://github.com
 \section*{Acknowledgments}
 We thank the NumPy/SciPy/Matplotlib communities. Computational resources: Intel i7-10700K, 32~GB RAM. No external funding.
 
-\bibliographystyle{unsrt}
+\bibliographystyle{apsrev4-2}
 \bibliography{null_results}
 
 \paragraph{Duplication note.} Portions of the numerical methods text overlap with and are adapted for consistency from the companion manuscript \emph{Coherence-Modulated Gravity: Validation and Tabletop Feasibility} (same repository); duplicated sections are minimized and referenced to avoid redundancy.
