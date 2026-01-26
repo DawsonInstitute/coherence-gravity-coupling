@@ -50,7 +50,7 @@ We present a coherence-modulated gravity framework in which a non-minimally coup
 
 General Relativity (GR) ties curvature to stress-energy via $G_{\mu\nu} = (8\pi G / c^4) T_{\mu\nu}$, where the coupling is fixed by Newton's constant $G$. Alternative approaches to engineering spacetime (warp drives, wormholes, screening) have targeted $T_{\mu\nu}$ and faced no-go constraints (ANEC/QI violations, exotic matter gaps). Here we explore modifying the effective coupling itself via a localized, macroscopic coherence field coupled non-minimally to curvature.
 
-Our key hypothesis is that near coherent systems (BECs, superconductors) the effective coupling becomes $G_{\text{eff}}(\Phi) < G$, reducing curvature cost in the weak-field limit. We work explicitly within conservative assumptions: a non-minimally coupled scalar field ($\xi R \Phi^2$) preserving diffeomorphism invariance and local conservation~\cite{birrell1982,fujii2003}, and a weak-field 3D Poisson equation with spatially varying $G_{\text{eff}}$.
+Our key hypothesis is that near coherent systems (BECs, superconductors) the effective coupling becomes $G_{\text{eff}}(\Phi) < G$, reducing curvature cost in the weak-field limit. We work explicitly within conservative assumptions: a non-minimally coupled scalar field ($\xi R \Phi^2$) preserving diffeomorphism invariance and local conservation~\cite{birrell2012,fujii2009}, and a weak-field 3D Poisson equation with spatially varying $G_{\text{eff}}$.
 
 This paper reports a complete numerical implementation, validation protocol, and experimental feasibility analysis for detecting coherence-modulated gravity in a tabletop Cavendish-style torsion balance. A previously reported 523$\times$ torque enhancement at $41^3$ resolution is shown to be a numerical artifact. Independent optimization and resolution convergence establish a robust, physically plausible signal: $\tau_{\text{coh}} \sim 10^{-12}$ N$\cdot$m.
 
@@ -151,7 +151,7 @@ Integration time estimates for $10^{-14}$ N$\cdot$m sensitivity:
 \item \textbf{Cryogenic 4~K} (liquid helium, 10$\times$ vibration isolation): $t_{\text{int}} \approx 0.8$ hours \checkmark
 \end{itemize}
 
-The 4~K cryogenic scenario enables practical hour-scale measurements with existing torsion balance technology (e.g., Eöt-Wash rotating attractor experiments)~\cite{eotwash2008}. Material choice (YBCO vs. Rb-87 vs. Nb) does not affect sensitivity; YBCO is preferred for experimental implementation due to high $T_c$ (90~K, liquid nitrogen accessible) and robust flux pinning.
+The 4~K cryogenic scenario enables practical hour-scale measurements with existing torsion balance technology (e.g., Eöt-Wash rotating attractor experiments)~\cite{schlamminger2008}. Material choice (YBCO vs. Rb-87 vs. Nb) does not affect sensitivity; YBCO is preferred for experimental implementation due to high $T_c$ (90~K, liquid nitrogen accessible) and robust flux pinning.
 
 The production grid study completed in $\sim$32 minutes using 4-worker parallelization ($61^3$ resolution, 125 points $\times$ 3 materials), with caching providing $\sim$250$\times$ speedup on repeated evaluations. This computational efficiency enables rapid exploration of parameter space (varying $\xi$, geometry configurations, material systems) for optimization and systematic error studies.
 
@@ -175,7 +175,7 @@ This correction underscores the critical importance of resolution convergence st
 
 The null-configuration torsion balance geometry (coherent system at ${\bf r}_{\text{coh}}$; test mass at ${\bf r}_{\text{test}} = -{\bf r}_{\text{coh}}$) offers a significant experimental advantage: $\tau_{\text{coh}}$ is a \textit{direct} measurement of the coherence-modulated torque, with no Newtonian background to subtract. In the coherent-off state ($\Phi = 0$), $G_{\text{eff}} = G$ everywhere and the geometry is symmetric, yielding $\tau_{\text{off}} = 0$ by construction. The measured torque in the coherent-on state is therefore $\tau_{\text{coh}} = \tau_{\text{on}} - \tau_{\text{off}} = \tau_{\text{on}}$, eliminating systematic errors associated with imperfect background cancellation.
 
-This is in contrast to previous tabletop gravity experiments (e.g., short-range modified gravity searches), which require precise subtraction of a large Newtonian signal to isolate small anomalies~\cite{eotwash2008}. Here, the signal-to-background ratio is \textit{infinite} in principle, limited only by instrumental noise and environmental systematics (vibrations, thermal drifts, stray fields).
+This is in contrast to previous tabletop gravity experiments (e.g., short-range modified gravity searches), which require precise subtraction of a large Newtonian signal to isolate small anomalies~\cite{schlamminger2008}. Here, the signal-to-background ratio is \textit{infinite} in principle, limited only by instrumental noise and environmental systematics (vibrations, thermal drifts, stray fields).
 
 \subsection{Material Universality and $\Phi_0$ Scaling}
 

@@ -22,3 +22,13 @@ What I changed
 Build result
 - Recompiled successfully; output null_results.pdf created (11 pages).
 - LaTeX warnings are non-critical (underfull/overfull hbox and hyperref token warnings). BibTeX ran and produced the bibliography.
+<!-- ------ -->
+## ✅ Fixed — citation updated & paper recompiled 🔧
+
+**What I changed**
+- Replaced both occurrences of `eotwash2008` → **`schlamminger2008`** in:
+  - coherence_gravity_coupling.tex (lines ~154 and ~178). ✅
+
+**What I ran**
+- Recompiled the paper (pdflatex → bibtex → pdflatex ×2). The bibliography now contains `\bibitem{schlamminger2008}` in `coherence_gravity_coupling.bbl` and coherence_gravity_coupling.pdf was regenerated.
+<!-- ------ -->
