@@ -30,3 +30,4 @@ docs/related_papers/kappaR_to_BSM/source/*
 docs/discussion/2025/**/*.md
 docs/session_summaries/*.md
 *.pdf
+docs/related_papers/**
