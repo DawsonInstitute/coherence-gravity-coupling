@@ -134,3 +134,34 @@ The manuscript's argument that "quantum condensed matter" can affect gravity fit
 **Suggested Enhancement**:
 Quote Jacobson's observation on modified entropy functionals to strengthen the theoretical basis for $G_{\text{eff}}(\Phi)$.
 "Jacobson explicitly notes that 'Changing the assumed entropy functional would change the implied gravitational field equations,' which provides a theoretical basis for our $G_{\text{eff}}(\Phi)$ ansatz as a modulation of the vacuum entropy density."
+
+
+### birrell2012: "Quantum Fields in Curved Space"
+
+**Citation context (line 53)**: Cited alongside fujii2009 to substantiate the "conservative assumptions" of the manuscript's theoretical framework: specifically, that a non-minimally coupled scalar field ($\xi R \Phi^2$) preserves diffeomorphism invariance and local conservation.
+
+**Core Content**: This is the authoritative text on QFT in curved spacetime. Section 3.2 ("Scalar field quantization") explicitly formulates the theory of a scalar field coupled to gravity.
+
+**Key Mathematical Framework**:
+
+1.  **Lagrangian with Non-Minimal Coupling** (Eq. 3.24):
+    To generalize scalar field theory to curved space, the Lagrangian is extended to:
+    $$\mathcal{L}(x) = \frac{1}{2} [-g(x)]^{1/2} \{\nabla^\mu \phi \nabla_\mu \phi - [m^2 + \xi R(x)]\phi^2\}$$
+    
+2.  **Uniqueness of Coupling**:
+    The authors explicitly state that the term $\xi R \phi^2$ is included as "the only possible local, scalar coupling of this sort with the correct dimensions."
+
+3.  **Field Equation** (Eq. 3.26):
+    $$[\square + m^2 + \xi R(x)]\phi(x) = 0$$
+
+4.  **Conformal Coupling** (Eq. 3.27):
+    They identify the specific coupling value for conformal invariance in $n$ dimensions:
+    $$\xi(n) = \frac{n-2}{4(n-1)}$$
+    (For $n=4$, $\xi = 1/6$).
+
+**Relevance to Manuscript**:
+The manuscript uses this standard formulation to justify its starting point. By citing Birrell & Davies, the authors signal that their modified gravity model ($G_{\text{eff}}(\Phi)$) is rooted in standard semi-classical gravity rather than an exotic or ad-hoc modification.
+-   **Validation of "Conservative Assumptions"**: The text confirms that adding $\xi R \Phi^2$ is the standard, minimal extension of scalar field theory to curved space, not a radical departure.
+-   **Conservation**: The text devotes Chapter 6 to renormalization and stress-tensor regularization, demonstrating that valid, conserved stress-tensors ($\nabla^\mu \langle T_{\mu\nu} \rangle = 0$) can be constructed for this theory, supporting the manuscript's claim of "local conservation."
+
+**Manuscript Citation Accuracy**: **High**. The citation accurately points to the standard reference for the mathematical machinery used in the paper. It serves to effectively ground the paper's specific model in established theory.

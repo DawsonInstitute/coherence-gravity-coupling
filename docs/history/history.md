@@ -45,3 +45,15 @@ The annotation is complete. The Verlinde citation is accurate and well-placed in
 1.  **Annotated jacobson1995**: Read the converted text from jacobson1995.md and appended a detailed annotation to coherence_gravity_coupling-bib-annotations.md. The annotation highlights the thermodynamic derivation of the Einstein equation and explicitly connects the entropy area law to the manuscript's $G_{\text{eff}}(\Phi)$ formalism.
 <!-- ------ -->
 ---
+### Accomplished Steps:
+
+1.  **Analyzed Source Text**: Parsed the MinerU output of **Chapter 3** ("Scalar fields") from Birrell & Davies (2012).
+2.  **Verified Citation Context**: Confirmed the text is cited (line 53) to support the "conservative assumptions" of the manuscript, specifically the **non-minimal usage of the $\xi R \Phi^2$ coupling**.
+3.  **Drafted Annotation**: Created a detailed note highlighting:
+    *   **Eq. 3.24**: The standard Lagrangian with non-minimal coupling $\xi R \Phi^2$.
+    *   **Uniqueness**: The text explicitly states this is the "only possible local, scalar coupling" of its dimension.
+    *   **Conformal Invariance**: Noted the derivation relative to $\xi = 1/6$, standardizing the manuscript's framework.
+4.  **Local File Update**: Appended the annotation to:
+    *   coherence_gravity_coupling-bib-annotations.md
+<!-- ------ -->
+---
