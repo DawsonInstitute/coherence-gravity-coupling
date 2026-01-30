@@ -57,3 +57,30 @@ The annotation is complete. The Verlinde citation is accurate and well-placed in
     *   coherence_gravity_coupling-bib-annotations.md
 <!-- ------ -->
 ---
+I have successfully updated the Zotero notes for **Jacobson (1995)** and **Birrell & Davies (2012)** using the "gold standard" HTML format derived from the Verlinde note.
+
+### **Summary of Changes**
+1.  **Analyzed Gold Standard**: Inspected the HTML structure of the Verlinde note (`CIV6W7VY`) and identified the specific CSS classes Zotero uses for math rendering:
+    *   **Inline Math**: `<span class="math">$...$</span>`
+    *   **Display Math**: `<pre class="math">$$...$$</pre>`
+    *   **Formatting**: Standard HTML tags like `<strong>`, `<ul>`, `<li>`, and `<p>`.
+
+2.  **Developed Conversion Strategy**: Created a Python script (convert_annotations.py) that:
+    *   Parses your `coherence_gravity_coupling-bib-annotations.md` file by citation key.
+    *   Converts Markdown syntax (bold, lists) to HTML.
+    *   **Crucially**: Wraps LaTeX math in the correct Zotero-specific HTML tags.
+    *   Generates JSON payloads and executes the API updates.
+
+3.  **Executed Updates**:
+    *   **Jacobson (1995)**: Updated note `3FRUVEA8` (Parent: `7NGTW7FM`).
+    *   **Birrell & Davies (2012)**: Updated note `XA9FKMY9` (Parent: `R85HTGW3`).
+
+### **Result Verification**
+Both notes now contain the correctly formatted HTML with math support. You can verify this in your Zotero client; the equations should render exactly like the manually formatted Verlinde note.
+
+*   **Jacobson Note**: Includes the referenced equations for heat flux and the entropy-area law properly formatted.
+*   **Birrell Note**: Includes the Lagrangian and field equations with non-minimal coupling properly formatted.
+
+I have left the script at `papers/convert_annotations.py` (referenced relative to your project root or absolute path convert_annotations.py) so you can reuse it for future annotations. You can extend the `MAPPING` dictionary in the script to handle new papers.
+<!-- ------ -->
+---
