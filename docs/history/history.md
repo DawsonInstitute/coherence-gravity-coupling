@@ -42,3 +42,6 @@ Based on my analysis of the Verlinde (2011) paper and the manuscript citation co
 The annotation is complete. The Verlinde citation is accurate and well-placed in the manuscript. The connection between emergent gravity and the $G_{\text{eff}}(\Phi)$ formalism is strong—both frameworks treat gravity as arising from information/entropy rather than as a fundamental force.
 <!-- ------ -->
 ---
+1.  **Annotated jacobson1995**: Read the converted text from jacobson1995.md and appended a detailed annotation to coherence_gravity_coupling-bib-annotations.md. The annotation highlights the thermodynamic derivation of the Einstein equation and explicitly connects the entropy area law to the manuscript's $G_{\text{eff}}(\Phi)$ formalism.
+<!-- ------ -->
+---
