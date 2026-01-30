@@ -84,3 +84,17 @@ Both notes now contain the correctly formatted HTML with math support. You can v
 I have left the script at `papers/convert_annotations.py` (referenced relative to your project root or absolute path convert_annotations.py) so you can reuse it for future annotations. You can extend the `MAPPING` dictionary in the script to handle new papers.
 <!-- ------ -->
 ---
+I have successfully moved the `convert_annotations.py` script to zotero and updated the README.md file with usage documentation.
+
+### Changes Made:
+1. **File Move**: Relocated `convert_annotations.py` from the coherence-gravity-coupling directory to the zotero scripts directory.
+
+2. **README.md Update**: Added a new step (4) in the Usage section describing how to run the annotation conversion script, including:
+   - Command to execute
+   - Brief description of functionality
+   - Prerequisites (source file location, existing notes, API access)
+   - Note about hardcoded paths and mappings
+
+The script is now integrated into the zotero helper scripts collection, and the documentation provides clear instructions for future use. Note that the script still uses absolute paths for the source file, so it should work as-is from the new location. If you need to adapt it for other projects, you can modify the `SOURCE_FILE` variable in the script.
+<!-- ------ -->
+---
